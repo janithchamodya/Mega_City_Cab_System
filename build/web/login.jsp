@@ -12,8 +12,15 @@
         <input type="submit" value="Login">
     </form>
     <a href="signup.jsp">Sign Up</a>
-    <% if (request.getParameter("error") != null) { %>
-        <p style="color:red;">Invalid username or password!</p>
-    <% } %>
+     <% 
+        // Check if the error attribute is set in the request
+        if (request.getAttribute("error") != null) { 
+    %>
+        <script type="text/javascript">
+            showError(); 
+        </script>
+    <% 
+        }
+    %>
 </body>
 </html>

@@ -29,6 +29,10 @@ public class UserService {
 
     public boolean signUp(User user) {
         
+        String customerId = userDAO.generateCustomerId();
+        System.out.println("customerId"+customerId);
+        user.setCustomerId(customerId);
+   
         return userDAO.addUser(user);
     }
 

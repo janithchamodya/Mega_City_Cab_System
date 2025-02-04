@@ -10,7 +10,7 @@ package com.megacity.model;
  * @author OZT00106
  */
 public class User {
-    private int customerId;
+    private String customerId;
     private String username;
     private String password;
     private String email;
@@ -31,8 +31,8 @@ public class User {
     }
 
     // Full constructor including all fields
-    public User(int customerId, String username, String password, String email, String address, String nic, String phone, String role) {
-        this.customerId = customerId;
+    public User( String username, String password, String email, String address, String nic, String phone, String role) {
+        
         this.username = username;
         this.password = password;
         this.email = email;
@@ -43,11 +43,11 @@ public class User {
     }
 
     // Getters and Setters for all fields
-    public int getCustomerId() {
+    public String getCustomerId() {
         return customerId;
     }
 
-    public void setCustomerId(int customerId) {
+    public void setCustomerId(String customerId) {
         this.customerId = customerId;
     }
 
@@ -106,5 +106,18 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
-    
+    @Override
+public String toString() {
+    return "User {" +
+            "customerId='" + customerId + '\'' +
+            ", username='" + username + '\'' +
+            ", password='" + password + '\'' +
+            ", email='" + email + '\'' +
+            ", address='" + address + '\'' +
+            ", nic='" + nic + '\'' +
+            ", phone='" + phone + '\'' +
+            ", role='" + role + '\'' +
+            '}';
+}
+
 }

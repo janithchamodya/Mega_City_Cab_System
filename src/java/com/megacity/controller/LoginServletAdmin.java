@@ -19,16 +19,13 @@ import javax.servlet.http.HttpSession;
  *
  * @author OZT00106
  */
-public class LoginServlet extends HttpServlet {
+public class LoginServletAdmin extends HttpServlet {
 
     private UserService userService;
 
-    public LoginServlet() {  // ✅ Correct constructor
+    public LoginServletAdmin() {  // ✅ Correct constructor
         userService = new UserService();
     }
-
-    private static final long serialVersionUID = 1L;
-    
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -38,8 +35,7 @@ public class LoginServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        
-        String username = request.getParameter("username");
+       String username = request.getParameter("username");
         String password = request.getParameter("password");
         
         
@@ -48,26 +44,22 @@ public class LoginServlet extends HttpServlet {
 
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
             System.out.println("user name and password is empty");
-            response.sendRedirect("login.jsp?error=1");
+            response.sendRedirect("login_admin.jsp?error=1");
             return;
         }
 
         User user = userService.login(username, password);
         if (user != null) {
-            HttpSession session = request.getSession();
-            session.setAttribute("user", user);
-
-            if (user.getRole().equals("admin")) {
-                response.sendRedirect("admindashboard.jsp");
-            }
-            else {
-                response.sendRedirect("customerdashboard.jsp");
-            }
+           
+           response.sendRedirect("signup_admin.jsp");
+     
         } else {
-            response.sendRedirect("login.jsp?error=1");
+            System.out.println("invalide username and password");
+            response.sendRedirect("login_admin.jsp?error=1");
         }
     }
 
+   
     @Override
     public String getServletInfo() {
         return "Short description";
