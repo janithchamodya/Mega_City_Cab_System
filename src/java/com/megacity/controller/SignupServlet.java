@@ -60,12 +60,31 @@ public class SignupServlet extends HttpServlet {
                 User user = new User(username, password, email, address, nic, phone,role );
 
                 // Call the signUp method from userService to handle the new user registration
-                if (userService.signUp(user)) {
+                
+                if(role=="user"){
+                   if (userService.signUp(user)) {
                     System.out.println("user"+user.toString());
                     response.sendRedirect("login.jsp");
                 } else {
-                    response.sendRedirect("signup.jsp?error=1");
+                    System.out.println("Duplicate found/Invalide values user role");
+                    response.sendRedirect("signup.jsp?error=2");
                 }
+                }else{
+                    if (userService.signUp(user)) {
+                        System.out.println("user"+user.toString());
+                        response.sendRedirect("login_admin.jsp");
+                    } else {
+                        System.out.println("Duplicate found/Invalide values user role");
+                        response.sendRedirect("signup_admin.jsp?error=2");
+                    }
+                
+                }
+                
+                
+                
+               
+                
+                
     }
     
     @Override

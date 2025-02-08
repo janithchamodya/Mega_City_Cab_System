@@ -23,7 +23,7 @@ public class LoginServletAdmin extends HttpServlet {
 
     private UserService userService;
 
-    public LoginServletAdmin() {  // ✅ Correct constructor
+    public LoginServletAdmin() {  
         userService = new UserService();
     }
     @Override
@@ -55,7 +55,7 @@ public class LoginServletAdmin extends HttpServlet {
      
         } else {
             System.out.println("invalide username and password");
-            response.sendRedirect("login_admin.jsp?error=1");
+            response.sendRedirect("login_admin.jsp?error=2");
         }
     }
 
@@ -63,6 +63,6 @@ public class LoginServletAdmin extends HttpServlet {
     @Override
     public String getServletInfo() {
         return "Short description";
-    }// </editor-fold>
+    }
 
 }

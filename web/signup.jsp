@@ -1,48 +1,111 @@
-<%-- 
-    Document   : signup
-    Created on : Feb 4, 2025, 3:50:06 PM
-    Author     : OZT00106
---%>
-
-<%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
-    <meta charset="UTF-8">
+    <meta charset="utf-8">
     <title>Sign Up</title>
+    
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+    
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+     <script type="text/javascript" src="js/loginSignup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
-    <h2>Create Account</h2>
-    <% if (request.getParameter("error") != null) { %>
-        <p style="color:red;">All fields are required!</p>
-    <% } %>
+<body class="form-v8">
+    <div class="page-content">
+        <div class="form-v8-content">
+            <div class="form-right">
+                <div class="tab">
+                    <div class="tab-inner">
+                        <button class="tablinks" onclick="openCity(event, 'sign-in')">Sign Up</button>
+                    </div>
+                </div>
 
-   <form action="SignupServlet" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br><br>
+                <form class="form-detail" action="SignupServlet" method="post" onsubmit="return validateForm();">
+                    <div class="tabcontent" id="sign-in">
+                        <div class="form-row">
+                            <label class="form-row-inner">
+                                <input type="text" name="username" id="username" class="input-text" required>
+                                <span class="label">User Name</span>
+                                <span class="border"></span>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-row-inner">
+                                <input type="password" name="password" id="password" class="input-text" required>
+                                <span class="label">Password</span>
+                                <span class="border"></span>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-row-inner">
+                                <input type="text" name="email" id="email" class="input-text" required>
+                                <span class="label">E-Mail</span>
+                                <span class="border"></span>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-row-inner">
+                                <input type="text" name="nic" id="nic" class="input-text" required>
+                                <span class="label">NIC</span>
+                                <span class="border"></span>
+                            </label>
+                        </div>
+                        <span class="label">Address</span>
+                        <span class="border"></span>
+                        <div class="form-row">
+                            <label class="form-row-inner">
+                                <textarea name="address" class="input-text" rows="4" cols="50" required></textarea>
+                            </label>
+                        </div>
+                        <div class="form-row">
+                            <label class="form-row-inner">
+                                <input type="tel" name="phone" id="phone" class="input-text" required>
+                                <span class="label">Phone</span>
+                                <span class="border"></span>
+                            </label>
+                        </div>
+                        <input type="hidden" name="role" value="user">
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br><br>
+                        <div class="form-row-last">
+                            <input type="submit" name="register" class="register" value="Sign Up">
+                            <a href="login.jsp"><div class="btnsignup">Sign In</div></a>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
+    <!-- Script should be placed after the form for better execution -->
+    <script type="text/javascript">
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
 
-    <label for="nic">NIC:</label>
-    <input type="text" id="nic" name="nic" required><br><br>
+        document.getElementsByClassName("tablinks")[0].click(); 
 
-    <label for="address">Address:</label>
-    <textarea id="address" name="address" rows="3" cols="30" required></textarea><br><br>
+        
+    </script>
 
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br><br>
-
-    <input type="hidden" name="role" value="user">
-
-    <button type="submit">Sign Up</button>
-    </form>
-
-
-    <br>
-    <a href="login.jsp">Already have an account? Log In</a>
+    <% 
+        String error = request.getParameter("error");
+        if (error != null) { 
+    %>
+        <script type="text/javascript">
+            showError(<%= error %>);
+        </script>
+    <% 
+        }
+    %>
 </body>
 </html>

@@ -2,26 +2,70 @@
 <!DOCTYPE html>
 <html>
 <head>
+    <meta charset="utf-8">
     <title>Login</title>
-   
-</head>
-<body>
-    <h2>Login</h2>
-    <form action="LoginServletAdmin" method="post">
-        Username: <input type="text" name="username" required><br>
-        Password: <input type="password" name="password" required><br>
-        <input type="submit" value="Login">
-    </form>
+
     
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+ 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <script type="text/javascript" src="js/loginSignup.js"></script>
+</head>
+<body class="form-v8">
+   <h1 class="topic">Admin Logging</h1 >
+    <div class="page-content">
+        <div class="form-v8-content">
+            
+            <div class="form-right">
+                <form class="form-detail" action="LoginServletAdmin" method="post" onsubmit="return validateForm();">
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="text" name="username" id="username" class="input-text" required>
+                            <span class="label">Username</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="password" name="password" id="password" class="input-text" required>
+                            <span class="label">Password</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row-last">
+                        <input type="submit" name="login" class="register" value="Login">
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    <script type="text/javascript">
+		function openCity(evt, cityName) {
+		    var i, tabcontent, tablinks;
+		    tabcontent = document.getElementsByClassName("tabcontent");
+		    for (i = 0; i < tabcontent.length; i++) {
+		        tabcontent[i].style.display = "none";
+		    }
+		    tablinks = document.getElementsByClassName("tablinks");
+		    for (i = 0; i < tablinks.length; i++) {
+		        tablinks[i].className = tablinks[i].className.replace(" active", "");
+		    }
+		    document.getElementById(cityName).style.display = "block";
+		    evt.currentTarget.className += " active";
+		}
+
+		// Get the element with id="defaultOpen" and click on it
+		document.getElementById("defaultOpen").click();
+	</script>
 
     <% 
-        // Check if the error attribute is set in the request
-        if (request.getAttribute("error") != null) { 
+        // Retrieve the error parameter from the request (e.g., ?error=1 or ?error=2)
+        String error = request.getParameter("error");
+        if (error != null) { 
     %>
         <script type="text/javascript">
-            echo "read file";
-            alert("Invalid username or password!");
-             window.location.href = "LoginServletAdmin.jsp";
+            showError(<%= error %>);  // Call the function from the external JS file for error handling
         </script>
     <% 
         }

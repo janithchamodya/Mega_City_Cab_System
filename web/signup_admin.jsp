@@ -1,47 +1,106 @@
-<%-- 
-    Document   : signup
-    Created on : Feb 4, 2025, 3:50:06 PM
-    Author     : OZT00106
---%>
-
 <%@ page contentType="text/html;charset=UTF-8" language="java" %>
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Sign Up</title>
+
+    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <script type="text/javascript" src="js/loginSignup.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
-<body>
-    <h2>  Create Admin Account</h2>
-    <% if (request.getParameter("error") != null) { %>
-        <p style="color:red;">All fields are required!</p>
-    <% } %>
+<body class="form-v8">
+  <div class="page-content">
+        <div class="form-v8-content">
+            <div class="form-right">
+                <div class="tab">
+                    <div class="tab-inner">
+                        <button class="tablinks" onclick="openCity(event, 'sign-in')"> Create Admin Account</button>
+                    </div>
+                </div>
+                <form class="form-detail" action="SignupServlet" method="post" onsubmit="return validateForm();">
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="text" name="username" id="username" class="input-text" required>
+                            <span class="label">Username</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="password" name="password" id="password" class="input-text" required>
+                            <span class="label">Password</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="text" name="email" id="email" class="input-text" required>
+                            <span class="label">E-Mail</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="text" name="nic" id="nic" class="input-text" required>
+                            <span class="label">NIC</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    <span class="label">Address</span>
+                    <span class="border"></span>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <textarea name="address" id="address" class="input-text" rows="3" cols="30" required></textarea>
+                        </label>
+                    </div>
+                    <div class="form-row">
+                        <label class="form-row-inner">
+                            <input type="tel" name="phone" id="phone" class="input-text" pattern="[0-9]{10}" required>
+                            <span class="label">Phone</span>
+                            <span class="border"></span>
+                        </label>
+                    </div>
+                    <input type="hidden" name="role" value="admin">
+                    <div class="form-row-last">
+                        <input type="submit" name="register" class="register" value="Sign Up">
+                        
+                    </div>
+                </form>
+               
+                
+            </div>
+        </div>
+    </div>
+        <script type="text/javascript">
+        function openCity(evt, cityName) {
+            var i, tabcontent, tablinks;
+            tabcontent = document.getElementsByClassName("tabcontent");
+            for (i = 0; i < tabcontent.length; i++) {
+                tabcontent[i].style.display = "none";
+            }
+            tablinks = document.getElementsByClassName("tablinks");
+            for (i = 0; i < tablinks.length; i++) {
+                tablinks[i].className = tablinks[i].className.replace(" active", "");
+            }
+            document.getElementById(cityName).style.display = "block";
+            evt.currentTarget.className += " active";
+        }
 
-   <form action="SignupServlet" method="post">
-    <label for="username">Username:</label>
-    <input type="text" id="username" name="username" required><br><br>
+        document.getElementsByClassName("tablinks")[0].click(); 
 
-    <label for="password">Password:</label>
-    <input type="password" id="password" name="password" required><br><br>
+        
+    </script>
 
-    <label for="email">Email:</label>
-    <input type="email" id="email" name="email" required><br><br>
-
-    <label for="nic">NIC:</label>
-    <input type="text" id="nic" name="nic" required><br><br>
-
-    <label for="address">Address:</label>
-    <textarea id="address" name="address" rows="3" cols="30" required></textarea><br><br>
-
-    <label for="phone">Phone Number:</label>
-    <input type="tel" id="phone" name="phone" pattern="[0-9]{10}" required><br><br>
-
-    <input type="hidden" name="role" value="admin">
-
-    <button type="submit">Sign Up</button>
-    </form>
-
-    <br>
-    <a href="login_admin.jsp">Already have an account? Log In</a>
+    <% 
+        String error = request.getParameter("error");
+        if (error != null) { 
+    %>
+        <script type="text/javascript">
+            showError(<%= error %>);
+        </script>
+    <% 
+        }
+    %>
 </body>
 </html>
