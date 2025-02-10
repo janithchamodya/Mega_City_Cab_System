@@ -38,6 +38,8 @@ public class changeAddminDataServlet extends HttpServlet {
         List<Admin> adminList = adminService.getAllAdminList();
             for (Admin admin : adminList) {
              System.out.println("Username: " + admin.getUsername());
+              System.out.println("password: " + admin.getPassword());
+             System.out.println("Address: "+ admin.getAddress());
              System.out.println("NIC: " + admin.getNic());
              System.out.println("Phone: " + admin.getPhone());
              System.out.println("Email: " + admin.getEmail());
@@ -55,12 +57,15 @@ public class changeAddminDataServlet extends HttpServlet {
             throws ServletException, IOException {
         
         String username = request.getParameter("username");
+        String password =request.getParameter("password");
+        String address =request.getParameter("address");
         String nic = request.getParameter("nic");
         String phone = request.getParameter("phone");
         String email = request.getParameter("email");
+        
         String role = request.getParameter("role");
 
-        Admin admin=new Admin(username, phone, email, role, nic, phone, role);
+        Admin admin=new Admin(username,password, email,address ,nic, phone,  role);
        
         if (adminService.updateAdminDetails(admin)) {
         System.out.println("Admin details updated: " + admin.toString());

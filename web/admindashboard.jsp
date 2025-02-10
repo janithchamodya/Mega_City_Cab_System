@@ -51,69 +51,22 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Admin Management:</h6>
-                        <a class="collapse-item" href="addAddmin.jsp">Add Addmin</a>
-                        <a class="collapse-item" href="">Delete Addmin</a>
-                        <a class="collapse-item" href="">Change Addmin Details</a>
-                    </div>
+                        <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Admin Facilities:</h6>
+                        <a class="collapse-item" href="addVehical.jsp">Add Vehicle</a>
+                        <a class="collapse-item" href="">Add Drivers</a>
+                        <a class="collapse-item" href=""></a>
+                           </div>
                 </div>
             </li>
 
-            <!-- Nav Item - Utilities Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
-                    aria-expanded="true" aria-controls="collapseUtilities">
-                    <i class="fas fa-fw fa-wrench"></i>
-                    <span>Super Addmin Controls</span>
-                </a>
-                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
-                    data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Custom Utilities:</h6>
-                        <a class="collapse-item" href="">Super Addmin Change</a>
-                        
-                    </div>
-                </div>
-            </li>
+           
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-            <!-- Heading -->
-            <div class="sidebar-heading">
-                Details
-            </div>
-
-            <!-- Nav Item - Pages Collapse Menu -->
-            <li class="nav-item">
-                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
-                    aria-expanded="true" aria-controls="collapsePages">
-                    <i class="fas fa-fw fa-folder"></i>
-                    <span>Admin Data</span>
-                </a>
-                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
-                    <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Display Screens:</h6>
-                        <a class="collapse-item" href="">Register Details</a>
-                    </div>
-                </div>
-            </li>
-
-            <!-- Nav Item - Charts addmin data as chart-->
-            <li class="nav-item">
-                <a class="nav-link" href="">
-                    <i class="fas fa-fw fa-chart-area"></i>
-                    <span>Charts</span></a>
-            </li>
-
-
-            <!-- Divider -->
-            <hr class="sidebar-divider d-none d-md-block">
-
-            
-
         </ul>
-        <!-- End of Sidebar -->
+        
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">

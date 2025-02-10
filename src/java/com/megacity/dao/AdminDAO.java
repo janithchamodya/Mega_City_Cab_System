@@ -133,15 +133,16 @@ public class AdminDAO {
 
     public boolean updateAdminDetails(Admin admin) {
     try {
-        String query = "UPDATE admin SET password=?, nic=?, phone=?, email=?,role=? WHERE username=?";
+        String query = "UPDATE admin SET password=?,address=?, nic=?, phone=?, email=?,role=? WHERE username=?";
         PreparedStatement ps = connection.prepareStatement(query);
         
         ps.setString(1, admin.getPassword());
-        ps.setString(2, admin.getNic());
-        ps.setString(3, admin.getPhone());
-        ps.setString(4, admin.getEmail());  
-        ps.setString(5, admin.getRole());
-        ps.setString(6, admin.getUsername());
+        ps.setString(2, admin.getAddress());
+        ps.setString(3, admin.getNic());
+        ps.setString(4, admin.getPhone());
+        ps.setString(5, admin.getEmail());  
+        ps.setString(6, admin.getRole());
+        ps.setString(7, admin.getUsername());
         int rowsUpdated = ps.executeUpdate();  
         return rowsUpdated > 0;  
     } catch (SQLException e) {

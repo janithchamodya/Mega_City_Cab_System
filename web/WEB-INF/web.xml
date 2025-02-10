@@ -20,6 +20,19 @@
         <servlet-name>changeAddminDataServlet</servlet-name>
         <servlet-class>com.megacity.controller.superAdmin.changeAddminDataServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>BookingServlet</servlet-name>
+        <servlet-class>com.megacity.controller.customer.showBookingServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>addVehicleServlet</servlet-name>
+        <servlet-class>com.megacity.controller.customer.addVehicleServlet</servlet-class>
+         <multipart-config>
+        <max-file-size>10485760</max-file-size> <!-- Max file size 10 MB -->
+        <max-request-size>20971520</max-request-size> <!-- Max request size 20 MB -->
+        <file-size-threshold>0</file-size-threshold> <!-- File is written to disk immediately -->
+        </multipart-config>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -39,6 +52,14 @@
     <servlet-mapping>
         <servlet-name>changeAddminDataServlet</servlet-name>
         <url-pattern>/changeAddminDataServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>BookingServlet</servlet-name>
+        <url-pattern>/BookingServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>addVehicleServlet</servlet-name>
+        <url-pattern>/addVehicleServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

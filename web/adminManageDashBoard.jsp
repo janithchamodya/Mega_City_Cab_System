@@ -22,6 +22,8 @@
 </head>
 
 <body id="page-top">
+    
+    
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -55,6 +57,9 @@
                         <a class="collapse-item" href="addAddmin.jsp">Add Addmin</a>
                         <a class="collapse-item" href="deleteAddmin.jsp">Delete Addmin</a>
                         <a class="collapse-item" href="changeAddminDataServlet">Change Addmin Details</a>
+                    
+                        
+                    
                     </div>
                 </div>
             </li>
@@ -106,9 +111,15 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" >
+                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <%= session.getAttribute("Super_addmin") != null ? session.getAttribute("Super_addmin") : "Guest" %>
+                            </span>
+
+                                    
+                                </span>
                                 <img class="img-profile rounded-circle"
-                                    src="">
+                                     src="images/adminDashboard/../undraw_profile_1.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

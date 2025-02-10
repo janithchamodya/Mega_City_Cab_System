@@ -12,7 +12,7 @@
     <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
 </head>
 <body class="form-v8">
-   <h1 class="topic">Admin Logging</h1 >
+   <h1 class="topic">Super Admin Logging</h1 >
     <div class="page-content">
         <div class="form-v8-content">
             

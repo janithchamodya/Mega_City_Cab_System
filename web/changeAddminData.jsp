@@ -111,9 +111,13 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <%= session.getAttribute("Super_addmin") != null ? session.getAttribute("Super_addmin") : "Guest" %>
+                                    </span>
+                                </span>
                                 <img class="img-profile rounded-circle"
-                                    src="">
+                                    src="images/adminDashboard/../undraw_profile_1.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -138,6 +142,7 @@
                     <thead>
                         <tr>
                             <th scope="col">Username</th>
+                            <th scope="col">Password</th>
                             <th scope="col">NIC</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Email</th>
@@ -151,6 +156,12 @@
                                  <form action="changeAddminDataServlet" method="POST">
                                     <td>
                                         <input readonly  type="text" name="username" value="${admin.username}" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="password" value="${admin.password}" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="address" value="${admin.address}" class="form-control" />
                                     </td>
                                     <td>
                                         <input type="text" name="nic" value="${admin.nic}" class="form-control" />
