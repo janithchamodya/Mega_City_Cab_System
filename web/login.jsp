@@ -4,11 +4,11 @@
 	<meta charset="utf-8">
 	<title>Login</title>
 	
-	<link rel="stylesheet" type="text/css" href="css/login.css">
+	<link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
 	<!-- Main Style Css -->
            
 	 <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="js/javaScript_File.js"></script>
+    <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
 </head>
 <body class="form-v8">
     <h1 class="topic">Mega City Cab</h1 >

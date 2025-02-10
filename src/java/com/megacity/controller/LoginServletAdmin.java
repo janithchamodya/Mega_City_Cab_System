@@ -5,7 +5,9 @@
  */
 package com.megacity.controller;
 
+import com.megacity.model.Admin;
 import com.megacity.model.User;
+import com.megacity.service.AdminService;
 import com.megacity.service.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,10 +23,10 @@ import javax.servlet.http.HttpSession;
  */
 public class LoginServletAdmin extends HttpServlet {
 
-    private UserService userService;
+    private AdminService adminService;
 
     public LoginServletAdmin() {  
-        userService = new UserService();
+        adminService = new AdminService();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
@@ -35,8 +37,10 @@ public class LoginServletAdmin extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-       String username = request.getParameter("username");
+        String username = request.getParameter("username");
         String password = request.getParameter("password");
+        String role = request.getParameter("role");
+        
         
         
         System.out.println("username"+username);
@@ -48,10 +52,11 @@ public class LoginServletAdmin extends HttpServlet {
             return;
         }
 
-        User user = userService.login(username, password);
-        if (user != null) {
-           
-           response.sendRedirect("signup_admin.jsp");
+        Admin admin = adminService.SuperAdminLogin(username, password,role);
+        if (admin != null) {
+           HttpSession session = request.getSession();
+            session.setAttribute("Super_addmin", admin.getUsername());
+           response.sendRedirect("adminManageDashBoard.jsp");
      
         } else {
             System.out.println("invalide username and password");

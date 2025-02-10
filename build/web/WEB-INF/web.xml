@@ -12,6 +12,14 @@
         <servlet-name>LoginServletAdmin</servlet-name>
         <servlet-class>com.megacity.controller.LoginServletAdmin</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>deleteAdminServlet</servlet-name>
+        <servlet-class>com.megacity.controller.superAdmin.deleteAdminServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>changeAddminDataServlet</servlet-name>
+        <servlet-class>com.megacity.controller.superAdmin.changeAddminDataServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -23,6 +31,14 @@
     <servlet-mapping>
         <servlet-name>LoginServletAdmin</servlet-name>
         <url-pattern>/LoginServletAdmin</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteAdminServlet</servlet-name>
+        <url-pattern>/deleteAdminServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeAddminDataServlet</servlet-name>
+        <url-pattern>/changeAddminDataServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

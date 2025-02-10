@@ -5,7 +5,9 @@
  */
 package com.megacity.controller;
 
+import com.megacity.model.Admin;
 import com.megacity.model.User;
+import com.megacity.service.AdminService;
 import com.megacity.service.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -22,9 +24,11 @@ import javax.servlet.http.HttpSession;
 public class LoginServlet extends HttpServlet {
 
     private UserService userService;
+    private AdminService adminService;
 
     public LoginServlet() {  // ✅ Correct constructor
         userService = new UserService();
+        adminService=new AdminService();
     }
 
     private static final long serialVersionUID = 1L;
@@ -43,6 +47,7 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         
         
+        
         System.out.println("username"+username);
         System.out.println("password"+password);
 
@@ -53,19 +58,29 @@ public class LoginServlet extends HttpServlet {
         }
 
         User user = userService.login(username, password);
-        if (user != null) {
+       
+        //Admin and SuperAdmin
+        Admin admin =adminService.Login(username, password);
+        
+        
+        
+        if (user != null  ) {
             HttpSession session = request.getSession();
             session.setAttribute("user", user);
-
-            if (user.getRole().equals("admin")) {
-                response.sendRedirect("admindashboard.jsp");
+            
+            response.sendRedirect("customerdashboard.jsp");
+           
             }
-            else {
-                response.sendRedirect("customerdashboard.jsp");
+        else if(admin!=null) {
+            HttpSession session = request.getSession();
+            session.setAttribute("admin", admin);
+            
+            response.sendRedirect("admindashboard.jsp");
+            
             }
-        } else {
+        else{
             response.sendRedirect("login.jsp?error=2");
-        }
+            }
     }
 
     @Override

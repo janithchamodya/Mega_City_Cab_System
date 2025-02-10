@@ -6,10 +6,10 @@
     <title>Login</title>
 
     
-    <link rel="stylesheet" type="text/css" href="css/login.css">
+    <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
  
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
-    <script type="text/javascript" src="js/loginSignup.js"></script>
+    <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
 </head>
 <body class="form-v8">
    <h1 class="topic">Admin Logging</h1 >
@@ -32,6 +32,7 @@
                             <span class="border"></span>
                         </label>
                     </div>
+                    <input type="hidden" name="role" value="superAdmin">
                     <div class="form-row-last">
                         <input type="submit" name="login" class="register" value="Login">
                     </div>

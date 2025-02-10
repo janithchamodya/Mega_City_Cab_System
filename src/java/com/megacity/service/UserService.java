@@ -20,14 +20,14 @@ public class UserService {
     }
 
     public User login(String username, String password) {
-        User user = userDAO.getUserByUsername(username);
+        User user = userDAO.getUserByUsername(username,password);
         if (user != null && user.getPassword().equals(password)) { // Remove hashing for testing
             return user;
         }
         return null;
     }
 
-    public boolean signUp(User user) {
+    public boolean signUpUser(User user) {
         
         String customerId = userDAO.generateCustomerId();
         System.out.println("customerId"+customerId);

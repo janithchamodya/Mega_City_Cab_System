@@ -6,8 +6,8 @@
     
     <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
     
-    <link rel="stylesheet" type="text/css" href="css/login.css">
-     <script type="text/javascript" src="js/loginSignup.js"></script>
+    <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
+     <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 <body class="form-v8">

@@ -5,7 +5,10 @@
  */
 package com.megacity.controller;
 
+
+import com.megacity.model.Admin;
 import com.megacity.model.User;
+import com.megacity.service.AdminService;
 import com.megacity.service.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -21,9 +24,11 @@ import javax.servlet.http.HttpServletResponse;
 public class SignupServlet extends HttpServlet {
 
     private UserService userService;
+    private AdminService adminService;
     
     public SignupServlet() {  // ✅ Correct constructor
 	        userService = new UserService();
+                adminService=new AdminService();
 	    }
 
     @Override
@@ -45,7 +50,7 @@ public class SignupServlet extends HttpServlet {
                 String address = request.getParameter("address");
                 String phone = request.getParameter("phone");
                 
-                System.out.println("Username: " + username + ", Password: " + password + ", Email: " + email + 
+                System.out.println(" Username: " + username + ", Password: " + password + ", Email: " + email + 
                    ", Role: " + role + ", NIC: " + nic + ", Address: " + address + ", Phone: " + phone);
 
 
@@ -53,35 +58,41 @@ public class SignupServlet extends HttpServlet {
                 if (username == null || password == null || email == null || nic == null || address == null || phone == null ||
                     username.isEmpty() || password.isEmpty() || email.isEmpty() || nic.isEmpty() || address.isEmpty() || phone.isEmpty()) {
                     response.sendRedirect("signup.jsp?error=1");
+                    System.out.println("empty filed found");
                     return;
                 }
 
-                // Create a User object with the new fields
-                User user = new User(username, password, email, address, nic, phone,role );
-
+             
+              
                 // Call the signUp method from userService to handle the new user registration
-                
-                if(role=="user"){
-                   if (userService.signUp(user)) {
-                    System.out.println("user"+user.toString());
+               
+                if("user".equals(role)){
+                    System.out.println("user sign up");
+                    User user = new User(username, password, email, address, nic, phone,role );
+                   if (userService.signUpUser(user)) {
+                    System.out.println(user.toString());
                     response.sendRedirect("login.jsp");
                 } else {
                     System.out.println("Duplicate found/Invalide values user role");
                     response.sendRedirect("signup.jsp?error=2");
                 }
-                }else{
-                    if (userService.signUp(user)) {
-                        System.out.println("user"+user.toString());
-                        response.sendRedirect("login_admin.jsp");
+                }
+                else{
+                    System.out.println("admin sign up");
+                    Admin admin =new Admin(username, password, email, address, nic, phone, role);
+                    System.out.println("admin 123"+ admin.toString());
+                    if (!adminService.signUpAdmin(admin)) {
+                        System.out.println("Duplicate found/Invalide values admin role");
+                        response.sendRedirect("addAddmin.jsp?error=2");
                     } else {
-                        System.out.println("Duplicate found/Invalide values user role");
-                        response.sendRedirect("signup_admin.jsp?error=2");
+                        System.out.println(admin.toString());
+                        response.sendRedirect("addAddmin.jsp");
                     }
-                
+                    System.out.println("out");
                 }
                 
-                
-                
+                System.out.println("out");
+               
                
                 
                 

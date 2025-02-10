@@ -4,15 +4,20 @@
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
             <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/src/java/com/megacity/controller/SignupServlet.java</file>
-            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/src/java/com/megacity/dao/UserDAO.java</file>
-            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/web/css/login.css</file>
+            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/src/java/com/megacity/controller/LoginServletAdmin.java</file>
+            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/web/signup_admin.jsp</file>
             <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/web/login.jsp</file>
             <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/web/signup.jsp</file>
             <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/src/java/com/megacity/controller/LoginServlet.java</file>
-            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/web/js/javaScript_File.js</file>
+            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/src/java/com/megacity/dao/AdminDAO.java</file>
+            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/web/login_admin.jsp</file>
+            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/src/java/com/megacity/service/AdminService.java</file>
+            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/src/java/com/megacity/dao/UserDAO.java</file>
+            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/web/addAddmin.jsp</file>
+            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/src/java/com/megacity/model/Admin.java</file>
             <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/src/java/com/megacity/service/UserService.java</file>
-            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/web/images/form-v8.jpg</file>
             <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/nbproject/build-impl.xml</file>
+            <file>file:/D:/ICBT/Assignment/Mega_City_Cab_System/web/js/loginSignup/loginSignup.js</file>
         </group>
     </open-files>
 </project-private>

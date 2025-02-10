@@ -24,11 +24,12 @@ public class UserDAO {
         connection = DBConnection.getInstance().getConnection();
     }
 
-    public User getUserByUsername(String username) {
+    public User getUserByUsername(String username,String password) {
         User user = null;
-        String query = "SELECT * FROM users WHERE username = ?";
+        String query = "SELECT * FROM users WHERE username = ? and password=?";
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, username);
+            ps.setString(2, password);
             try (ResultSet rs = ps.executeQuery()) {
                 if (rs.next()) {
                     System.out.println(rs.toString());
@@ -48,7 +49,7 @@ public class UserDAO {
     
     
 
-        public boolean addUser(User user) {
+    public boolean addUser(User user) {
         String query = "INSERT INTO users (customer_id, username, password, address, nic, phone, email, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             ps.setString(1, user.getCustomerId()); // Index starts from 1
