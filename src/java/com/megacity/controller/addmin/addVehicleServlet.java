@@ -1,16 +1,20 @@
-package com.megacity.controller.customer;
+package com.megacity.controller.addmin;
 
 import com.megacity.model.Vehicle;
 import com.megacity.service.VehicleService;
 import java.io.ByteArrayOutputStream;
-import java.io.File;
+
 import java.io.IOException;
 import java.io.InputStream;
+import java.util.Base64;
+
+import java.util.List;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
+import java.util.Base64;
 
 public class addVehicleServlet extends HttpServlet {
     private VehicleService vehicleService;
@@ -19,11 +23,31 @@ public class addVehicleServlet extends HttpServlet {
         vehicleService = new VehicleService();
     }
 
-    @Override
+    
+
+@Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-        // You can implement GET method if necessary
+        
+        String vehicleType = request.getParameter("vehicleType");
+        List<Vehicle> vehicleList = vehicleService.getAllVehicleList(vehicleType);
+        
+        
+        // Convert each vehicle's image to Base64 and set it
+        for (Vehicle vehicle : vehicleList) {
+            byte[] imageBytes = vehicle.getVehicleImage();
+            if (imageBytes != null) {
+                String base64Image = Base64.getEncoder().encodeToString(imageBytes);
+                vehicle.setBase64Image(base64Image);    // Set Base64 image
+            }
+        }
+
+        request.setAttribute("vehicleList", vehicleList);
+        request.getRequestDispatcher("showAvaliableVehicle.jsp").forward(request, response);
+        
     }
+
+
 
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
@@ -35,6 +59,8 @@ public class addVehicleServlet extends HttpServlet {
         String vehicleNumber = request.getParameter("vehicleNumber");
         String vehicleOwner = request.getParameter("vehicleOwner");
         String vehicleOwnerContact = request.getParameter("vehicleOwnerContact");
+        String VehicleWithAC =request.getParameter("VehicleWithAC");
+        String VehicleWithoutAC =request.getParameter("VehicleWithoutAC");
 
         
         Part filePart = request.getPart("vehicleImage");
@@ -68,7 +94,7 @@ public class addVehicleServlet extends HttpServlet {
                 e.printStackTrace();
             }
         }
-        Vehicle vehicle = new Vehicle(model, vehicleName, vehicleNumber, vehicleOwner, vehicleOwnerContact, vehicleImageBytes);
+        Vehicle vehicle = new Vehicle(model, vehicleName, vehicleNumber, vehicleOwner, vehicleOwnerContact, VehicleWithAC,VehicleWithoutAC,vehicleImageBytes);
 
         if (vehicleService.addVehicleService(vehicle)) {
             System.out.println("Image bytes are null.");

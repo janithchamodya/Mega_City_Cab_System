@@ -24,20 +24,7 @@
     <link href="css/adminDashboard/mega-city-admin/Mega City Cabadmin.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
     <script type="text/javascript" src="js/customerDashboard/customerDashboard.js"></script>
-    <script src="https://cdn.jsdelivr.net/npm/swcsseetalert2@11"></script>
-    
-   
-     
-      
-      <link rel="stylesheet" type="text/css" href="css/customerDashboard/bootstrap.css" />
-      
-      <link href="css/customerDashboard/font-awesome.min.css" rel="stylesheet" />
-      
-      <link href="css/customerDashboard/style.css" rel="stylesheet" />
-    
-      <link href="css/customerDashboard/responsive.css" rel="stylesheet" />
-    
-    
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
 <body id="page-top">
@@ -95,6 +82,7 @@
                         <a class="collapse-item" href="showBooking.jsp">View My Booking</a>
                         
                         
+                        
                     </div>
                 </div>
             </li>
@@ -139,7 +127,7 @@
                                     
                                 </span>
                                 <img class="img-profile rounded-circle"
-                                     src="images/adminDashboard/../customerDashboard/undraw_profile_1.svg">
+                                     src="images/adminDashboard/../undraw_profile_1.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -156,93 +144,38 @@
 
                 </nav>
             <!-- End of Topbar -->
+            <center> <h1>Available vehicle</h1></center>
             
-            <section class="slider_section " style="margin-top: -70px;">
-                
-                <div id="customCarousel1" class="carousel slide" data-ride="carousel">
-                    <div class="carousel-inner">
-                        <div class="carousel-item active" >
-                            <div class="container ">
-                                <div class="row">
-                                    <div class="col-md-7 col-lg-6 ">
-                                        <div class="detail-box">
-                                            <h1>
-                                                <span>
-                                                    Save 30% on Car Rentals
-                                                </span>
-                                                <br>
-                                                Book Your Ride Today!
-                                            </h1>
-                                            <p>
-                                                Enjoy unbeatable discounts on our wide range of vehicles. Whether it's for business or leisure, Mega City Cab has you covered. Drive away in comfort and style!
-                                            </p>
-                                            <div class="btn-box">
-                                                <a href="" class="btn1">
-                                                    Rent Now
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
+                <div class="container mt-4">
+                    <div class="row">
+                        <!-- Loop through the vehicle list -->
+                     <c:forEach var="vehicle" items="${vehicleList}">
+                        <div class="col-md-3 vehicle-card">
+                            <div class="card" onclick="showConfirmation(
+                                '${vehicle.model}', 
+                                '${vehicle.vehicleName}', 
+                                '${vehicle.vehicleNumber}', 
+                                '${vehicle.vehicleOwner}', 
+                                '${vehicle.vehicleOwnerContact}', 
+                                '${vehicle.vehicleWithAC}', 
+                                '${vehicle.vehicleWithoutAC}')">
+                                <!-- Display vehicle image using Base64 -->
+                                <img src="data:image/jpeg;base64,${vehicle.base64Image}" alt="Vehicle Image" class="card-img-top">
+                                <div class="card-body">
+                                    <h5 class="card-title">${vehicle.vehicleName}</h5>
+                                    <h7 class="card-title">With AC: ${vehicle.vehicleWithAC}/day</h7><br>
+                                    <h7 class="card-title">Without AC: ${vehicle.vehicleWithoutAC}/day</h7>
                                 </div>
                             </div>
                         </div>
-                        <div class="carousel-item">
-                            <div class="container ">
-                                <div class="row">
-                                    <div class="col-md-7 col-lg-6 ">
-                                        <div class="detail-box">
-                                            <h1>
-                                                <span>
-                                                    Free Ride for Lucky Winners
-                                                </span>
-                                                <br>
-                                                Exclusive Offers Await!
-                                            </h1>
-                                            <p>
-                                                Be one of our lucky customers to win a free day of driving! Book now and stand a chance to get a free rental or amazing discounts on your next ride.
-                                            </p>
-                                            <div class="btn-box">
-                                                <a href="" class="btn1">
-                                                    Get Started
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-                        <div class="carousel-item">
-                            <div class="container ">
-                                <div class="row">
-                                    <div class="col-md-7 col-lg-6 ">
-                                        <div class="detail-box">
-                                            <h1>
-                                                <span>
-                                                    Up to 50% Off
-                                                </span>
-                                                <br>
-                                                On Premium Vehicles
-                                            </h1>
-                                            <p>
-                                                Ride luxury at half the price! Get up to 50% off on our premium car rentals. Don't miss out on this limited-time offer. Your journey starts here with Mega City Cab!
-                                            </p>
-                                            <div class="btn-box">
-                                                <a href="" class="btn1">
-                                                    Explore Deals
-                                                </a>
-                                            </div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
+                    </c:forEach>
+
+
+
+
                     </div>
                 </div>
-            </section>
-
-            
-        
-            
+           
             <!-- End of Main Content -->
 
             <!-- Footer -->
@@ -291,14 +224,7 @@
     <script src="js/adminDashboard/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/adminDashboard/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/customerDashboard/jquery-3.4.1.min.js"></script>
     
-    <script src="js/customerDashboard/popper.min.js"></script>
-      
-    <script src="js/customerDashboard/bootstrap.js"></script>
-      
-    <script src="js/customerDashboard/custom.js"></script>
 
     
 

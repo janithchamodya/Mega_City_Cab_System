@@ -7,6 +7,7 @@ package com.megacity.service;
 
 import com.megacity.dao.VehicleDAO;
 import com.megacity.model.Vehicle;
+import java.util.List;
 
 /**
  *
@@ -24,4 +25,8 @@ public class VehicleService {
    
    return  vehicleDAO.addVehicle(vehicle);
    }
+   
+   public  List<Vehicle> getAllVehicleList(String  vehicleType){
+        return vehicleDAO.getAllVehicle(vehicleType);
+    }
 }

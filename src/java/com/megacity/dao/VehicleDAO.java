@@ -15,6 +15,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 public class VehicleDAO {
     private Connection connection;
@@ -26,7 +28,7 @@ public class VehicleDAO {
 
     // Method to add a vehicle to the database
     public boolean addVehicle(Vehicle vehicle) {
-        String query = "INSERT INTO Vehicle (model, vehicle_name, vehicle_number, vehicle_owner, vehicle_owner_contact, vehicle_image) VALUES (?, ?, ?, ?, ?, ?)";
+        String query = "INSERT INTO Vehicle (model, vehicle_name, vehicle_number, vehicle_owner, vehicle_owner_contact,vehicle_with_ac,vehicle_without_ac, vehicle_image) VALUES (?, ?, ?, ?, ?, ?,?,?)";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setString(1, vehicle.getModel());
@@ -34,7 +36,9 @@ public class VehicleDAO {
             ps.setString(3, vehicle.getVehicleNumber());
             ps.setString(4, vehicle.getVehicleOwner());
             ps.setString(5, vehicle.getVehicleOwnerContact());
-            ps.setBytes(6, vehicle.getVehicleImage());
+            ps.setString(6, vehicle.getVehicleWithAC());
+            ps.setString(7, vehicle.getVehicleWithoutAC());
+            ps.setBytes(8, vehicle.getVehicleImage());
 
             int rowsInserted = ps.executeUpdate();
             return rowsInserted > 0;  
@@ -60,6 +64,8 @@ public class VehicleDAO {
                     rs.getString("vehicle_number"),
                     rs.getString("vehicle_owner"),
                     rs.getString("vehicle_owner_contact"),
+                    rs.getString("vehicle_with_ac"),
+                    rs.getString("vehicle_without_ac"),
                     rs.getBytes("vehicle_image")
                 );
                 vehicle.setVehicleNumber(rs.getString("vehicle_number"));
@@ -108,5 +114,41 @@ public class VehicleDAO {
         }
         return false;  // Return false if there was an issue
     }
+    
+    public List<Vehicle> getAllVehicle(String vehicleType) {
+    List<Vehicle> vehicleList = new ArrayList<>();
+    String query = "SELECT * FROM Vehicle Where model=?";  // Assuming your table name is 'Vehicle'
+
+    try (PreparedStatement ps = connection.prepareStatement(query)) {
+        ps.setString(1, vehicleType);
+        try (ResultSet rs = ps.executeQuery()) {
+            
+            while (rs.next()) {
+                Vehicle vehicle = new Vehicle();
+                
+                
+                vehicle.setModel(rs.getString("model"));
+                vehicle.setVehicleName(rs.getString("vehicle_name"));
+                vehicle.setVehicleNumber(rs.getString("vehicle_number"));
+                vehicle.setVehicleOwner(rs.getString("vehicle_owner"));
+                vehicle.setVehicleOwnerContact(rs.getString("vehicle_owner_contact"));
+                vehicle.setVehicleWithAC(rs.getString("vehicle_with_ac"));
+                vehicle.setVehicleWithoutAC(rs.getString("vehicle_without_ac"));
+                byte[] vehicleImage = rs.getBytes("vehicle_image");
+                if (vehicleImage != null) {
+                    vehicle.setVehicleImage(vehicleImage);
+                }
+
+                
+                vehicleList.add(vehicle);
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return vehicleList;
+}
+
 }
 

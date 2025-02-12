@@ -165,13 +165,27 @@
                                     </div>
                                     <div class="form-row">
                                         <label class="form-row-inner">
+                                            <input type="tel" name="VehicleWithAC" id="VehicleWithAC" class="input-text" required>
+                                            <span class="label">Vehicle With AC</span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-row">
+                                        <label class="form-row-inner">
+                                            <input type="tel" name="VehicleWithoutAC" id="VehicleWithoutAC" class="input-text" required>
+                                            <span class="label">Vehicle Without AC</span>
+                                            <span class="border"></span>
+                                        </label>
+                                    </div>
+                                    <div class="form-row">
+                                        <label class="form-row-inner">
                                             <input type="file" name="vehicleImage" id="vehicleImage" class="input-text" accept="image/*" required>
                                             <span class="label">Vehicle Image</span>
                                             <span class="border"></span>
                                         </label>
                                     </div>
 
-                                    <input type="hidden" name="role" value="admin">
+                 
 
                                     <div class="form-row-last">
                                         <input type="submit" name="register" class="register" value="Add Vehicle">
