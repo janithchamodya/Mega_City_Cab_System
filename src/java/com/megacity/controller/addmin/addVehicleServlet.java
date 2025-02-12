@@ -1,6 +1,8 @@
 package com.megacity.controller.addmin;
 
+import com.megacity.model.Driver;
 import com.megacity.model.Vehicle;
+import com.megacity.service.DriverService;
 import com.megacity.service.VehicleService;
 import java.io.ByteArrayOutputStream;
 
@@ -15,23 +17,26 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.util.Base64;
+import java.util.stream.Collectors;
 
 public class addVehicleServlet extends HttpServlet {
     private VehicleService vehicleService;
+    private DriverService driverService;
     
     public addVehicleServlet() {    
         vehicleService = new VehicleService();
+        driverService=new DriverService();
     }
 
     
 
-@Override
+    @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         String vehicleType = request.getParameter("vehicleType");
         List<Vehicle> vehicleList = vehicleService.getAllVehicleList(vehicleType);
-        
+        List<Driver> driverList = driverService.getAllAvailableDrivers();
         
         // Convert each vehicle's image to Base64 and set it
         for (Vehicle vehicle : vehicleList) {
@@ -41,8 +46,15 @@ public class addVehicleServlet extends HttpServlet {
                 vehicle.setBase64Image(base64Image);    // Set Base64 image
             }
         }
+    String driverListString = driverList.stream()
+                                    .map(driver -> "ID: " + driver.getDriverId() + 
+                                                   ", Name: " + driver.getDriverName() + 
+                                                   ", Gender: " + driver.getDriverGender())
+                                    .collect(Collectors.joining("; "));
 
+        // Set attributes for vehicle and driver lists
         request.setAttribute("vehicleList", vehicleList);
+        request.setAttribute("driverListString", driverListString); 
         request.getRequestDispatcher("showAvaliableVehicle.jsp").forward(request, response);
         
     }

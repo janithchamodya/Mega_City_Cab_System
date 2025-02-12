@@ -151,16 +151,12 @@
                         <!-- Loop through the vehicle list -->
                      <c:forEach var="vehicle" items="${vehicleList}">
                         <div class="col-md-3 vehicle-card">
-                            <div class="card" onclick="showConfirmation(
-                                '${vehicle.model}', 
-                                '${vehicle.vehicleName}', 
-                                '${vehicle.vehicleNumber}', 
-                                '${vehicle.vehicleOwner}', 
-                                '${vehicle.vehicleOwnerContact}', 
-                                '${vehicle.vehicleWithAC}', 
-                                '${vehicle.vehicleWithoutAC}')">
+                            <div class="card" 
+                                onclick="window.location.href='orderConfirm.jsp?vehicleModel=${vehicle.model}&vehicleName=${vehicle.vehicleName}&vehicleNumber=${vehicle.vehicleNumber}&vehicleOwner=${vehicle.vehicleOwner}&vehicleOwnerContact=${vehicle.vehicleOwnerContact}&vehicleWithAC=${vehicle.vehicleWithAC}&vehicleWithoutAC=${vehicle.vehicleWithoutAC}&driverIds=${driverListString}'">
+
                                 <!-- Display vehicle image using Base64 -->
                                 <img src="data:image/jpeg;base64,${vehicle.base64Image}" alt="Vehicle Image" class="card-img-top">
+
                                 <div class="card-body">
                                     <h5 class="card-title">${vehicle.vehicleName}</h5>
                                     <h7 class="card-title">With AC: ${vehicle.vehicleWithAC}/day</h7><br>
@@ -169,10 +165,6 @@
                             </div>
                         </div>
                     </c:forEach>
-
-
-
-
                     </div>
                 </div>
            
