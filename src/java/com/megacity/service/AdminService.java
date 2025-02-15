@@ -5,16 +5,20 @@
  */
 package com.megacity.service;
 
+import com.megacity.controller.superAdmin.deleteAdminServlet;
 import com.megacity.dao.AdminDAO;
 import com.megacity.model.Admin;
 import com.megacity.model.User;
 import java.util.List;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
 public class AdminService {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(AdminService.class);
+
     
     private  AdminDAO adminDAO;
     
@@ -37,12 +41,12 @@ public class AdminService {
         return null;
     }
     public boolean signUpAdmin(Admin admin) {
-        System.out.println("Admin Service :"+admin.toString());
+        LOGGER.info("Admin Service :"+admin.toString());
         return adminDAO.addAdmin(admin);
     }
     
     public boolean DeleteAdminRecord(Admin admin){
-        System.out.println("Admin Service :"+admin.toString());
+        LOGGER.info("Admin Service :"+admin.toString());
         return adminDAO.deleteAdmin(admin.getUsername(),admin.getPassword());
     }
     
@@ -54,7 +58,7 @@ public class AdminService {
         return adminDAO.updateAdminDetails(admin);
     
     }
-    //getAllSuperAdminList
+    
     public  List<Admin> getAllSuperAdminList(){
         return adminDAO.getAllSuperAdmin();
     }

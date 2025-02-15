@@ -5,11 +5,13 @@
  */
 package com.megacity.util;
 
+import com.megacity.service.VehicleService;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -19,7 +21,7 @@ public class DBConnection {
     private static DBConnection instance;
     private Connection connection;
     
-    private static final Logger logger = Logger.getLogger(DBConnection.class.getName());
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DBConnection.class);
 
     private DBConnection() {
         try {
@@ -29,7 +31,7 @@ public class DBConnection {
                 "jdbc:mysql://localhost:3306/megacitycab?user=root&password=CBCINTERN&useSSL=false"
             );
         } catch (ClassNotFoundException | SQLException e) {
-            logger.log(Level.SEVERE, "Error establishing database connection", e);
+            LOGGER.error("Error establishing database connection", e);
         }
     }
 
@@ -53,7 +55,7 @@ public class DBConnection {
                 connection.close();
                 connection = null;  // Set to null to avoid re-use after closing
             } catch (SQLException e) {
-                logger.log(Level.SEVERE, "Error closing database connection", e);
+                LOGGER.error("Error closing database connection", e);
             }
         }
     }

@@ -16,12 +16,14 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
 public class SignupServlet extends HttpServlet {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(SignupServlet.class);
 
     private UserService userService;
     private AdminService adminService;
@@ -50,7 +52,7 @@ public class SignupServlet extends HttpServlet {
                 String address = request.getParameter("address");
                 String phone = request.getParameter("phone");
                 
-                System.out.println(" Username: " + username + ", Password: " + password + ", Email: " + email + 
+                LOGGER.info(" Username: " + username + ", Password: " + password + ", Email: " + email + 
                    ", Role: " + role + ", NIC: " + nic + ", Address: " + address + ", Phone: " + phone);
 
 
@@ -58,7 +60,7 @@ public class SignupServlet extends HttpServlet {
                 if (username == null || password == null || email == null || nic == null || address == null || phone == null ||
                     username.isEmpty() || password.isEmpty() || email.isEmpty() || nic.isEmpty() || address.isEmpty() || phone.isEmpty()) {
                     response.sendRedirect("signup.jsp?error=1");
-                    System.out.println("empty filed found");
+                    LOGGER.info("empty filed found");
                     return;
                 }
 
@@ -67,31 +69,31 @@ public class SignupServlet extends HttpServlet {
                 // Call the signUp method from userService to handle the new user registration
                
                 if("user".equals(role)){
-                    System.out.println("user sign up");
+                    LOGGER.info("user sign up");
                     User user = new User(username, password, email, address, nic, phone,role );
                    if (userService.signUpUser(user)) {
-                    System.out.println(user.toString());
+                    LOGGER.info(user.toString());
                     response.sendRedirect("login.jsp");
                 } else {
-                    System.out.println("Duplicate found/Invalide values user role");
+                    LOGGER.info("Duplicate found/Invalide values user role");
                     response.sendRedirect("signup.jsp?error=2");
                 }
                 }
                 else{
-                    System.out.println("admin sign up");
+                    LOGGER.info("admin sign up");
                     Admin admin =new Admin(username, password, email, address, nic, phone, role);
                     System.out.println("admin 123"+ admin.toString());
                     if (!adminService.signUpAdmin(admin)) {
-                        System.out.println("Duplicate found/Invalide values admin role");
+                        LOGGER.info("Duplicate found/Invalide values admin role");
                         response.sendRedirect("addAddmin.jsp?error=2");
                     } else {
-                        System.out.println(admin.toString());
+                        LOGGER.info(admin.toString());
                         response.sendRedirect("addAddmin.jsp");
                     }
-                    System.out.println("out");
+                  
                 }
                 
-                System.out.println("out");
+              
                
                
                 

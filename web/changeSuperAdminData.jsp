@@ -149,6 +149,8 @@
                     <thead>
                         <tr>
                             <th scope="col">Username</th>
+                            <th scope="col">Password</th>
+                            <th scope="col">Address</th>
                             <th scope="col">NIC</th>
                             <th scope="col">Phone</th>
                             <th scope="col">Email</th>
@@ -162,6 +164,12 @@
                                  <form action="changeAddminDataServlet" method="POST">
                                     <td>
                                         <input readonly  type="text" name="username" value="${admin.username}" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="password" value="${admin.password}" class="form-control" />
+                                    </td>
+                                    <td>
+                                        <input type="text" name="address" value="${admin.address}" class="form-control" />
                                     </td>
                                     <td>
                                         <input type="text" name="nic" value="${admin.nic}" class="form-control" />

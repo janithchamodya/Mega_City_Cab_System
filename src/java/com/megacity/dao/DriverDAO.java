@@ -40,6 +40,7 @@ public class DriverDAO {
                 driver.setDriverLicenseNo(rs.getString("driver_license_no"));
                 driver.setPhoneNumber(rs.getString("phone_number"));
                 driver.setDriverGender(rs.getString("driver_gender"));
+                driver.setAvailability(rs.getString("availability"));
 
                 driverList.add(driver); // Add each driver object to the list
             }
@@ -51,5 +52,39 @@ public class DriverDAO {
     return driverList;
 }
 
+    public boolean saveDriver(Driver driver) {
+        String query = "INSERT INTO drivers (driver_name, driver_license_no, phone_number, driver_gender) VALUES (?, ?, ?, ?)";
+
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            // Set parameters based on the Driver object
+            ps.setString(1, driver.getDriverName());
+            ps.setString(2, driver.getDriverLicenseNo());
+            ps.setString(3, driver.getPhoneNumber());
+            ps.setString(4, driver.getDriverGender());
+           
+
+            int rowsAffected = ps.executeUpdate(); // Execute the update
+            return rowsAffected > 0; // Return true if insertion was successful
+        } catch (SQLException e) {
+            e.printStackTrace();
+            return false;
+        }
+    }
+    
+    //unavalibel 
+    public boolean updateDriverAsUnavaliable(int driverId) {
+        String query = "UPDATE drivers SET availability='Unavailable' WHERE driver_id=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, driverId);
+           
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;  // Return true if the update was successful
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;  
+    }
     
 }

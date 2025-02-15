@@ -117,17 +117,18 @@
                        
                         <!-- Nav Item - User Information -->
                          <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" >
                              <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                 <%= session.getAttribute("user") != null ? session.getAttribute("user") : "Guest" %>
-                            </span>
+                            
+                             </span>
 
                                     
                                 </span>
                                 <img class="img-profile rounded-circle"
-                                     src="images/adminDashboard/../undraw_profile_1.svg">
+                                     src="images/adminDashboard/../customerDashboard/undraw_profile_1.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -150,10 +151,11 @@
                     <div class="row">
                         <!-- Loop through the vehicle list -->
                      <c:forEach var="vehicle" items="${vehicleList}">
+                         
                         <div class="col-md-3 vehicle-card">
                             <div class="card" 
-                                onclick="window.location.href='orderConfirm.jsp?vehicleModel=${vehicle.model}&vehicleName=${vehicle.vehicleName}&vehicleNumber=${vehicle.vehicleNumber}&vehicleOwner=${vehicle.vehicleOwner}&vehicleOwnerContact=${vehicle.vehicleOwnerContact}&vehicleWithAC=${vehicle.vehicleWithAC}&vehicleWithoutAC=${vehicle.vehicleWithoutAC}&driverIds=${driverListString}'">
-
+                                onclick="window.location.href='orderConfirm.jsp?userId=<%=session.getAttribute("user_Id")%>&username=<%=session.getAttribute("user")%>&VehicalId=${vehicel.Id}&vehicleModel=${vehicle.model}&vehicleName=${vehicle.vehicleName}&vehicleNumber=${vehicle.vehicleNumber}&vehicleOwner=${vehicle.vehicleOwner}&vehicleOwnerContact=${vehicle.vehicleOwnerContact}&vehicleWithAC=${vehicle.vehicleWithAC}&vehicleWithoutAC=${vehicle.vehicleWithoutAC}&driverIds=${driverListString}'">
+                                
                                 <!-- Display vehicle image using Base64 -->
                                 <img src="data:image/jpeg;base64,${vehicle.base64Image}" alt="Vehicle Image" class="card-img-top">
 

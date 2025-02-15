@@ -10,6 +10,7 @@ package com.megacity.model;
  * @author OZT00106
  */
 public class Vehicle {
+    private int Id;
     private String model;
     private String vehicleName;
     private String vehicleNumber;
@@ -18,10 +19,25 @@ public class Vehicle {
     private String vehicleWithAC;
     private String vehicleWithoutAC;
     private byte[] vehicleImage;   
-    private String base64Image;    
+    private String base64Image; 
+    private String availability;
 
    
     public Vehicle() {}
+
+    public Vehicle(int Id, String model, String vehicleName, String vehicleNumber, String vehicleOwner, String vehicleOwnerContact, String vehicleWithAC, String vehicleWithoutAC, byte[] vehicleImage, String base64Image, String availability) {
+        this.Id = Id;
+        this.model = model;
+        this.vehicleName = vehicleName;
+        this.vehicleNumber = vehicleNumber;
+        this.vehicleOwner = vehicleOwner;
+        this.vehicleOwnerContact = vehicleOwnerContact;
+        this.vehicleWithAC = vehicleWithAC;
+        this.vehicleWithoutAC = vehicleWithoutAC;
+        this.vehicleImage = vehicleImage;
+        this.base64Image = base64Image;
+        this.availability = availability;
+    }
 
     
     public Vehicle(String model, String vehicleName, String vehicleNumber, String vehicleOwner, 
@@ -36,7 +52,14 @@ public class Vehicle {
         this.vehicleImage = vehicleImage;
     }
 
-    
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+
     public String getModel() {
         return model;
     }
@@ -93,7 +116,6 @@ public class Vehicle {
         this.vehicleWithoutAC = vehicleWithoutAC;
     }
 
-    // Getter and Setter for vehicleImage (byte array)
     public byte[] getVehicleImage() {
         return vehicleImage;
     }
@@ -102,7 +124,6 @@ public class Vehicle {
         this.vehicleImage = vehicleImage;
     }
 
-    // Getter and Setter for base64Image (Base64 encoded string)
     public String getBase64Image() {
         return base64Image;
     }
@@ -111,11 +132,26 @@ public class Vehicle {
         this.base64Image = base64Image;
     }
 
+    public String getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
     @Override
     public String toString() {
-        return "Vehicle [model=" + model + ", vehicleName=" + vehicleName + ", vehicleNumber=" + vehicleNumber + ", vehicleOwner=" + vehicleOwner
-                + ", vehicleOwnerContact=" + vehicleOwnerContact + ", vehicleWithAC=" + vehicleWithAC + ", vehicleWithoutAC=" + vehicleWithoutAC + "]";
+        return "Vehicle{" + "Id=" + Id + ", model=" + model + ", vehicleName=" + vehicleName + ", vehicleNumber=" + vehicleNumber + ", vehicleOwner=" + vehicleOwner + ", vehicleOwnerContact=" + vehicleOwnerContact + ", vehicleWithAC=" + vehicleWithAC + ", vehicleWithoutAC=" + vehicleWithoutAC + ", vehicleImage=" + vehicleImage + ", base64Image=" + base64Image + ", availability=" + availability + '}';
     }
+
+    
+
+   
+
+    
+
+    
 }
 
 

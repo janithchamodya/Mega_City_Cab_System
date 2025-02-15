@@ -14,17 +14,19 @@ public class Driver {
     private String driverName;
     private String driverLicenseNo;
     private String phoneNumber;
-    private String driverGender;  
+    private String driverGender;
+    private String availability;
 
     public Driver() {
     }
 
-    public Driver(int driverId, String driverName, String driverLicenseNo, String phoneNumber, String driverGender) {
-        this.driverId = driverId;
+    public Driver( String driverName, String driverLicenseNo, String phoneNumber, String driverGender) {
+        
         this.driverName = driverName;
         this.driverLicenseNo = driverLicenseNo;
         this.phoneNumber = phoneNumber;
         this.driverGender = driverGender;
+        
     }
 
     public int getDriverId() {
@@ -67,10 +69,20 @@ public class Driver {
         this.driverGender = driverGender;
     }
 
+    public String getAvailability() {
+        return availability;
+    }
+
+    public void setAvailability(String availability) {
+        this.availability = availability;
+    }
+
     @Override
     public String toString() {
-        return "Driver{" + "driverId=" + driverId + ", driverName=" + driverName + ", driverLicenseNo=" + driverLicenseNo + ", phoneNumber=" + phoneNumber + ", driverGender=" + driverGender + '}';
+        return "Driver{" + "driverId=" + driverId + ", driverName=" + driverName + ", driverLicenseNo=" + driverLicenseNo + ", phoneNumber=" + phoneNumber + ", driverGender=" + driverGender + ", availability=" + availability + '}';
     }
+
+   
     
     
     

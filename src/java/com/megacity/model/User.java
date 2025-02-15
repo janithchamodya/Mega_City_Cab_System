@@ -10,6 +10,7 @@ package com.megacity.model;
  * @author OZT00106
  */
 public class User {
+    private int Id;
     private String customerId;
     private String username;
     private String password;
@@ -106,18 +107,20 @@ public class User {
     public void setRole(String role) {
         this.role = role;
     }
+
+    public int getId() {
+        return Id;
+    }
+
+    public void setId(int Id) {
+        this.Id = Id;
+    }
+
     @Override
-public String toString() {
-    return "User {" +
-            "customerId='" + customerId + '\'' +
-            ", username='" + username + '\'' +
-            ", password='" + password + '\'' +
-            ", email='" + email + '\'' +
-            ", address='" + address + '\'' +
-            ", nic='" + nic + '\'' +
-            ", phone='" + phone + '\'' +
-            ", role='" + role + '\'' +
-            '}';
-}
+    public String toString() {
+        return "User{" + "Id=" + Id + ", customerId=" + customerId + ", username=" + username + ", password=" + password + ", email=" + email + ", address=" + address + ", nic=" + nic + ", phone=" + phone + ", role=" + role + '}';
+    }
+    
+
 
 }

@@ -16,13 +16,14 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
 public class LoginServletAdmin extends HttpServlet {
-
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(LoginServletAdmin.class);
     private AdminService adminService;
 
     public LoginServletAdmin() {  
@@ -42,12 +43,12 @@ public class LoginServletAdmin extends HttpServlet {
         String role = request.getParameter("role");
         
         
+        LOGGER.info("username"+username);
+        LOGGER.info("password"+password);
         
-        System.out.println("username"+username);
-        System.out.println("password"+password);
 
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
-            System.out.println("user name and password is empty");
+            LOGGER.info("user name and password is empty");
             response.sendRedirect("login_admin.jsp?error=1");
             return;
         }
@@ -55,11 +56,11 @@ public class LoginServletAdmin extends HttpServlet {
         Admin admin = adminService.SuperAdminLogin(username, password,role);
         if (admin != null) {
            HttpSession session = request.getSession();
-            session.setAttribute("Super_addmin", admin.getUsername());
+           session.setAttribute("Super_addmin", admin.getUsername());
            response.sendRedirect("adminManageDashBoard.jsp");
      
         } else {
-            System.out.println("invalide username and password");
+            LOGGER.info("invalide username and password");
             response.sendRedirect("login_admin.jsp?error=2");
         }
     }

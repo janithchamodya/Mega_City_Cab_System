@@ -7,12 +7,15 @@ package com.megacity.service;
 
 import com.megacity.dao.UserDAO;
 import com.megacity.model.User;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
 public class UserService {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(UserService.class);
+
     private UserDAO userDAO;
 
     public UserService() {
@@ -30,7 +33,8 @@ public class UserService {
     public boolean signUpUser(User user) {
         
         String customerId = userDAO.generateCustomerId();
-        System.out.println("customerId"+customerId);
+        LOGGER.info("customerId"+customerId);
+        
         user.setCustomerId(customerId);
    
         return userDAO.addUser(user);

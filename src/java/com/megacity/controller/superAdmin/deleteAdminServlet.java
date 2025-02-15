@@ -14,13 +14,15 @@ import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
 public class deleteAdminServlet extends HttpServlet {
-   
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(deleteAdminServlet.class);
+
     private AdminService adminService;
     
     public deleteAdminServlet() {  
@@ -43,11 +45,11 @@ public class deleteAdminServlet extends HttpServlet {
         String username = request.getParameter("username");
         String password = request.getParameter("password");
         
-        System.out.println("user name "+username+ ", password "+password);
+        LOGGER.info("user name "+username+ ", password "+password);
         
         if (username == null || password == null  ) {
             response.sendRedirect("deleteAddmin.jsp?error=1");
-            System.out.println("empty filed found");
+            LOGGER.info("empty filed found");
             return;
             
         }
@@ -57,10 +59,10 @@ public class deleteAdminServlet extends HttpServlet {
         
         
         if (adminService.DeleteAdminRecord(admin)) {
-            System.out.println(admin.toString());
+            LOGGER.info(admin.toString());
             response.sendRedirect("deleteAddmin.jsp");
         } else {
-            System.out.println("Duplicate found/Invalide values user role");
+            LOGGER.info("Duplicate found/Invalide values user role");
             response.sendRedirect("deleteAddmin.jsp?error=2");
         }
         

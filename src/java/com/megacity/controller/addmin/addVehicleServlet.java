@@ -1,5 +1,6 @@
 package com.megacity.controller.addmin;
 
+import com.megacity.controller.LoginServlet;
 import com.megacity.model.Driver;
 import com.megacity.model.Vehicle;
 import com.megacity.service.DriverService;
@@ -17,15 +18,21 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.Part;
 import java.util.Base64;
+import java.util.logging.Logger;
 import java.util.stream.Collectors;
+import org.slf4j.LoggerFactory;
 
 public class addVehicleServlet extends HttpServlet {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(addDriverServlet.class);
+
     private VehicleService vehicleService;
     private DriverService driverService;
+    
     
     public addVehicleServlet() {    
         vehicleService = new VehicleService();
         driverService=new DriverService();
+        
     }
 
     
@@ -38,21 +45,33 @@ public class addVehicleServlet extends HttpServlet {
         List<Vehicle> vehicleList = vehicleService.getAllVehicleList(vehicleType);
         List<Driver> driverList = driverService.getAllAvailableDrivers();
         
-        // Convert each vehicle's image to Base64 and set it
+        for(Vehicle vehicle : vehicleList){
+            LOGGER.info(vehicle.toString());
+        }
+        for(Driver driver : driverList){
+            LOGGER.info(driver.toString());
+        }
+        
+        
         for (Vehicle vehicle : vehicleList) {
+            
             byte[] imageBytes = vehicle.getVehicleImage();
             if (imageBytes != null) {
                 String base64Image = Base64.getEncoder().encodeToString(imageBytes);
-                vehicle.setBase64Image(base64Image);    // Set Base64 image
+                vehicle.setBase64Image(base64Image); 
+                vehicle.setId((vehicle.getId()));
             }
         }
-    String driverListString = driverList.stream()
-                                    .map(driver -> "ID: " + driver.getDriverId() + 
-                                                   ", Name: " + driver.getDriverName() + 
-                                                   ", Gender: " + driver.getDriverGender())
-                                    .collect(Collectors.joining("; "));
+        String driverListString = driverList.stream()
+                        .map(driver -> "ID: " + driver.getDriverId() + 
+                            ", Name: " + driver.getDriverName() + 
+                            ", Gender: " + driver.getDriverGender() +
+                            ", License No: " + driver.getDriverLicenseNo() +
+                            ", Phone: " + driver.getPhoneNumber())
+                                 .collect(Collectors.joining("; "));
 
-        // Set attributes for vehicle and driver lists
+
+        
         request.setAttribute("vehicleList", vehicleList);
         request.setAttribute("driverListString", driverListString); 
         request.getRequestDispatcher("showAvaliableVehicle.jsp").forward(request, response);
@@ -77,13 +96,13 @@ public class addVehicleServlet extends HttpServlet {
         
         Part filePart = request.getPart("vehicleImage");
         if (filePart == null) {
-            System.out.println("Uploaded file is empty.");
+            LOGGER.info("Uploaded file is empty.");
             response.sendRedirect("addVehical.jsp?error=3");  // Handle empty file upload error
             return;
         } else {
-            System.out.println("File part is not null. Size: " + filePart.getSize());
+            LOGGER.info("File part is not null. Size: " + filePart.getSize());
             if (filePart.getSize() == 0) {
-                System.out.println("Uploaded file is empty.");
+                LOGGER.info("Uploaded file is empty.");
                 response.sendRedirect("addVehical.jsp?error=3");  // Handle empty file upload error
                 return;
             }
@@ -109,11 +128,11 @@ public class addVehicleServlet extends HttpServlet {
         Vehicle vehicle = new Vehicle(model, vehicleName, vehicleNumber, vehicleOwner, vehicleOwnerContact, VehicleWithAC,VehicleWithoutAC,vehicleImageBytes);
 
         if (vehicleService.addVehicleService(vehicle)) {
-            System.out.println("Image bytes are null.");
+             LOGGER.info("Image bytes are null.");
              response.sendRedirect("addVehical.jsp?success=1");
             
         } else {
-            System.out.println("Image bytes are not null.");
+            LOGGER.info("Image bytes are not null.");
             response.sendRedirect("addVehical.jsp?error=2");
         }
 

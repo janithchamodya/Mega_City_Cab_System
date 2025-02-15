@@ -54,7 +54,7 @@
                         <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Admin Facilities:</h6>
                         <a class="collapse-item" href="addVehical.jsp">Add Vehicle</a>
-                        <a class="collapse-item" href="">Add Drivers</a>
+                        <a class="collapse-item" href="addDriver.jsp">Add Drivers</a>
                         <a class="collapse-item" href=""></a>
                            </div>
                 </div>

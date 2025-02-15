@@ -7,14 +7,18 @@ package com.megacity.service;
 
 import com.megacity.dao.DriverDAO;
 import com.megacity.model.Driver;
+import com.megacity.model.Vehicle;
 import java.util.List;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
 public class DriverService {
-  private  DriverDAO driverDAO;
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DriverService.class);
+
+    private  DriverDAO driverDAO;
     
     public DriverService(){    
         driverDAO=new DriverDAO();
@@ -25,5 +29,15 @@ public class DriverService {
         return driverDAO.getAllAvailableDrivers();
     }
     
+     public boolean addDriver(Driver driver) {
+        return driverDAO.saveDriver(driver);
+    }
+     
+    public boolean updateDriverAsUnavaliable(int driverId){
+    return driverDAO.updateDriverAsUnavaliable(driverId);
+    
+    }
+     
+
     
 }

@@ -11,17 +11,20 @@ import com.megacity.service.AdminService;
 import com.megacity.service.UserService;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.util.logging.Logger;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
+import org.slf4j.LoggerFactory;
 /**
  *
  * @author OZT00106
  */
 public class LoginServlet extends HttpServlet {
+ private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(LoginServlet.class);
 
     private UserService userService;
     private AdminService adminService;
@@ -48,11 +51,12 @@ public class LoginServlet extends HttpServlet {
         
         
         
-        System.out.println("username"+username);
-        System.out.println("password"+password);
+      
+        LOGGER.info("username"+username);
+        LOGGER.info("password"+password);
 
         if (username == null || password == null || username.isEmpty() || password.isEmpty()) {
-            System.out.println("user name and password is empty");
+            LOGGER.info("user name and password is empty");
             response.sendRedirect("login.jsp?error=1");
             return;
         }
@@ -66,7 +70,9 @@ public class LoginServlet extends HttpServlet {
         
         if (user != null  ) {
             HttpSession session = request.getSession();
+           LOGGER.info(user.getUsername()+"  "+user.getCustomerId());
             session.setAttribute("user", user.getUsername());
+            session.setAttribute("user_Id", user.getId());
            
                     
             response.sendRedirect("customerdashboard.jsp");

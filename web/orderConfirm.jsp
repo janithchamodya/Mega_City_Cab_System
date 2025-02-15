@@ -20,6 +20,10 @@
 
 <%
     // Retrieve the parameters passed via URL
+    
+    String userId=request.getParameter("userId");
+    String userName = request.getParameter("username");
+    String vehicleId = request.getParameter("VehicalId");
     String vehicleModel = request.getParameter("vehicleModel");
     String vehicleName = request.getParameter("vehicleName");
     String vehicleNumber = request.getParameter("vehicleNumber");
@@ -30,6 +34,9 @@
     String driverIds = request.getParameter("driverIds");
 
     // Printing the values to the console
+    System.out.println("userId"+userId);
+    System.out.println("userName"+userName);
+    System.out.println("vehicleId"+vehicleId);
     System.out.println("Vehicle Model: " + vehicleModel);
     System.out.println("Vehicle Name: " + vehicleName);
     System.out.println("Vehicle Number: " + vehicleNumber);
@@ -37,12 +44,15 @@
     System.out.println("Vehicle Owner Contact: " + vehicleOwnerContact);
     System.out.println("Vehicle With AC Price: " + vehicleWithAC);
     System.out.println("Vehicle Without AC Price: " + vehicleWithoutAC);
-    System.out.println("Driver IDs: " + driverIds);
+    System.out.println("Driver ID: " + driverIds);
 
     // Split the driver IDs into a list (if necessary)
     List<String> driverList = splitDriverIds(driverIds);
 
     // Set attributes for use in JSP
+    request.setAttribute("userId", userId);
+    request.setAttribute("userName",userName );
+    request.setAttribute("vehicleId",vehicleId);
     request.setAttribute("vehicleModel", vehicleModel);
     request.setAttribute("vehicleName", vehicleName);
     request.setAttribute("vehicleNumber", vehicleNumber);
@@ -61,6 +71,7 @@
     
     <link rel="stylesheet" type="text/css" href="css/customerDashboard/customerDashboard.css">
     <script type="text/javascript" src="js/customerDashboard/customerDashboard.js"></script>
+     <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
     <style>
         :root {
             --primary-color: #2c3e50;
@@ -223,73 +234,111 @@
     </style>
 </head>
 <body>
+    <form action="orderConfirmServlet"  method="post">
     <div class="container">
         <div class="vehicle-details">
             <h2 style="color: var(--primary-color); margin-bottom: 20px;">Vehicle Details</h2>
             <div class="detail-row">
                 <span class="detail-label">Model:</span>
+                <input type="hidden" name="vehicleModel" value="${vehicleModel}">
                 <span class="detail-value">${vehicleModel}</span>
             </div>
             <div class="detail-row">
                 <span class="detail-label">Vehicle Name:</span>
+                <input type="hidden" name="vehicleName" value="${vehicleName}">
                 <span class="detail-value">${vehicleName}</span>
             </div>
             <div class="detail-row">
                 <span class="detail-label">Vehicle Number:</span>
+                <input type="hidden" name="vehicleNumber" value="${vehicleNumber}">
                 <span class="detail-value">${vehicleNumber}</span>
             </div>
             <div class="detail-row">
                 <span class="detail-label">Owner:</span>
+                <input type="hidden" name="vehicleOwner" value="${vehicleOwner}">
+                <input type="hidden" name="vehicleOwnerContact" value="${vehicleOwnerContact}">
                 <span class="detail-value">${vehicleOwner} (${vehicleOwnerContact})</span>
             </div>
         </div>
+            
+       
+
+
+        <input type="hidden" name="vehicalID" value="${vehicleId}">
+        <input type="hidden" name="userName" value="${userName}">
+        <input type="hidden" name="userId" value="${userId}">
+        
 
         <div class="form-section">
             <h3 style="color: var(--primary-color); margin-bottom: 20px;">Booking Information</h3>
             <div class="form-row">
                 <div class="form-group">
                     <label for="startDate">Start Date</label>
-                    <input type="date" id="startDate" required>
+                    <input type="date" id="startDate" name="startDate" required>
                 </div>
                 <div class="form-group">
                     <label for="endDate">End Date</label>
-                    <input type="date" id="endDate" required>
+                    <input type="date" id="endDate" name="endDate" required>
                 </div>
             </div>
+
 
             <div class="form-group">
                 <label>Car Type</label>
                 <div class="radio-group">
                     <label class="radio-option">
-                        <input type="radio" id="withAC" name="carType" value="withAC" 
+                        <input type="radio" id="withAC" name="carType" value="withAC"
                                onclick="updateFare('${vehicleWithAC}', '${vehicleWithoutAC}')">
                         With AC 
                         <span class="price-tag">${vehicleWithAC}/day</span>
                     </label>
                     <label class="radio-option">
-                        <input type="radio" id="withoutAC" name="carType" value="withoutAC" 
+                        <input type="radio" id="withoutAC" name="carType" value="withoutAC"
                                onclick="updateFare('${vehicleWithAC}', '${vehicleWithoutAC}')">
                         Without AC 
                         <span class="price-tag">${vehicleWithoutAC}/day</span>
                     </label>
                 </div>
+
+                <!-- Include hidden fields to pass the vehicle rates -->
+                <input type="hidden" id="vehicleWithAC" name="vehicleWithAC" value="${vehicleWithAC}">
+                <input type="hidden" id="vehicleWithoutAC" name="vehicleWithoutAC" value="${vehicleWithoutAC}">
+
             </div>
 
             <div class="form-group">
                 <label for="fareInput">Calculated Fare</label>
-                <input type="text" id="fareInput" readonly 
+                <input type="text" id="fareInput" readonly name="fareInput"
                        placeholder="Select car type to calculate fare">
             </div>
 
             <div class="form-group">
                 <label for="driverSelect">Select Driver</label>
-                <select id="driverSelect">
+                <select id="driverSelect" name="driverSelect">
                     <c:forEach var="driverId" items="${driverList}">
-                        <option value="${driverId}">Driver ${driverId}</option>
+                        <option value="${driverId}">${driverId}</option>
                     </c:forEach>
                 </select>
+
             </div>
         </div>
+            <center>
+            <div class="form-row-last" >
+            <input type="submit" name="register" class="register" value="Submit">
+           </div>
+            <center>
+    </form>
     </div>
+        
+     <% 
+        String error = request.getParameter("error");
+        if (error != null) { 
+    %>
+        <script type="text/javascript">
+            showError(<%= error %>);
+        </script>
+    <% 
+        }
+    %>
 </body>
 </html>

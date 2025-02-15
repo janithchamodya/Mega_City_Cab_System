@@ -15,6 +15,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -22,6 +23,8 @@ import javax.servlet.http.HttpServletResponse;
  */
 @WebServlet(name = "changeSuperAdminDataServlet", urlPatterns = {"/changeSuperAdminDataServlet"})
 public class changeSuperAdminDataServlet extends HttpServlet {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(changeSuperAdminDataServlet.class);
+
     private AdminService adminService;
     
     public changeSuperAdminDataServlet() {  
@@ -36,12 +39,13 @@ public class changeSuperAdminDataServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Admin> adminList = adminService.getAllSuperAdminList();
             for (Admin admin : adminList) {
-             System.out.println("Username: " + admin.getUsername());
-             System.out.println("NIC: " + admin.getNic());
-             System.out.println("Phone: " + admin.getPhone());
-             System.out.println("Email: " + admin.getEmail());
-             System.out.println("Role: " + admin.getRole());
-             System.out.println("-------------------------");
+                LOGGER.info("Username: {}", admin.getUsername());
+                LOGGER.info("NIC: {}", admin.getNic());
+                LOGGER.info("Phone: {}", admin.getPhone());
+                LOGGER.info("Email: {}", admin.getEmail());
+                LOGGER.info("Role: {}", admin.getRole());
+                LOGGER.info("-------------------------");
+
          }
         request.setAttribute("adminList", adminList);
         request.getRequestDispatcher("changeSuperAdminData.jsp").forward(request, response);
@@ -62,10 +66,10 @@ public class changeSuperAdminDataServlet extends HttpServlet {
         Admin admin=new Admin(username, phone, email, role, nic, phone, role);
        
         if (adminService.updateSuperAdminDetails(admin)) {
-        System.out.println("Admin details updated: " + admin.toString());
+        LOGGER.info("Admin details updated: " + admin.toString());
         response.sendRedirect("changeSuperAdminData.jsp?success=1");  // Redirect to success page or refresh page
         } else {
-            System.out.println("Error updating admin details");
+            LOGGER.info("Error updating admin details");
             response.sendRedirect("changeSuperAdminData.jsp?error=1");  // Pass error code via query string
         }
         

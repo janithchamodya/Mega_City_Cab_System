@@ -5,6 +5,7 @@
  */
 package com.megacity.controller.superAdmin;
 
+import com.megacity.controller.addmin.orderConfirmServlet;
 import com.megacity.model.Admin;
 import com.megacity.service.AdminService;
 import java.io.IOException;
@@ -15,6 +16,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
+import org.slf4j.LoggerFactory;
 
 /**
  *
@@ -22,6 +24,7 @@ import javax.servlet.http.HttpServletResponse;
  */
 
 public class changeAddminDataServlet extends HttpServlet {
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(changeAddminDataServlet.class);
 
     private AdminService adminService;
     
@@ -37,14 +40,15 @@ public class changeAddminDataServlet extends HttpServlet {
             throws ServletException, IOException {
         List<Admin> adminList = adminService.getAllAdminList();
             for (Admin admin : adminList) {
-             System.out.println("Username: " + admin.getUsername());
-              System.out.println("password: " + admin.getPassword());
-             System.out.println("Address: "+ admin.getAddress());
-             System.out.println("NIC: " + admin.getNic());
-             System.out.println("Phone: " + admin.getPhone());
-             System.out.println("Email: " + admin.getEmail());
-             System.out.println("Role: " + admin.getRole());
-             System.out.println("-------------------------");
+                LOGGER.info("Username: {}", admin.getUsername());
+                LOGGER.info("Password: {}", admin.getPassword());
+                LOGGER.info("Address: {}", admin.getAddress());
+                LOGGER.info("NIC: {}", admin.getNic());
+                LOGGER.info("Phone: {}", admin.getPhone());
+                LOGGER.info("Email: {}", admin.getEmail());
+                LOGGER.info("Role: {}", admin.getRole());
+                LOGGER.info("-------------------------");
+
          }
         request.setAttribute("adminList", adminList);
         request.getRequestDispatcher("changeAddminData.jsp").forward(request, response);
@@ -68,10 +72,10 @@ public class changeAddminDataServlet extends HttpServlet {
         Admin admin=new Admin(username,password, email,address ,nic, phone,  role);
        
         if (adminService.updateAdminDetails(admin)) {
-        System.out.println("Admin details updated: " + admin.toString());
+        LOGGER.info("Admin details updated: " + admin.toString());
         response.sendRedirect("changeAddminData.jsp?success=1");  // Redirect to success page or refresh page
         } else {
-            System.out.println("Error updating admin details");
+            LOGGER.info("Error updating admin details");
             response.sendRedirect("changeAddminData.jsp?error=1");  // Pass error code via query string
         }
         

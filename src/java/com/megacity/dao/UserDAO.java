@@ -34,6 +34,7 @@ public class UserDAO {
                 if (rs.next()) {
                     System.out.println(rs.toString());
                     user = new User();
+                    user.setId(rs.getInt("id"));
                     user.setCustomerId(rs.getString("customer_id"));
                     user.setAddress(rs.getString("address"));
                     user.setUsername(rs.getString("username"));

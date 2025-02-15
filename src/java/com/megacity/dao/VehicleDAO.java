@@ -51,7 +51,7 @@ public class VehicleDAO {
 
     // Method to get a vehicle by its ID
     public Vehicle getVehicleById(int vehicleId) {
-        String query = "SELECT * FROM Vehicle WHERE vehicle_number = ?";
+        String query = "SELECT * FROM Vehicle WHERE vehicle_number = ? && ";
         try {
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, vehicleId);
@@ -99,6 +99,21 @@ public class VehicleDAO {
         return false;  
     }
 
+    //UNAVALIABLE 
+    public boolean updateVehicleAsUnavaliable(String  vehicleNumber) {
+        String query = "UPDATE Vehicle SET availability='Unavailable' WHERE vehicle_number=?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setString(1, vehicleNumber);
+           
+            int rowsUpdated = ps.executeUpdate();
+            return rowsUpdated > 0;  // Return true if the update was successful
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;  
+    }
     // Method to delete a vehicle by its ID
     public boolean deleteVehicle(int vehicleId) {
         String query = "DELETE FROM Vehicle WHERE vehicle_id = ?";
@@ -117,7 +132,7 @@ public class VehicleDAO {
     
     public List<Vehicle> getAllVehicle(String vehicleType) {
     List<Vehicle> vehicleList = new ArrayList<>();
-    String query = "SELECT * FROM Vehicle Where model=?";  // Assuming your table name is 'Vehicle'
+    String query = "SELECT * FROM Vehicle Where model=? && availability='Available'";  // Assuming your table name is 'Vehicle'
 
     try (PreparedStatement ps = connection.prepareStatement(query)) {
         ps.setString(1, vehicleType);
@@ -126,7 +141,7 @@ public class VehicleDAO {
             while (rs.next()) {
                 Vehicle vehicle = new Vehicle();
                 
-                
+                vehicle.setId(rs.getInt("vehicle_id"));
                 vehicle.setModel(rs.getString("model"));
                 vehicle.setVehicleName(rs.getString("vehicle_name"));
                 vehicle.setVehicleNumber(rs.getString("vehicle_number"));
@@ -135,6 +150,7 @@ public class VehicleDAO {
                 vehicle.setVehicleWithAC(rs.getString("vehicle_with_ac"));
                 vehicle.setVehicleWithoutAC(rs.getString("vehicle_without_ac"));
                 byte[] vehicleImage = rs.getBytes("vehicle_image");
+                System.out.println(vehicle.toString());
                 if (vehicleImage != null) {
                     vehicle.setVehicleImage(vehicleImage);
                 }
@@ -149,6 +165,44 @@ public class VehicleDAO {
 
     return vehicleList;
 }
+//getVehicleid
+    public Vehicle getVehicleid(String vehiclenumber) {
+   
+    String query = "SELECT * FROM Vehicle Where vehicle_number=?";  // Assuming your table name is 'Vehicle'
+    Vehicle vehicle = new Vehicle();
+    try (PreparedStatement ps = connection.prepareStatement(query)) {
+        
+        ps.setString(1, vehiclenumber);
+        try (ResultSet rs = ps.executeQuery()) {
+            
+            while (rs.next()) {
+                
+                
+                vehicle.setId(rs.getInt("vehicle_id"));
+                vehicle.setModel(rs.getString("model"));
+                vehicle.setVehicleName(rs.getString("vehicle_name"));
+                vehicle.setVehicleNumber(rs.getString("vehicle_number"));
+                vehicle.setVehicleOwner(rs.getString("vehicle_owner"));
+                vehicle.setVehicleOwnerContact(rs.getString("vehicle_owner_contact"));
+                vehicle.setVehicleWithAC(rs.getString("vehicle_with_ac"));
+                vehicle.setVehicleWithoutAC(rs.getString("vehicle_without_ac"));
+                byte[] vehicleImage = rs.getBytes("vehicle_image");
+                System.out.println(vehicle.toString());
+                if (vehicleImage != null) {
+                    vehicle.setVehicleImage(vehicleImage);
+                }
 
+                
+               
+            }
+        }
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return vehicle;
+}
+    
+    
 }
 
