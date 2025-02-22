@@ -10,7 +10,7 @@ package com.megacity.model;
  * @author OZT00106
  */
 public class Admin {
- 
+    private int id;
     private String username;
     private String password;
     private String email;
@@ -44,6 +44,14 @@ public class Admin {
     }
 
     // Getters and Setters for all fields
+
+    public int getId() {
+        return id;
+    }
+
+    public void setId(int id) {
+        this.id = id;
+    }
 
 
     public String getUsername() {
@@ -101,17 +109,12 @@ public class Admin {
     public void setRole(String role) {
         this.role = role;
     }
+
     @Override
-public String toString() {
-    return "Admin {" +
-           
-            " username='" + username + '\'' +
-            ", password='" + password + '\'' +
-            ", email='" + email + '\'' +
-            ", address='" + address + '\'' +
-            ", nic='" + nic + '\'' +
-            ", phone='" + phone + '\'' +
-            ", role='" + role + '\'' +
-            '}';
-}
+    public String toString() {
+        return "Admin{" + "id=" + id + ", username=" + username + ", password=" + password + ", email=" + email + ", address=" + address + ", nic=" + nic + ", phone=" + phone + ", role=" + role + '}';
+    }
+    
+    
+
 }

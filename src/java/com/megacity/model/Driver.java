@@ -29,6 +29,15 @@ public class Driver {
         
     }
 
+    public Driver(int driverId, String driverName, String driverLicenseNo, String phoneNumber, String driverGender) {
+        this.driverId = driverId;
+        this.driverName = driverName;
+        this.driverLicenseNo = driverLicenseNo;
+        this.phoneNumber = phoneNumber;
+        this.driverGender = driverGender;
+    }
+    
+
     public int getDriverId() {
         return driverId;
     }

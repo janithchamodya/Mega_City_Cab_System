@@ -18,5 +18,7 @@ public interface DriverService {
     public boolean addDriver(Driver driver);
     public boolean updateDriverAsUnavaliable(int driverId);
     public boolean updateDriverAsAvaliable(int driverId);
+    public boolean updateDriver(Driver driver);
+    public boolean deleteDriver(int driverId);
     
 }

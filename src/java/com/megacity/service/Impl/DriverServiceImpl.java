@@ -48,6 +48,18 @@ public class DriverServiceImpl implements  DriverService{
         return driverDAO.updateDriverAsAvaliable(driverId);
     
     }
+    @Override
+    public boolean updateDriver(Driver driver){
+        LOGGER.info("updateDriver");
+        return driverDAO.updateDriver(driver);
+    }
+    
+    @Override
+    public boolean deleteDriver(int driverId){
+        LOGGER.info("DeleteDriver");
+        return driverDAO.deleteDriver(driverId);
+    
+    }
 
     
 }

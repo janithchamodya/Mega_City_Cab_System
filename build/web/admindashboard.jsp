@@ -56,7 +56,7 @@
                         <a class="collapse-item" href="addVehical.jsp">Add Vehicle</a>
                         <a class="collapse-item" href="addDriver.jsp">Add Drivers</a>
                         <a class="collapse-item" href="changeVehicalDetailsServlet">Update /Delete Vehicle</a>
-                        <a class="collapse-item" href="changeDriversDetails">Update /Delete Drivers</a>
+                        <a class="collapse-item" href="changeDriverDetailsServlet">Update /Delete Drivers</a>
                            </div>
                 </div>
             </li>
@@ -107,7 +107,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" >
                              <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                <%= session.getAttribute("user") != null ? session.getAttribute("user") : "Guest" %>
+                                <%= session.getAttribute("admin") != null ? session.getAttribute("admin") : "Guest" %>
                             </span>
 
                                     

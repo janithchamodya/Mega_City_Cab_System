@@ -81,7 +81,9 @@ public class LoginServlet extends HttpServlet {
             }
         else if(admin!=null) {
             HttpSession session = request.getSession();
-            session.setAttribute("admin", admin);
+            session.setAttribute("admin", admin.getUsername());
+            session.setAttribute("admin_Id", admin.getId());
+            
             
             response.sendRedirect("admindashboard.jsp");
             

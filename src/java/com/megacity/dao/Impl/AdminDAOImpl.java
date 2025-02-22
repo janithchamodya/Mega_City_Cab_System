@@ -38,6 +38,7 @@ public class AdminDAOImpl implements AdminDAO{
                 if (rs.next()) {
                     System.out.println(rs.toString());
                     admin = new Admin();
+                    admin.setId(rs.getInt("id"));
                     admin.setUsername(rs.getString("username"));
                     admin.setPassword(rs.getString("password"));
                     admin.setEmail(rs.getString("email"));

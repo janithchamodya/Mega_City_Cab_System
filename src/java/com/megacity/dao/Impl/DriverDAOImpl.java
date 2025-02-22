@@ -14,12 +14,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
 public class DriverDAOImpl implements DriverDAO{
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DriverDAOImpl.class);
+
     private Connection connection;
   
     public DriverDAOImpl() {
@@ -105,4 +108,46 @@ public class DriverDAOImpl implements DriverDAO{
         }
         return false;  
     }
+    @Override
+    public boolean updateDriver(Driver driver) {
+    String query = "UPDATE Drivers SET "
+            + "driver_name=?, driver_license_no=?, phone_number=?, "
+            + "driver_gender=? WHERE driver_id=?";
+    
+    try (PreparedStatement ps = connection.prepareStatement(query)) {
+        ps.setString(1, driver.getDriverName());
+        ps.setString(2, driver.getDriverLicenseNo());
+        ps.setString(3, driver.getPhoneNumber());
+        ps.setString(4, driver.getDriverGender());
+        ps.setInt(5, driver.getDriverId());
+        
+        int rowsUpdated = ps.executeUpdate();
+        return rowsUpdated > 0;
+    } catch (SQLException e) {
+        LOGGER.info(e.getMessage());
+        
+        return false;
+    }
+  }
+    @Override
+    public boolean deleteDriver(int driverId) {
+        String updateBookings = "UPDATE bookings SET driver_id = NULL WHERE driver_id = ?";
+        String query = "DELETE FROM drivers WHERE driver_id = ? AND availability='Available'";
+        try {
+            PreparedStatement updatePs = connection.prepareStatement(updateBookings);
+            updatePs.setInt(1, driverId);
+            updatePs.executeUpdate(); 
+            
+            PreparedStatement ps = connection.prepareStatement(query);
+            ps.setInt(1, driverId);
+
+            int rowsDeleted = ps.executeUpdate();
+            return rowsDeleted > 0;  // Return true if the deletion was successful
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        return false;  // Return false if there was an issue
+    }
+    
 }

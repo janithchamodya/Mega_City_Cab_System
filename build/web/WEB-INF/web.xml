@@ -60,6 +60,14 @@
         <servlet-name>deleteVehicleServlet</servlet-name>
         <servlet-class>com.megacity.controller.addmin.deleteVehicleServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>changeDriverDetailsServlet</servlet-name>
+        <servlet-class>com.megacity.controller.addmin.changeDriverDetailsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>deleteDriverServlet</servlet-name>
+        <servlet-class>com.megacity.controller.addmin.deleteDriverServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -111,6 +119,14 @@
     <servlet-mapping>
         <servlet-name>deleteVehicleServlet</servlet-name>
         <url-pattern>/deleteVehicleServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>changeDriverDetailsServlet</servlet-name>
+        <url-pattern>/changeDriverDetailsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>deleteDriverServlet</servlet-name>
+        <url-pattern>/deleteDriverServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>
