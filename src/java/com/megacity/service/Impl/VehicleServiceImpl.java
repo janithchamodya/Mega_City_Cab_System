@@ -33,6 +33,12 @@ public class VehicleServiceImpl implements  VehicleService{
        LOGGER.info("getAllVehicleList");
        return vehicleDAO.getAllVehicle(vehicleType);
     }
+   
+   @Override
+   public  List<Vehicle> getAllVehicleListWithoutType(){
+       LOGGER.info("getAllVehicleListWithoutType");
+       return vehicleDAO.getAllVehicleWithoutType();
+    }
    @Override
    public  Vehicle getvehicaleID(String  vehicleNumber){
        LOGGER.info("getVehicleid");
@@ -49,4 +55,16 @@ public class VehicleServiceImpl implements  VehicleService{
        LOGGER.info("updateVehicleAsUnavaliable");
        return vehicleDAO.updateVehicleAsAvaliable(vehicleNumber);
    }
+   
+   @Override
+   public boolean updateVehicle(Vehicle vehicleNumber){
+       LOGGER.info("updateVehicle");
+       return vehicleDAO.updateVehicle(vehicleNumber);
+   }
+    @Override
+   public boolean deleteVehicle(int  vehicleId){
+       LOGGER.info("deleteVehicle");
+       return vehicleDAO.deleteVehicle(vehicleId);
+   }
+   
 }

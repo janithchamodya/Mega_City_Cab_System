@@ -22,6 +22,8 @@ public interface VehicleDAO {
     public boolean deleteVehicle(int vehicleId);
     public List<Vehicle> getAllVehicle(String vehicleType);
     public Vehicle getVehicleid(String vehiclenumber);
+    public List<Vehicle> getAllVehicleWithoutType();
+    
             
     
 }

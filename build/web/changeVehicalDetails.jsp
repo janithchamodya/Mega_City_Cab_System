@@ -1,8 +1,9 @@
 <%-- 
-    Document   : addDriver
-    Created on : Feb 15, 2025, 8:38:05 AM
+    Document   : changeVehicalDetails
+    Created on : Feb 22, 2025, 10:03:11 PM
     Author     : OZT00106
 --%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -22,7 +23,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="css/adminDashboard/mega-city-admin/Mega City Cabadmin.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
-    <script type="text/javascript" src="js/adminDashboard/adminDashboard.js"></script>
+    <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -56,15 +57,13 @@
                 </a>
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
-                        <h6 class="collapse-header">Addmin Facilities:</h6>
+                        <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Admin Facilities:</h6>
                         <a class="collapse-item" href="addVehical.jsp">Add Vehicle</a>
                         <a class="collapse-item" href="addDriver.jsp">Add Drivers</a>
                         <a class="collapse-item" href="changeVehicalDetailsServlet">Update /Delete Vehicle</a>
                         <a class="collapse-item" href="changeDriversDetails">Update /Delete Drivers</a>
-                        
-                        
-                        
-                    </div>
+                           </div>
                 </div>
             </li>
             <li class="nav-item">
@@ -82,17 +81,13 @@
                     </div>
                 </div>
             </li>
-
            
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
-
-            
-
         </ul>
-        <!-- End of Sidebar -->
+        
 
         <!-- Content Wrapper -->
         <div id="content-wrapper" class="d-flex flex-column">
@@ -114,7 +109,7 @@
                        
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" >
                              <span class="mr-2 d-none d-lg-inline text-gray-600 small">
@@ -141,89 +136,49 @@
 
                 </nav>
             <!-- End of Topbar -->
-             <div class="form-v8">
-                    <div class="form-v8-content" style="margin-top: 0px; margin-left: 60px;">
-                        <div class="form-right">
-                            <div class="tab">
-                                <div class="tab-inner">
-                                    <button class="tablinks" onclick="openTab(event, 'add-driver')">Add Driver</button>
-                                </div>
-                            </div>
-
-                           <form class="form-detail" action="addDriverServlet" method="post" >
-                                <div class="form-row">
-                                    <label class="form-row-inner">
-                                        <input type="text" name="driverName" id="driverName" class="input-text" required>
-                                        <span class="label">Driver Name</span>
-                                        <span class="border"></span>
-                                    </label>
-                                </div>
-                                <div class="form-row">
-                                    <label class="form-row-inner">
-                                        <input type="text" name="driverLicenseNo" id="driverLicenseNo" class="input-text" required>
-                                        <span class="label">Driver License No</span>
-                                        <span class="border"></span>
-                                    </label>
-                                </div>
-                                <div class="form-row">
-                                    <label class="form-row-inner">
-                                        <input type="tel" name="phoneNumber" id="phoneNumber" class="input-text" required>
-                                        <span class="label">Phone Number</span>
-                                        <span class="border"></span>
-                                    </label>
-                                </div>
-                                <div class="form-row">
-                                    <label class="form-row-inner">
-                                        <select name="driverGender" id="driverGender" class="input-text" required style="width: 20%;padding: 10px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;background-color: #fff;cursor: pointer;">
-                                            <option value="" disabled selected>Select Gender</option>
-                                            <option value="Male">Male</option>
-                                            <option value="Female">Female</option>
-                                        </select>
-                                        
-                                    </label>
-                                </div>
-                                <div class="form-row-last">
-                                    <input type="submit" name="register" class="register" value="Add Driver">
-                                </div>
-                            </form>
-
-
-                        </div>
-                    </div>
-                </div>
-
-                <script type="text/javascript">
-                    function openTab(evt, tabName) {
-                        var i, tabcontent, tablinks;
-                        tabcontent = document.getElementsByClassName("tabcontent");
-                        for (i = 0; i < tabcontent.length; i++) {
-                            tabcontent[i].style.display = "none";
-                        }
-                        tablinks = document.getElementsByClassName("tablinks");
-                        for (i = 0; i < tablinks.length; i++) {
-                            tablinks[i].className = tablinks[i].className.replace(" active", "");
-                        }
-                        document.getElementById(tabName).style.display = "block";
-                        evt.currentTarget.className += " active";
-                    }
-
-                    document.getElementsByClassName("tablinks")[0].click();
-                </script>
-
-                <% 
-                    String error = request.getParameter("error");
-                    if (error != null) { 
-                %>
-                    <script type="text/javascript">
-                        showError(<%= error %>);
-                    </script>
-                <% 
-                    }
-                %>
-
+           <div class="container mt-5">
+                <h2 class="text-center">Vehicle Management</h2>
+                <table class="table table-hover">
+                    <thead>
+                        <tr>
+                            <th scope="col">Vehicle Name</th>
+                            <th scope="col">Vehicle Number</th>
+                            <th scope="col">Owner</th>
+                            <th scope="col">Owner Contact</th>
+                            <th scope="col">AC Availability</th>
+                            <th scope="col">Without AC Availability</th>
+                            <th scope="col">Update</th>
+                            <th scope="col">Delete</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <c:forEach var="vehicle" items="${vehicleList}">
+                            <tr>
+                                <form action="changeVehicalDetailsServlet" method="POST">
+                                    <td><input type="text" name="vehicleName" value="${vehicle.vehicleName}" class="form-control" /></td>
+                                    <td><input type="text" name="vehicleNumber" value="${vehicle.vehicleNumber}" class="form-control" /></td>
+                                    <td><input type="text" name="vehicleOwner" value="${vehicle.vehicleOwner}" class="form-control" /></td>
+                                    <td><input type="text" name="vehicleOwnerContact" value="${vehicle.vehicleOwnerContact}" class="form-control" /></td>
+                                    
+                                    <td><input type="text" name="vehicleWithAC" value="${vehicle.vehicleWithAC}" class="form-control" /></td>
+                                    <td><input type="text" name="vehicleWithoutAC" value="${vehicle.vehicleWithoutAC}" class="form-control" /></td>
+                                    
+                                    <input type="hidden" name="vehicleId" value="${vehicle.id}" />
+                                    <td><button type="submit" class="btn btn-primary">Update</button></td>
+                                </form>
+                                <td>
+                                    <form action="deleteVehicleServlet" method="POST">
+                                        <input type="hidden" name="vehicleId" value="${vehicle.id}" />
+                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                        </c:forEach>
+                    </tbody>
+                </table>
             </div>
-            
-            <!-- End of Main Content -->
+
+             <!-- End of Main Content -->
 
             <!-- Footer -->
             <footer class="sticky-footer bg-white">
@@ -271,11 +226,11 @@
     <script src="js/adminDashboard/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/adminDashboard/jquery-easing/jquery.easing.min.js"></script>
 
-    
+    <!-- Custom scripts for all pages-->
+    <script src="js/sb-admin-2.min.js"></script>
 
     
 
 </body>
 
 </html>
-

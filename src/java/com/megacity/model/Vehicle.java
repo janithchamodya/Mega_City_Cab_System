@@ -18,6 +18,7 @@ public class Vehicle {
     private String vehicleOwnerContact;
     private String vehicleWithAC;
     private String vehicleWithoutAC;
+    
     private byte[] vehicleImage;   
     private String base64Image; 
     private String availability;
@@ -52,6 +53,19 @@ public class Vehicle {
         this.vehicleImage = vehicleImage;
     }
 
+    public Vehicle(int Id, String vehicleName, String vehicleNumber, String vehicleOwner, String vehicleOwnerContact, String vehicleWithAC, String vehicleWithoutAC) {
+        this.Id = Id;
+        this.vehicleName = vehicleName;
+        this.vehicleNumber = vehicleNumber;
+        this.vehicleOwner = vehicleOwner;
+        this.vehicleOwnerContact = vehicleOwnerContact;
+        this.vehicleWithAC = vehicleWithAC;
+        this.vehicleWithoutAC = vehicleWithoutAC;
+    }
+
+    
+
+    
     public int getId() {
         return Id;
     }

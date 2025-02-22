@@ -55,7 +55,8 @@
                         <h6 class="collapse-header">Admin Facilities:</h6>
                         <a class="collapse-item" href="addVehical.jsp">Add Vehicle</a>
                         <a class="collapse-item" href="addDriver.jsp">Add Drivers</a>
-                        <a class="collapse-item" href=""></a>
+                        <a class="collapse-item" href="changeVehicalDetailsServlet">Update /Delete Vehicle</a>
+                        <a class="collapse-item" href="changeDriversDetails">Update /Delete Drivers</a>
                            </div>
                 </div>
             </li>

@@ -9,6 +9,7 @@ package com.megacity.dao.Impl;
  *
  * @author OZT00106
  */
+import com.megacity.controller.addmin.changeVehicalDetailsServlet;
 import com.megacity.dao.VehicleDAO;
 import com.megacity.model.Vehicle;
 import com.megacity.util.DBConnection;
@@ -18,8 +19,12 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.LoggerFactory;
 
 public class VehicleDAOImpl implements VehicleDAO{
+     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(VehicleDAOImpl.class);
+
+   
     private Connection connection;
 
     
@@ -80,25 +85,29 @@ public class VehicleDAOImpl implements VehicleDAO{
 
     @Override
     public boolean updateVehicle(Vehicle vehicle) {
-        String query = "UPDATE Vehicle SET model=?, vehicle_name=?, vehicle_owner=?, vehicle_owner_contact=?, vehicle_image=? WHERE vehicle_number=?";
-        try {
+       String query = "UPDATE Vehicle SET vehicle_name=?, vehicle_owner=?, vehicle_owner_contact=?, vehicle_with_ac=?, vehicle_without_ac=?, vehicle_number=? WHERE vehicle_id=?"; try {
             PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, vehicle.getModel());
-            ps.setString(2, vehicle.getVehicleName());
-            ps.setString(3, vehicle.getVehicleOwner());
-            ps.setString(4, vehicle.getVehicleOwnerContact());
-            ps.setBytes(5, vehicle.getVehicleImage());
-            ps.setString(6, vehicle.getVehicleNumber());
-           
+
+            ps.setString(1, vehicle.getVehicleName());
+            ps.setString(2, vehicle.getVehicleOwner());
+            ps.setString(3, vehicle.getVehicleOwnerContact());
+            ps.setString(4, vehicle.getVehicleWithAC());
+            ps.setString(5, vehicle.getVehicleWithoutAC());
+            ps.setString(6, vehicle.getVehicleNumber());  // New vehicle_number value
+            ps.setInt(7, vehicle.getId());  // Use vehicle_id as the identifier
 
             int rowsUpdated = ps.executeUpdate();
+            LOGGER.info("rowsUpdated"+rowsUpdated);
             return rowsUpdated > 0;  // Return true if the update was successful
 
         } catch (SQLException e) {
+            LOGGER.error("Error updating vehicle: " + e.getMessage(), e);
             e.printStackTrace();
         }
-        return false;  
+        return false;
     }
+
+
 
     @Override
     public boolean updateVehicleAsUnavaliable(String  vehicleNumber) {
@@ -136,8 +145,13 @@ public class VehicleDAOImpl implements VehicleDAO{
     }
     @Override
     public boolean deleteVehicle(int vehicleId) {
-        String query = "DELETE FROM Vehicle WHERE vehicle_id = ?";
+        String updateBookings = "UPDATE bookings SET vehicle_id = NULL WHERE vehicle_id = ?";
+        String query = "DELETE FROM Vehicle WHERE vehicle_id = ? AND availability='Available'";
         try {
+            PreparedStatement updatePs = connection.prepareStatement(updateBookings);
+            updatePs.setInt(1, vehicleId);
+            updatePs.executeUpdate(); 
+            
             PreparedStatement ps = connection.prepareStatement(query);
             ps.setInt(1, vehicleId);
 
@@ -184,7 +198,40 @@ public class VehicleDAOImpl implements VehicleDAO{
     }
 
     return vehicleList;
-}
+} 
+    @Override
+    public List<Vehicle> getAllVehicleWithoutType() {
+        List<Vehicle> vehicleList = new ArrayList<>();
+        String query = "SELECT * FROM Vehicle WHERE availability = 'Available'";  // Correct WHERE clause
+
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    Vehicle vehicle = new Vehicle();
+                    vehicle.setId(rs.getInt("vehicle_id"));
+                    vehicle.setModel(rs.getString("model"));
+                    vehicle.setVehicleName(rs.getString("vehicle_name"));
+                    vehicle.setVehicleNumber(rs.getString("vehicle_number"));
+                    vehicle.setVehicleOwner(rs.getString("vehicle_owner"));
+                    vehicle.setVehicleOwnerContact(rs.getString("vehicle_owner_contact"));
+                    vehicle.setVehicleWithAC(rs.getString("vehicle_with_ac"));
+                    vehicle.setVehicleWithoutAC(rs.getString("vehicle_without_ac"));
+
+                    byte[] vehicleImage = rs.getBytes("vehicle_image");
+                    if (vehicleImage != null) {
+                        vehicle.setVehicleImage(vehicleImage);
+                    }
+
+                    vehicleList.add(vehicle);
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return vehicleList;
+    }
+
     @Override
     public Vehicle getVehicleid(String vehiclenumber) {
    

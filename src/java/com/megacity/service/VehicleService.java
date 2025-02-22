@@ -15,8 +15,11 @@ import java.util.List;
 public interface VehicleService {
     public boolean addVehicleService( Vehicle vehicle);
     public  List<Vehicle> getAllVehicleList(String  vehicleType);
+    public  List<Vehicle> getAllVehicleListWithoutType();
     public  Vehicle getvehicaleID(String  vehicleNumber);
     public boolean updateVehicleAsUnavaliable(String vehicleNumber);
     public boolean updateVehicleAsAvaliable(String vehicleNumber);
+    public boolean updateVehicle(Vehicle vehicle);
+    public boolean deleteVehicle(int vehicleId);
     
 }
