@@ -60,6 +60,21 @@
                     </div>
                 </div>
             </li>
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Addmin Controls</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="confirmReturnServlet">Return New</a>
+                        
+                    </div>
+                </div>
+            </li>
 
            
 
@@ -94,9 +109,15 @@
                         <li class="nav-item dropdown no-arrow">
                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" >
+                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <%= session.getAttribute("user") != null ? session.getAttribute("user") : "Guest" %>
+                            </span>
+
+                                    
+                                </span>
                                 <img class="img-profile rounded-circle"
-                                    src="">
+                                     src="images/adminDashboard/../customerDashboard/undraw_profile_1.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -130,9 +151,13 @@
                                     <!-- Vehicle Details Section -->
                                     <div class="form-row">
                                         <label class="form-row-inner">
-                                            <input type="text" name="model" id="model" class="input-text" required>
-                                            <span class="label">Model</span>
-                                            <span class="border"></span>
+                                            <select name="model" id="model" class="input-text" required style="width: 15%;padding: 10px;font-size: 16px;border: 1px solid #ccc;border-radius: 5px;background-color: #fff;cursor: pointer;">
+                                                <option value="" disabled selected>Select Model</option>
+                                                <option value="car">Car</option>
+                                                <option value="van">Van</option>
+                                                <option value="bus">Bus</option>
+                                                <option value="truck">Truck</option>
+                                            </select>
                                         </label>
                                     </div>
                                     <div class="form-row">

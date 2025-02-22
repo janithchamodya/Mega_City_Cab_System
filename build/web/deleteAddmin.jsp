@@ -141,7 +141,7 @@
                                     </span>
                                 </span>
                                 <img class="img-profile rounded-circle"
-                                    src="images/adminDashboard/../undraw_profile_1.svg">
+                                     src="images/adminDashboard/../customerDashboard/undraw_profile_1.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

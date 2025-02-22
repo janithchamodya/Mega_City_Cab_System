@@ -5,204 +5,23 @@
  */
 package com.megacity.dao;
 
+import com.megacity.model.Vehicle;
+import java.util.List;
+
 /**
  *
  * @author OZT00106
  */
-import com.megacity.model.Vehicle;
-import com.megacity.util.DBConnection;
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
-import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
-
-public class VehicleDAO {
-    private Connection connection;
-
-    // Constructor to initialize the DAO with the connection
-    public VehicleDAO() {
-        connection = DBConnection.getInstance().getConnection();
-    }
-
-    // Method to add a vehicle to the database
-    public boolean addVehicle(Vehicle vehicle) {
-        String query = "INSERT INTO Vehicle (model, vehicle_name, vehicle_number, vehicle_owner, vehicle_owner_contact,vehicle_with_ac,vehicle_without_ac, vehicle_image) VALUES (?, ?, ?, ?, ?, ?,?,?)";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, vehicle.getModel());
-            ps.setString(2, vehicle.getVehicleName());
-            ps.setString(3, vehicle.getVehicleNumber());
-            ps.setString(4, vehicle.getVehicleOwner());
-            ps.setString(5, vehicle.getVehicleOwnerContact());
-            ps.setString(6, vehicle.getVehicleWithAC());
-            ps.setString(7, vehicle.getVehicleWithoutAC());
-            ps.setBytes(8, vehicle.getVehicleImage());
-
-            int rowsInserted = ps.executeUpdate();
-            return rowsInserted > 0;  
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;  
-    }
-
-    // Method to get a vehicle by its ID
-    public Vehicle getVehicleById(int vehicleId) {
-        String query = "SELECT * FROM Vehicle WHERE vehicle_number = ? && ";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, vehicleId);
-            ResultSet rs = ps.executeQuery();
-
-            if (rs.next()) {
-                Vehicle vehicle = new Vehicle(
-                    rs.getString("model"),
-                    rs.getString("vehicle_name"),
-                    rs.getString("vehicle_number"),
-                    rs.getString("vehicle_owner"),
-                    rs.getString("vehicle_owner_contact"),
-                    rs.getString("vehicle_with_ac"),
-                    rs.getString("vehicle_without_ac"),
-                    rs.getBytes("vehicle_image")
-                );
-                vehicle.setVehicleNumber(rs.getString("vehicle_number"));
-                return vehicle;
-            }
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return null;  // Return null if the vehicle is not found
-    }
-
-    // Method to update a vehicle's details
-    public boolean updateVehicle(Vehicle vehicle) {
-        String query = "UPDATE Vehicle SET model=?, vehicle_name=?, vehicle_owner=?, vehicle_owner_contact=?, vehicle_image=? WHERE vehicle_number=?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, vehicle.getModel());
-            ps.setString(2, vehicle.getVehicleName());
-            ps.setString(3, vehicle.getVehicleOwner());
-            ps.setString(4, vehicle.getVehicleOwnerContact());
-            ps.setBytes(5, vehicle.getVehicleImage());
-            ps.setString(6, vehicle.getVehicleNumber());
-           
-
-            int rowsUpdated = ps.executeUpdate();
-            return rowsUpdated > 0;  // Return true if the update was successful
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;  
-    }
-
-    //UNAVALIABLE 
-    public boolean updateVehicleAsUnavaliable(String  vehicleNumber) {
-        String query = "UPDATE Vehicle SET availability='Unavailable' WHERE vehicle_number=?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setString(1, vehicleNumber);
-           
-            int rowsUpdated = ps.executeUpdate();
-            return rowsUpdated > 0;  // Return true if the update was successful
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;  
-    }
-    // Method to delete a vehicle by its ID
-    public boolean deleteVehicle(int vehicleId) {
-        String query = "DELETE FROM Vehicle WHERE vehicle_id = ?";
-        try {
-            PreparedStatement ps = connection.prepareStatement(query);
-            ps.setInt(1, vehicleId);
-
-            int rowsDeleted = ps.executeUpdate();
-            return rowsDeleted > 0;  // Return true if the deletion was successful
-
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        return false;  // Return false if there was an issue
-    }
+public interface VehicleDAO {
     
-    public List<Vehicle> getAllVehicle(String vehicleType) {
-    List<Vehicle> vehicleList = new ArrayList<>();
-    String query = "SELECT * FROM Vehicle Where model=? && availability='Available'";  // Assuming your table name is 'Vehicle'
-
-    try (PreparedStatement ps = connection.prepareStatement(query)) {
-        ps.setString(1, vehicleType);
-        try (ResultSet rs = ps.executeQuery()) {
+    public boolean addVehicle(Vehicle vehicle);
+    public Vehicle getVehicleById(int vehicleId);
+    public boolean updateVehicle(Vehicle vehicle);
+    public boolean updateVehicleAsUnavaliable(String  vehicleNumber);
+    public boolean updateVehicleAsAvaliable(String  vehicleNumber);
+    public boolean deleteVehicle(int vehicleId);
+    public List<Vehicle> getAllVehicle(String vehicleType);
+    public Vehicle getVehicleid(String vehiclenumber);
             
-            while (rs.next()) {
-                Vehicle vehicle = new Vehicle();
-                
-                vehicle.setId(rs.getInt("vehicle_id"));
-                vehicle.setModel(rs.getString("model"));
-                vehicle.setVehicleName(rs.getString("vehicle_name"));
-                vehicle.setVehicleNumber(rs.getString("vehicle_number"));
-                vehicle.setVehicleOwner(rs.getString("vehicle_owner"));
-                vehicle.setVehicleOwnerContact(rs.getString("vehicle_owner_contact"));
-                vehicle.setVehicleWithAC(rs.getString("vehicle_with_ac"));
-                vehicle.setVehicleWithoutAC(rs.getString("vehicle_without_ac"));
-                byte[] vehicleImage = rs.getBytes("vehicle_image");
-                System.out.println(vehicle.toString());
-                if (vehicleImage != null) {
-                    vehicle.setVehicleImage(vehicleImage);
-                }
-
-                
-                vehicleList.add(vehicle);
-            }
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-
-    return vehicleList;
-}
-//getVehicleid
-    public Vehicle getVehicleid(String vehiclenumber) {
-   
-    String query = "SELECT * FROM Vehicle Where vehicle_number=?";  // Assuming your table name is 'Vehicle'
-    Vehicle vehicle = new Vehicle();
-    try (PreparedStatement ps = connection.prepareStatement(query)) {
-        
-        ps.setString(1, vehiclenumber);
-        try (ResultSet rs = ps.executeQuery()) {
-            
-            while (rs.next()) {
-                
-                
-                vehicle.setId(rs.getInt("vehicle_id"));
-                vehicle.setModel(rs.getString("model"));
-                vehicle.setVehicleName(rs.getString("vehicle_name"));
-                vehicle.setVehicleNumber(rs.getString("vehicle_number"));
-                vehicle.setVehicleOwner(rs.getString("vehicle_owner"));
-                vehicle.setVehicleOwnerContact(rs.getString("vehicle_owner_contact"));
-                vehicle.setVehicleWithAC(rs.getString("vehicle_with_ac"));
-                vehicle.setVehicleWithoutAC(rs.getString("vehicle_without_ac"));
-                byte[] vehicleImage = rs.getBytes("vehicle_image");
-                System.out.println(vehicle.toString());
-                if (vehicleImage != null) {
-                    vehicle.setVehicleImage(vehicleImage);
-                }
-
-                
-               
-            }
-        }
-    } catch (SQLException e) {
-        e.printStackTrace();
-    }
-
-    return vehicle;
-}
-    
     
 }
-

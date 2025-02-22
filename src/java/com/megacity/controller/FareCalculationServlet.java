@@ -3,11 +3,12 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package com.megacity.controller.addmin;
+package com.megacity.controller;
 
 import com.megacity.controller.SignupServlet;
 import com.megacity.model.RentalPricingRule;
 import com.megacity.service.RentalPricingRuleService;
+import com.megacity.service.Impl.RentalPricingRuleServiceImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -28,7 +29,7 @@ private RentalPricingRuleService rentalPricingRuleService;
    
     public FareCalculationServlet() {    
         
-        rentalPricingRuleService=new RentalPricingRuleService();
+        rentalPricingRuleService=new RentalPricingRuleServiceImpl();
     }
     
 
@@ -44,7 +45,7 @@ protected void doGet(HttpServletRequest request, HttpServletResponse response)
         LOGGER.info("priceWithACParam"+priceWithACParam);
         LOGGER.info("priceWithoutACParam"+priceWithoutACParam);
 
-        // Check if parameters are provided
+        
         if (daysParam != null && priceWithACParam != null && priceWithoutACParam != null) {
             int days = Integer.parseInt(daysParam);
             double pricePerDayWithAC = Double.parseDouble(priceWithACParam);

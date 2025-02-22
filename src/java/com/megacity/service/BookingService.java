@@ -5,27 +5,18 @@
  */
 package com.megacity.service;
 
-import com.megacity.dao.BookingDAO;
 import com.megacity.model.Bookings;
-import org.slf4j.LoggerFactory;
+import java.util.List;
 
 /**
  *
  * @author OZT00106
  */
-public class BookingService {
-    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(BookingService.class);
-
+public interface BookingService {
     
-     private  BookingDAO bookingDAO;
+    public boolean addBookings(Bookings bookings);
+    public List<Bookings> getAvailableBooking();
+    public List<Bookings> getMyBookings(String customerId ,String customerName);
+    public boolean updateASUnavailableBooking(String orderNumber);
     
-    public BookingService(){    
-        bookingDAO=new BookingDAO();
-    }
-    
-    
-     public boolean addBookings(Bookings bookings) {
-        LOGGER.info("Admin Service :"+bookings.toString());
-        return bookingDAO.addBooking(bookings);
-    }
 }

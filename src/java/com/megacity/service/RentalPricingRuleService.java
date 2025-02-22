@@ -5,26 +5,14 @@
  */
 package com.megacity.service;
 
-import com.megacity.dao.RentalPricingRuleDAO;
 import com.megacity.model.RentalPricingRule;
-import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
-public class RentalPricingRuleService {
-    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(RentalPricingRuleService.class);
-
-   private  RentalPricingRuleDAO rentalPricingRuleDAO;
+public interface RentalPricingRuleService {
     
-    public RentalPricingRuleService(){    
-        rentalPricingRuleDAO=new RentalPricingRuleDAO();
-    } 
+    public  RentalPricingRule getAllAvailableDrivers(int days);
     
-    
-    public  RentalPricingRule getAllAvailableDrivers(int days){
-         System.out.println(rentalPricingRuleDAO.getPricingRuleForRentalDays(days));
-        return rentalPricingRuleDAO.getPricingRuleForRentalDays(days);
-    }
 }

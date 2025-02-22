@@ -7,6 +7,7 @@ package com.megacity.controller.superAdmin;
 
 import com.megacity.model.Admin;
 import com.megacity.service.AdminService;
+import com.megacity.service.Impl.AdminServiceImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -25,11 +26,11 @@ import org.slf4j.LoggerFactory;
 public class changeSuperAdminDataServlet extends HttpServlet {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(changeSuperAdminDataServlet.class);
 
-    private AdminService adminService;
+     private AdminService adminService;
     
     public changeSuperAdminDataServlet() {  
 	        
-            adminService=new AdminService();
+            adminService=new AdminServiceImpl();
 	    }
    
 

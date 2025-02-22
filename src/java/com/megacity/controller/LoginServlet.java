@@ -8,7 +8,9 @@ package com.megacity.controller;
 import com.megacity.model.Admin;
 import com.megacity.model.User;
 import com.megacity.service.AdminService;
+import com.megacity.service.Impl.AdminServiceImpl;
 import com.megacity.service.UserService;
+import com.megacity.service.Impl.UserServiceImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.logging.Logger;
@@ -29,9 +31,9 @@ public class LoginServlet extends HttpServlet {
     private UserService userService;
     private AdminService adminService;
 
-    public LoginServlet() {  // ✅ Correct constructor
-        userService = new UserService();
-        adminService=new AdminService();
+    public LoginServlet() {  
+        userService = new UserServiceImpl();
+        adminService=new AdminServiceImpl();
     }
 
     private static final long serialVersionUID = 1L;
@@ -63,14 +65,13 @@ public class LoginServlet extends HttpServlet {
 
         User user = userService.login(username, password);
        
-        //Admin and SuperAdmin
         Admin admin =adminService.Login(username, password);
         
         
         
         if (user != null  ) {
             HttpSession session = request.getSession();
-           LOGGER.info(user.getUsername()+"  "+user.getCustomerId());
+            LOGGER.info(user.getUsername()+"  "+user.getCustomerId());
             session.setAttribute("user", user.getUsername());
             session.setAttribute("user_Id", user.getId());
            

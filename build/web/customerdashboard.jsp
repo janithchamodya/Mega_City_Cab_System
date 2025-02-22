@@ -91,8 +91,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Customer Facilities:</h6>
-                        <a class="collapse-item" href="returnNew.jsp">Return New</a>
-                        <a class="collapse-item" href="showBooking.jsp">View My Booking</a>
+                       
+                        <a class="collapse-item" href="showMyBooking">View My Booking</a>
                         
                         
                     </div>

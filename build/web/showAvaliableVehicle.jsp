@@ -62,8 +62,8 @@
                         <a class="collapse-item" href="addVehicleServlet?vehicleType=car">Car Booking</a>
                         <a class="collapse-item" href="addVehicleServlet?vehicleType=van">Van Booking</a>
                         <a class="collapse-item" href="addVehicleServlet?vehicleType=bus">Bus Booking</a>
-                        <a class="collapse-item" href="addVehicleServlet?vehicleType=truck">Bike Booking</a>
-                        <a class="collapse-item" href="addVehicleServlet?vehicleType=bike">Truck Booking</a>
+                        
+                        <a class="collapse-item" href="addVehicleServlet?vehicleType=truck">Truck Booking</a>
 
                         
                     </div>
@@ -78,8 +78,8 @@
                 <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordionSidebar">
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Customer Facilities:</h6>
-                        <a class="collapse-item" href="returnNew.jsp">Return New</a>
-                        <a class="collapse-item" href="showBooking.jsp">View My Booking</a>
+                        
+                        <a class="collapse-item" href="showMyBookingServlet">View My Booking</a>
                         
                         
                         

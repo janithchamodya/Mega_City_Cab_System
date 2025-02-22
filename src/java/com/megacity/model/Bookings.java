@@ -48,8 +48,8 @@ public class Bookings {
         this.EndDate = EndDate;
     }
 
-    public Bookings(String orderNumber, int customerId, int carId, int driverId, String customerName, String model, String vehicleName, String vehicleNumber, String owner, String driverName, String driverGender, String amount, String StartDate, String EndDate) {
-        this.orderNumber = orderNumber;
+    public Bookings( int customerId, int carId, int driverId, String customerName, String model, String vehicleName, String vehicleNumber, String owner, String driverName, String driverGender, String amount, String StartDate, String EndDate) {
+       
         this.customerId = customerId;
         this.carId = carId;
         this.driverId = driverId;

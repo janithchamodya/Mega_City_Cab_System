@@ -7,7 +7,8 @@ package com.megacity.controller.addmin;
 
 import com.megacity.model.Driver;
 import com.megacity.service.DriverService;
-import com.megacity.service.VehicleService;
+import com.megacity.service.Impl.DriverServiceImpl;
+import com.megacity.service.Impl.VehicleServiceImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ public class addDriverServlet extends HttpServlet {
 
     public addDriverServlet() {    
 
-            driverService=new DriverService();
+            driverService=new DriverServiceImpl();
         }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

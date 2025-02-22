@@ -8,7 +8,8 @@ package com.megacity.controller;
 import com.megacity.model.Admin;
 import com.megacity.model.User;
 import com.megacity.service.AdminService;
-import com.megacity.service.UserService;
+import com.megacity.service.Impl.AdminServiceImpl;
+import com.megacity.service.Impl.UserServiceImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import javax.servlet.ServletException;
@@ -27,7 +28,7 @@ public class LoginServletAdmin extends HttpServlet {
     private AdminService adminService;
 
     public LoginServletAdmin() {  
-        adminService = new AdminService();
+        adminService = new AdminServiceImpl();
     }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)

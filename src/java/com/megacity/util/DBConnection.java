@@ -5,7 +5,7 @@
  */
 package com.megacity.util;
 
-import com.megacity.service.VehicleService;
+import com.megacity.service.Impl.VehicleServiceImpl;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;

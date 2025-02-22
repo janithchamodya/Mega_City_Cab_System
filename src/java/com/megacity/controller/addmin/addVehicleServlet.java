@@ -4,7 +4,9 @@ import com.megacity.controller.LoginServlet;
 import com.megacity.model.Driver;
 import com.megacity.model.Vehicle;
 import com.megacity.service.DriverService;
+import com.megacity.service.Impl.DriverServiceImpl;
 import com.megacity.service.VehicleService;
+import com.megacity.service.Impl.VehicleServiceImpl;
 import java.io.ByteArrayOutputStream;
 
 import java.io.IOException;
@@ -30,8 +32,8 @@ public class addVehicleServlet extends HttpServlet {
     
     
     public addVehicleServlet() {    
-        vehicleService = new VehicleService();
-        driverService=new DriverService();
+        vehicleService = new VehicleServiceImpl();
+        driverService=new DriverServiceImpl();
         
     }
 

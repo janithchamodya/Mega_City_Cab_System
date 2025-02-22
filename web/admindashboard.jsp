@@ -59,7 +59,21 @@
                            </div>
                 </div>
             </li>
-
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapseUtilities"
+                    aria-expanded="true" aria-controls="collapseUtilities">
+                    <i class="fas fa-fw fa-wrench"></i>
+                    <span>Addmin Controls</span>
+                </a>
+                <div id="collapseUtilities" class="collapse" aria-labelledby="headingUtilities"
+                    data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        <h6 class="collapse-header">Custom Utilities:</h6>
+                        <a class="collapse-item" href="confirmReturnServlet">Return New</a>
+                        
+                    </div>
+                </div>
+            </li>
            
 
             <!-- Divider -->
@@ -88,11 +102,17 @@
                        
                         <!-- Nav Item - User Information -->
                         <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                <span class="mr-2 d-none d-lg-inline text-gray-600 small">Douglas McGee</span>
+                                <span class="mr-2 d-none d-lg-inline text-gray-600 small" >
+                             <span class="mr-2 d-none d-lg-inline text-gray-600 small">
+                                <%= session.getAttribute("user") != null ? session.getAttribute("user") : "Guest" %>
+                            </span>
+
+                                    
+                                </span>
                                 <img class="img-profile rounded-circle"
-                                    src="">
+                                     src="images/adminDashboard/../customerDashboard/undraw_profile_1.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"

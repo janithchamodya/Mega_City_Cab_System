@@ -5,39 +5,18 @@
  */
 package com.megacity.service;
 
-import com.megacity.dao.DriverDAO;
 import com.megacity.model.Driver;
-import com.megacity.model.Vehicle;
 import java.util.List;
-import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
-public class DriverService {
-    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(DriverService.class);
-
-    private  DriverDAO driverDAO;
+public interface DriverService {
     
-    public DriverService(){    
-        driverDAO=new DriverDAO();
-    }  
-    
-     public  List<Driver> getAllAvailableDrivers(){
-         System.out.println(driverDAO.getAllAvailableDrivers());
-        return driverDAO.getAllAvailableDrivers();
-    }
-    
-     public boolean addDriver(Driver driver) {
-        return driverDAO.saveDriver(driver);
-    }
-     
-    public boolean updateDriverAsUnavaliable(int driverId){
-    return driverDAO.updateDriverAsUnavaliable(driverId);
-    
-    }
-     
-
+    public  List<Driver> getAllAvailableDrivers();
+    public boolean addDriver(Driver driver);
+    public boolean updateDriverAsUnavaliable(int driverId);
+    public boolean updateDriverAsAvaliable(int driverId);
     
 }

@@ -38,11 +38,19 @@
     </servlet>
     <servlet>
         <servlet-name>orderConfirmServlet</servlet-name>
-        <servlet-class>com.megacity.controller.addmin.orderConfirmServlet</servlet-class>
+        <servlet-class>com.megacity.controller.orderConfirmServlet</servlet-class>
     </servlet>
     <servlet>
         <servlet-name>FareCalculationServlet</servlet-name>
-        <servlet-class>com.megacity.controller.addmin.FareCalculationServlet</servlet-class>
+        <servlet-class>com.megacity.controller.FareCalculationServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>confirmReturnServlet</servlet-name>
+        <servlet-class>com.megacity.controller.addmin.confirmReturnServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>showMyBookingServlet</servlet-name>
+        <servlet-class>com.megacity.controller.showMyBookingServlet</servlet-class>
     </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
@@ -79,6 +87,14 @@
     <servlet-mapping>
         <servlet-name>FareCalculationServlet</servlet-name>
         <url-pattern>/FareCalculationServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>confirmReturnServlet</servlet-name>
+        <url-pattern>/confirmReturnServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>showMyBookingServlet</servlet-name>
+        <url-pattern>/showMyBookingServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

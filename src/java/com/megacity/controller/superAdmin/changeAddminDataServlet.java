@@ -5,9 +5,10 @@
  */
 package com.megacity.controller.superAdmin;
 
-import com.megacity.controller.addmin.orderConfirmServlet;
+import com.megacity.controller.orderConfirmServlet;
 import com.megacity.model.Admin;
 import com.megacity.service.AdminService;
+import com.megacity.service.Impl.AdminServiceImpl;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.util.List;
@@ -28,14 +29,14 @@ public class changeAddminDataServlet extends HttpServlet {
 
     private AdminService adminService;
     
+    
     public changeAddminDataServlet() {  
 	        
-            adminService=new AdminService();
+            adminService=new AdminServiceImpl();
 	    }
     
 
     @Override
-    
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         List<Admin> adminList = adminService.getAllAdminList();
