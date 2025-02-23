@@ -98,10 +98,29 @@
                     </div>
                 </div>
             </li>
+             
 
             <!-- Divider -->
             <hr class="sidebar-divider">
+            <div class="sidebar-heading">
+                Reference
+            </div>
 
+            <!-- Nav Item - Pages Collapse Menu -->
+            <li class="nav-item">
+                <a class="nav-link collapsed" href="#" data-toggle="collapse" data-target="#collapsePages"
+                    aria-expanded="true" aria-controls="collapsePages">
+                    <i class="fas fa-fw fa-folder"></i>
+                    <span>User Guide</span>
+                </a>
+                <div id="collapsePages" class="collapse" aria-labelledby="headingPages" data-parent="#accordionSidebar">
+                    <div class="bg-white py-2 collapse-inner rounded">
+                        
+                        <a class="collapse-item" href="userGuide.jsp">User Guide</a>
+                        
+                    </div>
+                </div>
+            </li>
 
 
             
@@ -124,17 +143,18 @@
                     </button>
 
                     <!-- Topbar Navbar -->
-                    <ul class="navbar-nav ml-auto">
+                   <ul class="navbar-nav ml-auto">
 
                        
                         <!-- Nav Item - User Information -->
                          <li class="nav-item dropdown no-arrow">
-                            <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
+                             <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" >
                              <span class="mr-2 d-none d-lg-inline text-gray-600 small">
                                 <%= session.getAttribute("user") != null ? session.getAttribute("user") : "Guest" %>
-                            </span>
+                            
+                             </span>
 
                                     
                                 </span>
