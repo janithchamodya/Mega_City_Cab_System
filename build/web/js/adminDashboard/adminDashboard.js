@@ -1,26 +1,3 @@
-
-function showError(errorCode) {
-    if (errorCode == 1) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'All fields are required!'
-        });
-    } else if (errorCode == 2) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Invalid Fields. Please try again.'
-        });
-    }else if (errorCode == 3) {
-        Swal.fire({
-            icon: 'error',
-            title: 'Oops...',
-            text: 'Uploaded file is empty. Please try again.'
-        });
-    }
-}
-
  function validateForm() {
             // Retrieve form values
     var username = document.getElementById("username").value;

@@ -99,13 +99,13 @@ public class addVehicleServlet extends HttpServlet {
         Part filePart = request.getPart("vehicleImage");
         if (filePart == null) {
             LOGGER.info("Uploaded file is empty.");
-            response.sendRedirect("addVehical.jsp?error=3");  // Handle empty file upload error
+            response.sendRedirect("addVehical.jsp?error=3");  
             return;
         } else {
             LOGGER.info("File part is not null. Size: " + filePart.getSize());
             if (filePart.getSize() == 0) {
                 LOGGER.info("Uploaded file is empty.");
-                response.sendRedirect("addVehical.jsp?error=3");  // Handle empty file upload error
+                response.sendRedirect("addVehical.jsp?error=3");  
                 return;
             }
         }
@@ -132,7 +132,7 @@ public class addVehicleServlet extends HttpServlet {
         if (vehicleService.addVehicleService(vehicle)) {
              LOGGER.info("Image bytes are null.");
              response.sendRedirect("addVehical.jsp?success=1");
-            
+                        
         } else {
             LOGGER.info("Image bytes are not null.");
             response.sendRedirect("addVehical.jsp?error=2");

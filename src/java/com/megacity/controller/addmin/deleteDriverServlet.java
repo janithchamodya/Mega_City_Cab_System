@@ -47,7 +47,7 @@ public class deleteDriverServlet extends HttpServlet {
         
         if (driverService.deleteDriver(driverId)) {
         LOGGER.info("Delete The Vehicle , vehicleId :{}",driverId);
-        response.sendRedirect("changeVehicalDetails.jsp?success=1");  // Redirect to success page or refresh page
+        response.sendRedirect("changeDriverDetailsServlet");  // Redirect to success page or refresh page
         } else {
         LOGGER.info("Error updating vehicle details");
         response.sendRedirect("changeVehicalDetails.jsp?error=1");  // Pass error code via query string

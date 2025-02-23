@@ -16,6 +16,7 @@ import com.megacity.service.Impl.VehicleServiceImpl;
 import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -53,6 +54,7 @@ public class orderConfirmServlet extends HttpServlet {
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        
         int driverId=0;
         String driverName=null;              
         String driverGender=null;         
@@ -82,11 +84,11 @@ public class orderConfirmServlet extends HttpServlet {
 
         // Ensure the matcher finds a match before accessing groups
         if (matcher.find()) {
-            driverId = Integer.parseInt(matcher.group(1));  // The ID
-            driverName = matcher.group(2);               // The Name
-            driverGender = matcher.group(3);             // The Gender
-            driverLicenseNo = matcher.group(4);          // The License No
-            driverPhone = matcher.group(5);              // The Phone Number
+            driverId = Integer.parseInt(matcher.group(1));  
+            driverName = matcher.group(2);              
+            driverGender = matcher.group(3);             
+            driverLicenseNo = matcher.group(4);          
+            driverPhone = matcher.group(5);             
 
             LOGGER.info("Driver ID: " + driverId);
             LOGGER.info("Driver Name: " + driverName);
@@ -106,7 +108,11 @@ public class orderConfirmServlet extends HttpServlet {
         String customerName =userName; 
          
          int vehicleid=(vehicleService.getvehicaleID(vehicleNumber)).getId();
-         Bookings bookings=new  Bookings( userId,vehicleid,driverId,customerName,model, vehicleName, vehicleNumber, vehicleOwner, driverName,driverGender, amount, startDate, endDate);
+         String OrderId =bookingService.generateOrderNumber();
+         LOGGER.info("OrderId"+OrderId);
+        
+         
+         Bookings bookings=new  Bookings( OrderId,userId,vehicleid,driverId,customerName,model, vehicleName, vehicleNumber, vehicleOwner, driverName,driverGender, amount, startDate, endDate);
         System.out.println(bookings.toString());
          if (bookingService.addBookings(bookings)) {
             
@@ -118,7 +124,19 @@ public class orderConfirmServlet extends HttpServlet {
             LOGGER.info("Vehicle Update Status: " + vehicleUpdateStatus);
 
             
-            response.sendRedirect("showAvaliableVehicle.jsp?success=1");
+            request.setAttribute("orderNumber", OrderId); // Assuming ID is generated
+            request.setAttribute("vehicleModel", model);
+            request.setAttribute("vehicleName", vehicleName);
+            request.setAttribute("vehicleNumber", vehicleNumber);
+            request.setAttribute("startDate", startDate);
+            request.setAttribute("endDate", endDate);
+            request.setAttribute("totalFare", amount);
+            request.setAttribute("driverName", driverName);
+            request.setAttribute("bookingStatus", "Confirmed");
+
+            // 6. Forward to confirmation page
+            RequestDispatcher dispatcher = request.getRequestDispatcher("showConfirmPDF.jsp");
+            dispatcher.forward(request, response);
             
         } else {
             

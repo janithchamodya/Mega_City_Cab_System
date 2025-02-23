@@ -92,15 +92,23 @@
         
     </script>
 
-    <% 
-        String error = request.getParameter("error");
-        if (error != null) { 
-    %>
         <script type="text/javascript">
-            showError(<%= error %>);
+                       <% 
+                           String error = request.getParameter("error");
+                           String success = request.getParameter("success");
+
+                           if (error != null) { 
+                       %>
+                           showError(<%= error %>);
+                       <% 
+                           } else if (success != null) { 
+                       %>
+                           showSuccess(<%= success %>);
+                       <% 
+                           }
+                       %>
+
+
         </script>
-    <% 
-        }
-    %>
 </body>
 </html>

@@ -29,10 +29,7 @@ public class BookingServiceImpl implements BookingService{
     @Override
      public boolean addBookings(Bookings bookings) {
         LOGGER.info("addBookings Service :"+bookings.toString());
-        String OrderId = bookingDAO.generateOrderNumber();
-        LOGGER.info("OrderId"+OrderId);
         
-        bookings.setOrderNumber(OrderId);
       
         return bookingDAO.addBooking(bookings);
     }
@@ -52,4 +49,10 @@ public class BookingServiceImpl implements BookingService{
         LOGGER.info("updateASUnavailableBooking");
         return bookingDAO.updateBookingAsUnavailable(orderNumber);
      }
+    
+    @Override
+    public String generateOrderNumber(){
+        LOGGER.info("generateOrderNumber");
+        return  bookingDAO.generateOrderNumber();
+    }
 }

@@ -18,5 +18,6 @@ public interface BookingService {
     public List<Bookings> getAvailableBooking();
     public List<Bookings> getMyBookings(String customerId ,String customerName);
     public boolean updateASUnavailableBooking(String orderNumber);
+    public String  generateOrderNumber();
     
 }

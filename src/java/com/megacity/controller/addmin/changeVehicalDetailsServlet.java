@@ -92,7 +92,7 @@ public class changeVehicalDetailsServlet extends HttpServlet {
      
     if (vehicleService.updateVehicle(vehicle)) {
         LOGGER.info("Vehicle details updated: " + vehicle.toString());
-        response.sendRedirect("changeVehicalDetails.jsp?success=1");  // Redirect to success page or refresh page
+        response.sendRedirect("changeVehicalDetailsServlet");  // Redirect to success page or refresh page
     } else {
         LOGGER.info("Error updating vehicle details");
         response.sendRedirect("changeVehicalDetails.jsp?error=1");  // Pass error code via query string

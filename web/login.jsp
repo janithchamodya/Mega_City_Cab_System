@@ -74,17 +74,18 @@
 
 		// Get the element with id="defaultOpen" and click on it
 		document.getElementById("defaultOpen").click();
+                
 	</script>
 	
 	<% 
-    String error = request.getParameter("error");
-    if (error != null) { 
-%>
-    <script type="text/javascript">
-        showError(<%= error %>);
-    </script>
-<% 
-    }
-%>
-</body><!-- This templates was made by Colorlib (https://colorlib.com) -->
+            String error = request.getParameter("error");
+            if (error != null) { 
+        %>
+            <script type="text/javascript">
+                showError(<%= error %>);
+            </script>
+        <% 
+            }
+        %>
+</body>
 </html>

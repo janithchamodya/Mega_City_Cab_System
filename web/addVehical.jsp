@@ -17,7 +17,7 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="css/adminDashboard/mega-city-admin/Mega City Cabadmin.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
-    <script type="text/javascript" src="js/adminDashboard/adminDashboard.js"></script>
+    <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -113,7 +113,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" >
                              <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                <%= session.getAttribute("user") != null ? session.getAttribute("user") : "Guest" %>
+                                <%= session.getAttribute("admin") != null ? session.getAttribute("admin") : "Guest" %>
                             </span>
 
                                     
@@ -245,26 +245,9 @@
 
 
                 </script>
-
-                <% 
-                    String error = request.getParameter("error");
-                    if (error != null) { 
-                %>
-                    <script type="text/javascript">
-                        showError(<%= error %>);
-                    </script>
-                <% 
-                    }
-                %>
             </dev> 
             
-            
-            
-            
-            
-            
-            
-            
+          
             <!-- End of Main Content -->
 
             <!-- Footer -->
@@ -312,9 +295,28 @@
     <script src="js/adminDashboard/jquery/jquery.min.js"></script>
     <script src="js/adminDashboard/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/adminDashboard/jquery-easing/jquery.easing.min.js"></script>
+    <script type="text/javascript">
+                       <% 
+                           String error = request.getParameter("error");
+                           String success = request.getParameter("success");
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+                           
+                           if (error != null) { 
+                       %>
+                           
+                           showError(<%= error %>);
+                       <% 
+                           } else if (success != null) { 
+                       %>
+                           
+                           showSuccess(<%= success %>);
+                       <% 
+                           }
+                       %>
+
+
+    </script>
+  
 
     
 

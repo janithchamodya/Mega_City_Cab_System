@@ -161,7 +161,7 @@
                     <tbody>
                         <c:forEach var="admin" items="${adminList}">
                             <tr>
-                                 <form action="changeAddminDataServlet" method="POST">
+                                 <form action="changeSuperAdminDataServlet" method="POST">
                                     <td>
                                         <input readonly  type="text" name="username" value="${admin.username}" class="form-control" />
                                     </td>

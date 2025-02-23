@@ -83,7 +83,7 @@ public class changeDriverDetailsServlet extends HttpServlet {
 
         if (driverService.updateDriver(driver)) {
             LOGGER.info("Driver details updated: {}", driver.toString());
-            response.sendRedirect("changeDriverDetails.jsp?success=1");
+            response.sendRedirect("changeDriverDetailsServlet");
         } else {
             LOGGER.error("Failed to update driver details");
             response.sendRedirect("changeDriverDetails.jsp?error=1");

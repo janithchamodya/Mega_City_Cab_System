@@ -74,10 +74,10 @@ public class changeAddminDataServlet extends HttpServlet {
        
         if (adminService.updateAdminDetails(admin)) {
         LOGGER.info("Admin details updated: " + admin.toString());
-        response.sendRedirect("changeAddminData.jsp?success=1");  // Redirect to success page or refresh page
+        response.sendRedirect("changeAddminDataServlet");  
         } else {
             LOGGER.info("Error updating admin details");
-            response.sendRedirect("changeAddminData.jsp?error=1");  // Pass error code via query string
+            response.sendRedirect("changeAddminData.jsp?error=1");  
         }
         
         

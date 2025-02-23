@@ -118,7 +118,7 @@
                                 data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                 <span class="mr-2 d-none d-lg-inline text-gray-600 small" >
                              <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                <%= session.getAttribute("user") != null ? session.getAttribute("user") : "Guest" %>
+                                <%= session.getAttribute("admin") != null ? session.getAttribute("admin") : "Guest" %>
                             </span>
 
                                     
@@ -210,12 +210,20 @@
                     document.getElementsByClassName("tablinks")[0].click();
                 </script>
 
-                <% 
-                    String error = request.getParameter("error");
+                 <% 
+                String error = request.getParameter("error");
+                String success = request.getParameter("success");
+
                     if (error != null) { 
                 %>
                     <script type="text/javascript">
-                        showError(<%= error %>);
+                        showError("<%= error %>");  
+                    </script>
+                <% 
+                    } else if (success != null) { 
+                %>
+                    <script type="text/javascript">
+                        showSuccess("<%= success %>");  
                     </script>
                 <% 
                     }

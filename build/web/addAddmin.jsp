@@ -17,8 +17,8 @@
     <link href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i" rel="stylesheet">
     <link href="css/adminDashboard/mega-city-admin/Mega City Cabadmin.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
-    <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
-     <script type="text/javascript" src="js/adminManageDashboard/adminManageDashboard.js"></script>
+    
+   <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -216,12 +216,20 @@
 
                 </script>
 
-                <% 
-                    String error = request.getParameter("error");
-                    if (error != null) { 
+                 <% 
+                String error = request.getParameter("error");
+                String success = request.getParameter("success");
+
+                if (error != null) { 
                 %>
                     <script type="text/javascript">
-                        showError(<%= error %>);
+                        showError("<%= error %>");  
+                    </script>
+                <% 
+                    } else if (success != null) { 
+                %>
+                    <script type="text/javascript">
+                        showSuccess("<%= success %>");  
                     </script>
                 <% 
                     }

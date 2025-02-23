@@ -15,13 +15,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
 public class AdminDAOImpl implements AdminDAO{
-    
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(AdminDAOImpl.class);
+
     private Connection connection;
   
     public AdminDAOImpl() {
@@ -109,7 +111,7 @@ public class AdminDAOImpl implements AdminDAO{
     @Override
     public List<Admin> getAllAdmin() {
         List<Admin> adminList = new ArrayList<>();
-        String query = "SELECT * FROM admin";
+        String query = "SELECT * FROM admin where role='admin'";
 
         try (PreparedStatement ps = connection.prepareStatement(query)) {
             try (ResultSet rs = ps.executeQuery()) {
@@ -134,8 +136,9 @@ public class AdminDAOImpl implements AdminDAO{
     }
     @Override
     public boolean updateAdminDetails(Admin admin) {
+        LOGGER.info("Admin :"+admin.toString());
     try {
-        String query = "UPDATE admin SET password=?,address=?, nic=?, phone=?, email=?,role=? WHERE username=?";
+        String query = "UPDATE admin SET password=?,address=?, nic=?, phone=?, email=?,role=? ,username=? WHERE username=?";
         PreparedStatement ps = connection.prepareStatement(query);
         
         ps.setString(1, admin.getPassword());
@@ -145,6 +148,7 @@ public class AdminDAOImpl implements AdminDAO{
         ps.setString(5, admin.getEmail());  
         ps.setString(6, admin.getRole());
         ps.setString(7, admin.getUsername());
+         ps.setString(8, admin.getUsername());
         int rowsUpdated = ps.executeUpdate();  
         return rowsUpdated > 0;  
     } catch (SQLException e) {

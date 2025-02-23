@@ -31,8 +31,9 @@ function showError(errorCode) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Invalid username or password. Please try again.'
+            text: 'Please try again.'
         });
+    
     }
 }  
 function showSuccess(Success) {
@@ -40,7 +41,7 @@ function showSuccess(Success) {
     if (Success == 1) {
         Swal.fire({
             title: 'Success!',
-            text: 'Admin details updated successfully.',
+            text: 'Processing success.',
             icon: 'success',
             confirmButtonText: 'OK'
         });

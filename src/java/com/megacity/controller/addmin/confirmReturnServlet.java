@@ -83,7 +83,7 @@ public class confirmReturnServlet extends HttpServlet {
         String vehicleUpdateStatus =(vehicleService.updateVehicleAsAvaliable(vehicleId)) ? "updated" : "failed";
         LOGGER.info("Driver Update Status: " + driverUpdateStatus);
         LOGGER.info("Vehicle Update Status: " + vehicleUpdateStatus);
-        response.sendRedirect("confirmReturn.jsp?success=1");
+        response.sendRedirect("confirmReturnServlet");
         }else{
         response.sendRedirect("confirmReturn.jsp?error=2");
         }

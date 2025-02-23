@@ -226,8 +226,7 @@
     <script src="js/adminDashboard/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/adminDashboard/jquery-easing/jquery.easing.min.js"></script>
 
-    <!-- Custom scripts for all pages-->
-    <script src="js/sb-admin-2.min.js"></script>
+    
 
     
 

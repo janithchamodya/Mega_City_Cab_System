@@ -10,11 +10,21 @@ function showError(errorCode) {
         Swal.fire({
             icon: 'error',
             title: 'Oops...',
-            text: 'Invalid username or password. Please try again.'
+            text: 'Please try again.'
         });
     }
 }
-
+function showSuccess(Success) {
+    
+    if (Success == 1) {
+        Swal.fire({
+            title: 'Success!',
+            text: 'Processing success.',
+            icon: 'success',
+            confirmButtonText: 'OK'
+        });
+    } 
+    }
  function validateForm() {
             // Retrieve form values
     var username = document.getElementById("username").value;
@@ -103,5 +113,8 @@ function showError(errorCode) {
             return true;
         }
 
+
     
+    
+
         
