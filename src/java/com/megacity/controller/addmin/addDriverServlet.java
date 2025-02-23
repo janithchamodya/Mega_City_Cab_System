@@ -61,10 +61,10 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
 
     
     if (success) {
-        response.sendRedirect("addDriver.jsp");
+        response.sendRedirect("addDriver.jsp?success=1");
     } else {
         LOGGER.info("Duplicate found/Invalide values user role");
-        response.sendRedirect("addDriver.jsp?error=2");
+        response.sendRedirect("addDriver.jsp?error=1");
     }
 
 

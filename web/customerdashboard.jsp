@@ -92,7 +92,7 @@
                     <div class="bg-white py-2 collapse-inner rounded">
                         <h6 class="collapse-header">Customer Facilities:</h6>
                        
-                        <a class="collapse-item" href="showMyBooking">View My Booking</a>
+                        <a class="collapse-item" href="showMyBookingServlet">View My Booking</a>
                         
                         
                     </div>
@@ -280,7 +280,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login.jsp">Logout</a>
                 </div>
             </div>
         </div>

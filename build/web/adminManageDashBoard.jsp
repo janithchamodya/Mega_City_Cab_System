@@ -119,7 +119,7 @@
                                     
                                 </span>
                                 <img class="img-profile rounded-circle"
-                                     src="images/adminDashboard/../undraw_profile_1.svg">
+                                     src="images/adminDashboard/../customerDashboard/undraw_profile_1.svg">
                             </a>
                             <!-- Dropdown - User Information -->
                             <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -178,7 +178,7 @@
                 <div class="modal-body">Select "Logout" below if you are ready to end your current session.</div>
                 <div class="modal-footer">
                     <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                    <a class="btn btn-primary" href="login.html">Logout</a>
+                    <a class="btn btn-primary" href="login_admin.jsp">Logout</a>
                 </div>
             </div>
         </div>
