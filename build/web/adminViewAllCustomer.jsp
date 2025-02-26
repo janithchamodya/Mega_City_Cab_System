@@ -1,3 +1,10 @@
+<%-- 
+    Document   : adminViewAllCustomer
+    Created on : Feb 26, 2025, 12:52:38 PM
+    Author     : OZT00106
+--%>
+
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,7 +140,72 @@
                 </nav>
             <!-- End of Topbar -->
            
-            
+            <div class="container mt-5">
+                    <h2 class="text-center">View All Customers</h2>
+                    
+                    <br>
+                    
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                
+                                <th scope="col">Customer ID</th>
+                                <th scope="col">Username</th>
+                                <th scope="col">Password</th>
+                                <th scope="col">Address</th>
+                                <th scope="col">NIC</th>
+                                <th scope="col">Phone</th>
+                                <th scope="col">Email</th>
+                                
+
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                           <c:forEach var="adminViewUsersList" items="${adminViewUsersList}">
+                                <tr>
+                                    <form>
+                                        
+                                        <td>
+                                            <input readonly type="text" name="customerId" value="${adminViewUsersList.customerId}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="username" value="${adminViewUsersList.username}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="password" value="${adminViewUsersList.password}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="address" value="${adminViewUsersList.address}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="nic" value="${adminViewUsersList.nic}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="phone" value="${adminViewUsersList.phone}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="email" value="${adminViewUsersList.email}" class="form-control" />
+                                        </td>
+                                        
+                                    </form>
+                                </tr>
+                            </c:forEach>
+
+                        </tbody>
+                    </table>
+
+                    <% 
+                        String error = request.getParameter("error");
+                        if (error != null) { 
+                    %>
+                        <script type="text/javascript">
+                            showError(<%= error %>);
+                        </script>
+                    <% 
+                        }
+                    %>
+                </div>
             
             
             

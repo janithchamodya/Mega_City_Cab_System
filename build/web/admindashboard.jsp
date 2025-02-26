@@ -57,7 +57,9 @@
                         <a class="collapse-item" href="addDriver.jsp">Add Drivers</a>
                         <a class="collapse-item" href="changeVehicalDetailsServlet">Update /Delete Vehicle</a>
                         <a class="collapse-item" href="changeDriverDetailsServlet">Update /Delete Drivers</a>
-                           </div>
+                        <a class="collapse-item" href="adminViewAllCustomerServlet">View All Customer</a>
+                        <a class="collapse-item" href="adminViewAllBookingsServlet">View All Bookings</a>
+                        </div>
                 </div>
             </li>
             <li class="nav-item">

@@ -43,6 +43,16 @@ public class BookingServiceImpl implements BookingService{
         LOGGER.info("getMyBookings");
         return bookingDAO.getMyBookings(customerId ,customerName);
      }
+     @Override  
+    public List<Bookings> getMyBookingsFromCustID(String customerId ){
+        LOGGER.info("getMyBookings");
+        return bookingDAO.getMyBookingsFromCustID(customerId );
+     }
+    @Override  
+    public List<Bookings> getAllBookingsForAdminView(){
+        LOGGER.info("getAllBookingsForAdminView");
+        return bookingDAO.getAllBookingsForAdminView();
+     }
     
     @Override
     public boolean updateASUnavailableBooking(String orderNumber){

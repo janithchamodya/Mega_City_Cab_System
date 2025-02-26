@@ -340,5 +340,14 @@
     <% 
         }
     %>
+    <script type="text/javascript">
+    document.addEventListener("DOMContentLoaded", function () {
+        // Get today's date in YYYY-MM-DD format
+        let today = new Date().toISOString().split('T')[0];
+        // Set the min attribute of the start date input to today's date
+        document.getElementById('startDate').setAttribute('min', today);
+        document.getElementById('endDate').setAttribute('min', today);
+    });
+</script>
 </body>
 </html>

@@ -25,6 +25,7 @@
     <link href="css/adminDashboard/mega-city-admin/Mega City Cabadmin.min.css" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
     <script type="text/javascript" src="js/adminDashboard/adminDashboard.js"></script>
+    <script type="text/javascript" src="js/adminManageDashboard/adminManageDashboard.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
 </head>
 
@@ -63,6 +64,7 @@
                         <a class="collapse-item" href="addDriver.jsp">Add Drivers</a>
                         <a class="collapse-item" href="changeVehicalDetailsServlet">Update /Delete Vehicle</a>
                         <a class="collapse-item" href="changeDriverDetailsServlet">Update /Delete Drivers</a>
+                        <a class="collapse-item" href="adminViewAllBookingsServlet">View All Bookings</a>
                         
                         
                         
@@ -163,7 +165,7 @@
                     <tbody>
                         <c:forEach var="bookings" items="${bookingsList}">
                             <tr >
-                                 <form action="confirmReturnServlet" method="POST">
+                                 <form id="form-${bookings.orderNumber}" action="confirmReturnServlet" method="POST">
                                     <td>
                                         <input readonly  type="text" name="orderNumber" value="${bookings.orderNumber}" class="form-control" />
                                     </td>
@@ -193,9 +195,10 @@
                                     <input type="hidden" name="driverId" value="${bookings.driverId}" >
                                     
                                     <td>
-                                        <button type="submit" class="btn btn-primary">
-                                            Return
-                                        </button>
+                                    <button type="button" class="btn btn-primary" onclick="confirmReturn('${bookings.orderNumber}')">
+                                        Return
+                                    </button>
+
                                     </td>
                                 </form>
                             </tr>
@@ -264,7 +267,9 @@
     <script src="js/adminDashboard/bootstrap/bootstrap.bundle.min.js"></script>
     <script src="js/adminDashboard/jquery-easing/jquery.easing.min.js"></script>
 
-    
+
+
+
 
     
 

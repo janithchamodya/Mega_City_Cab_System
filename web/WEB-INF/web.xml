@@ -68,6 +68,18 @@
         <servlet-name>deleteDriverServlet</servlet-name>
         <servlet-class>com.megacity.controller.addmin.deleteDriverServlet</servlet-class>
     </servlet>
+    <servlet>
+        <servlet-name>adminViewAllBookingsServlet</servlet-name>
+        <servlet-class>com.megacity.controller.addmin.adminViewAllBookingsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminViewFilterBookingsServlet</servlet-name>
+        <servlet-class>com.megacity.controller.addmin.adminViewFilterBookingsServlet</servlet-class>
+    </servlet>
+    <servlet>
+        <servlet-name>adminViewAllCustomerServlet</servlet-name>
+        <servlet-class>com.megacity.controller.addmin.adminViewAllCustomerServlet</servlet-class>
+    </servlet>
     <servlet-mapping>
         <servlet-name>LoginServlet</servlet-name>
         <url-pattern>/LoginServlet</url-pattern>
@@ -127,6 +139,18 @@
     <servlet-mapping>
         <servlet-name>deleteDriverServlet</servlet-name>
         <url-pattern>/deleteDriverServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminViewAllBookingsServlet</servlet-name>
+        <url-pattern>/adminViewAllBookingsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminViewFilterBookingsServlet</servlet-name>
+        <url-pattern>/adminViewFilterBookingsServlet</url-pattern>
+    </servlet-mapping>
+    <servlet-mapping>
+        <servlet-name>adminViewAllCustomerServlet</servlet-name>
+        <url-pattern>/adminViewAllCustomerServlet</url-pattern>
     </servlet-mapping>
     <session-config>
         <session-timeout>

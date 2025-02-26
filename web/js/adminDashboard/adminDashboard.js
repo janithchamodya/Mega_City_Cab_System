@@ -1,4 +1,22 @@
- function validateForm() {
+
+    function confirmReturn(orderNumber) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Confirm return for order #" + orderNumber,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, confirm!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(`form-${orderNumber}`).submit();
+            }
+        });
+    }
+
+
+    
+
+function validateForm() {
             // Retrieve form values
     var username = document.getElementById("username").value;
     var password = document.getElementById("password").value;

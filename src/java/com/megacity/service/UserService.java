@@ -6,7 +6,7 @@
 package com.megacity.service;
 
 import com.megacity.model.User;
-
+import java.util.List;
 /**
  *
  * @author OZT00106
@@ -14,6 +14,7 @@ import com.megacity.model.User;
 public interface UserService {
     
     public User login(String username, String password);
-    public boolean signUpUser(User user);
+    public boolean signUpUser(User user);//
+     public List<User> getAllUserForAdminView();
     
 }

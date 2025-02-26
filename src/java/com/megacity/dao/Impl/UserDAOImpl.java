@@ -12,6 +12,8 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -89,6 +91,37 @@ public class UserDAOImpl implements  UserDAO{
         return "cust_Id001"; 
     }
     
-    
-    
+    @Override
+    public List<User> getAllUserForAdminView() {
+        List<User> userList = new ArrayList<>();
+        String query = "SELECT * FROM users";
+
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            
+
+            try (ResultSet rs = ps.executeQuery()) {
+                while (rs.next()) {
+                    User user = new User();
+                    user.setId(rs.getInt("id"));
+                    user.setCustomerId(rs.getString("customer_id"));
+                    user.setUsername(rs.getString("username"));
+                    user.setPassword(rs.getString("password"));
+                    user.setAddress(rs.getString("address"));
+                    user.setNic(rs.getString("nic"));
+                    user.setPhone(rs.getString("phone"));
+                    user.setEmail(rs.getString("email"));
+                    user.setRole(rs.getString("role"));
+
+                    userList.add(user);
+                }
+            }
+        } catch (SQLException e) {
+            System.out.println("Error while retrieving user: " + e.getMessage());
+            e.printStackTrace();
+        }
+        
+        return userList;
+    }
 }
+    
+

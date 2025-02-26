@@ -1,3 +1,9 @@
+<%-- 
+    Document   : adminViewAllBookings
+    Created on : Feb 26, 2025, 11:15:06 AM
+    Author     : OZT00106
+--%>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <!DOCTYPE html>
 <html lang="en">
 
@@ -133,7 +139,76 @@
                 </nav>
             <!-- End of Topbar -->
            
-            
+            <div class="container mt-5">
+                    <h2 class="text-center">View All Customers Booking</h2>
+                    <form action="adminViewFilterBookingsServlet" method="post">
+                        Customer Id :<input type ="text" name="cId" required >
+                        
+                        <button type="submit" class="btn btn-primary">Search</button>
+                    </form>
+                    <br>
+                    
+                    <table class="table table-hover">
+                        <thead>
+                            <tr>
+                                <th scope="col">Order Number</th>
+                                <th scope="col">Model</th>
+                                <th scope="col">Vehicle Name</th>
+                                <th scope="col">Vehicle Number</th>
+                                <th scope="col">Driver Name</th>
+                                <th scope="col">Amount</th>
+                                <th scope="col">Start Date</th>
+                                <th scope="col">End Date</th>
+                                
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <c:forEach var="adminViewbookingsList" items="${adminViewbookingsList}">
+                                <tr>
+                                    <form >
+                                        <td>
+                                            <input readonly type="text" name="orderNumber" value="${adminViewbookingsList.orderNumber}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="model" value="${adminViewbookingsList.model}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="vehicleName" value="${adminViewbookingsList.vehicleName}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="vehicleNumber" value="${adminViewbookingsList.vehicleNumber}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="driverName" value="${adminViewbookingsList.driverName}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="amount" value="${adminViewbookingsList.amount}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="startDate" value="${adminViewbookingsList.startDate}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <input readonly type="text" name="endDate" value="${adminViewbookingsList.endDate}" class="form-control" />
+                                        </td>
+                                        
+                                        
+                                    </form>
+                                </tr>
+                            </c:forEach>
+                        </tbody>
+                    </table>
+
+                    <% 
+                        String error = request.getParameter("error");
+                        if (error != null) { 
+                    %>
+                        <script type="text/javascript">
+                            showError(<%= error %>);
+                        </script>
+                    <% 
+                        }
+                    %>
+                </div>
             
             
             

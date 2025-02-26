@@ -63,6 +63,8 @@
                         <a class="collapse-item" href="addDriver.jsp">Add Drivers</a>
                         <a class="collapse-item" href="changeVehicalDetailsServlet">Update /Delete Vehicle</a>
                         <a class="collapse-item" href="changeDriverDetailsServlet">Update /Delete Drivers</a>
+                        <a class="collapse-item" href="adminViewAllCustomerServlet">View All Customer</a>
+                        <a class="collapse-item" href="adminViewAllBookingsServlet">View All Bookings</a>
                            </div>
                 </div>
             </li>
@@ -169,7 +171,8 @@
                                 <td>
                                     <form action="deleteVehicleServlet" method="POST">
                                         <input type="hidden" name="vehicleId" value="${vehicle.id}" />
-                                        <button type="submit" class="btn btn-danger">Delete</button>
+                                        <button type="submit" class="btn btn-danger" onclick="confirmDeletion(event)">Delete</button>
+
                                     </form>
                                 </td>
                             </tr>

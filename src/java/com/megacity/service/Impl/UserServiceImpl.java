@@ -9,6 +9,7 @@ import com.megacity.dao.UserDAO;
 import com.megacity.dao.Impl.UserDAOImpl;
 import com.megacity.model.User;
 import com.megacity.service.UserService;
+import java.util.List;
 import org.slf4j.LoggerFactory;
 
 /**
@@ -42,8 +43,11 @@ public class UserServiceImpl implements UserService{
         return userDAO.addUser(user);
     }
 
-    
-    
+    @Override  
+    public List<User> getAllUserForAdminView( ){
+        LOGGER.info("getAllUserForAdminView");
+        return userDAO.getAllUserForAdminView( );
+     }
 
     
 }

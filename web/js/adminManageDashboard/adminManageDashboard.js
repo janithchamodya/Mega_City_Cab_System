@@ -19,7 +19,22 @@ function confirmDeletion(event) {
         });
         return false;  // Prevent default form submission until confirmed
     }
-    
+
+    function confirmReturn(orderNumber) {
+        Swal.fire({
+            title: 'Are you sure?',
+            text: "Confirm return for order #" + orderNumber,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonText: 'Yes, confirm!'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                document.getElementById(`form-${orderNumber}`).submit();
+            }
+        });
+    }
+
+
 function showError(errorCode) {
     if (errorCode == 1) {
         Swal.fire({
