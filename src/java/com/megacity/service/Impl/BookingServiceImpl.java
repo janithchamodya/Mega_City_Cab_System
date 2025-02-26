@@ -59,7 +59,11 @@ public class BookingServiceImpl implements BookingService{
         LOGGER.info("updateASUnavailableBooking");
         return bookingDAO.updateBookingAsUnavailable(orderNumber);
      }
-    
+    @Override
+    public boolean updateBooking(Bookings bookings){
+        LOGGER.info("updateBooking from Admin");
+        return bookingDAO.updateBooking(bookings);
+     }
     @Override
     public String generateOrderNumber(){
         LOGGER.info("generateOrderNumber");

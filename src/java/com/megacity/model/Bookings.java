@@ -65,6 +65,16 @@ public class Bookings {
         this.EndDate = EndDate;
     }
 
+    public Bookings(String orderNumber, String vehicleName, String vehicleNumber, String driverName, String amount, String StartDate, String EndDate) {
+        this.orderNumber = orderNumber;
+        this.vehicleName = vehicleName;
+        this.vehicleNumber = vehicleNumber;
+        this.driverName = driverName;
+        this.amount = amount;
+        this.StartDate = StartDate;
+        this.EndDate = EndDate;
+    }
+
     
 
     public int getBookingId() {

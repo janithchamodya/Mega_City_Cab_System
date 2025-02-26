@@ -278,6 +278,39 @@ public class BookingDAOImpl implements BookingDAO{
         }
         return "ORD_001";  
     }
+    @Override
+    public boolean updateBooking(Bookings bookings) {
+        String query = "UPDATE bookings SET "
+                     + "vehicle_name = ?, "
+                     + "vehicle_number = ?, "
+                     + "driver_name = ?, "
+                     + "amount = ?, "
+                     + "start_date = ?, "
+                     + "end_date = ? "
+                     + "WHERE order_number = ?";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+
+            // Set parameters
+            ps.setString(1, bookings.getVehicleName());
+            ps.setString(2, bookings.getVehicleNumber());
+            ps.setString(3, bookings.getDriverName());
+            ps.setString(4, bookings.getAmount());
+            ps.setString(5, bookings.getStartDate());
+            ps.setString(6, bookings.getEndDate());
+            ps.setString(7, bookings.getOrderNumber());
+
+            int rowsUpdated = ps.executeUpdate();
+
+            return rowsUpdated > 0;  // Return true if the update was successful
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;  // Return false if there was an error
+    }
 
     
 }

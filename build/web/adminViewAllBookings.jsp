@@ -152,26 +152,25 @@
                         <thead>
                             <tr>
                                 <th scope="col">Order Number</th>
-                                <th scope="col">Model</th>
+                                
                                 <th scope="col">Vehicle Name</th>
                                 <th scope="col">Vehicle Number</th>
                                 <th scope="col">Driver Name</th>
                                 <th scope="col">Amount</th>
                                 <th scope="col">Start Date</th>
                                 <th scope="col">End Date</th>
-                                
+                                <th scope="col">Update</th>
+                                <th scope="col">Delete</th>
                             </tr>
                         </thead>
                         <tbody>
                             <c:forEach var="adminViewbookingsList" items="${adminViewbookingsList}">
                                 <tr>
-                                    <form >
+                                    <form  action="adminViewAllBookingsServlet" method="POST">
                                         <td>
                                             <input readonly type="text" name="orderNumber" value="${adminViewbookingsList.orderNumber}" class="form-control" />
                                         </td>
-                                        <td>
-                                            <input readonly type="text" name="model" value="${adminViewbookingsList.model}" class="form-control" />
-                                        </td>
+                                       
                                         <td>
                                             <input readonly type="text" name="vehicleName" value="${adminViewbookingsList.vehicleName}" class="form-control" />
                                         </td>
@@ -179,20 +178,29 @@
                                             <input readonly type="text" name="vehicleNumber" value="${adminViewbookingsList.vehicleNumber}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="driverName" value="${adminViewbookingsList.driverName}" class="form-control" />
+                                            <input  type="text" name="driverName" value="${adminViewbookingsList.driverName}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="amount" value="${adminViewbookingsList.amount}" class="form-control" />
+                                            <input  type="text" name="amount" value="${adminViewbookingsList.amount}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="startDate" value="${adminViewbookingsList.startDate}" class="form-control" />
+                                            <input  type="text" name="startDate" value="${adminViewbookingsList.startDate}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="endDate" value="${adminViewbookingsList.endDate}" class="form-control" />
+                                            <input  type="text" name="endDate" value="${adminViewbookingsList.endDate}" class="form-control" />
                                         </td>
-                                        
+                                        <td>
+                                            <button type="submit" class="btn btn-primary">Update</button>
+                                        </td>
                                         
                                     </form>
+                                <td>
+                                    <form action="deleteBookingsServlet" method="POST">
+                                        <input type="hidden" name="orderNumber" value="${adminViewbookingsList.orderNumber}" />
+                                        <button type="submit" class="btn btn-danger" onclick="confirmDeletion(event)">Delete</button>
+
+                                    </form>
+                                </td>
                                 </tr>
                             </c:forEach>
                         </tbody>

@@ -75,6 +75,33 @@ private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(adminView
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String orderNumber = request.getParameter("orderNumber");
+        String vehicleName = request.getParameter("vehicleName");
+        String vehicleNumber = request.getParameter("vehicleNumber");
+        String driverName = request.getParameter("driverName");
+        String amount = request.getParameter("amount");
+        String startDate = request.getParameter("startDate");
+        String endDate = request.getParameter("endDate");
+
+        LOGGER.info("orderNumber: " + orderNumber);
+        LOGGER.info("vehicleName: " + vehicleName);
+        LOGGER.info("vehicleNumber: " + vehicleNumber);
+        LOGGER.info("driverName: " + driverName);
+        LOGGER.info("amount: " + amount);
+        LOGGER.info("startDate: " + startDate);
+        LOGGER.info("endDate: " + endDate);
+
+        
+        Bookings booking = new Bookings(orderNumber, vehicleName, vehicleNumber, driverName, amount, startDate, endDate);
+
+        if (bookingService.updateBooking(booking)) {
+            LOGGER.info("Booking details updated: " + booking.toString());
+            response.sendRedirect("adminViewAllBookingsServlet");  
+        } else {
+            LOGGER.info("Error updating booking details");
+            response.sendRedirect("adminViewAllBookings.jsp?error=1");  
+        }
+
         
     }
 

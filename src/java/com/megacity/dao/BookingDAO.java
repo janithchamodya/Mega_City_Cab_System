@@ -20,6 +20,7 @@ public interface BookingDAO {
     public List<Bookings> getMyBookingsFromCustID(String customerId );
     public List<Bookings> getAllBookingsForAdminView();
     public boolean updateBookingAsUnavailable(String orderNumber);
+    public boolean updateBooking(Bookings bookings);
     public String generateOrderNumber();
     
             
