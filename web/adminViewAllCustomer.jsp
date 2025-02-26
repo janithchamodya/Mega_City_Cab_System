@@ -156,6 +156,8 @@
                                 <th scope="col">NIC</th>
                                 <th scope="col">Phone</th>
                                 <th scope="col">Email</th>
+                                <th scope="col">Update</th>
+                                <th scope="col">Delete</th>
                                 
 
                                 
@@ -164,31 +166,41 @@
                         <tbody>
                            <c:forEach var="adminViewUsersList" items="${adminViewUsersList}">
                                 <tr>
-                                    <form>
+                                     <form  action="adminViewAllCustomerServlet" method="POST">
                                         
                                         <td>
                                             <input readonly type="text" name="customerId" value="${adminViewUsersList.customerId}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="username" value="${adminViewUsersList.username}" class="form-control" />
+                                            <input  type="text" name="username" value="${adminViewUsersList.username}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="password" value="${adminViewUsersList.password}" class="form-control" />
+                                            <input  type="text" name="password" value="${adminViewUsersList.password}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="address" value="${adminViewUsersList.address}" class="form-control" />
+                                            <input  type="text" name="address" value="${adminViewUsersList.address}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="nic" value="${adminViewUsersList.nic}" class="form-control" />
+                                            <input  type="text" name="nic" value="${adminViewUsersList.nic}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="phone" value="${adminViewUsersList.phone}" class="form-control" />
+                                            <input  type="text" name="phone" value="${adminViewUsersList.phone}" class="form-control" />
                                         </td>
                                         <td>
-                                            <input readonly type="text" name="email" value="${adminViewUsersList.email}" class="form-control" />
+                                            <input  type="text" name="email" value="${adminViewUsersList.email}" class="form-control" />
+                                        </td>
+                                        <td>
+                                            <button type="submit" class="btn btn-primary">Update</button>
                                         </td>
                                         
                                     </form>
+                                <td>
+                                    <form action="deleteCustomerServlet" method="POST">
+                                        <input type="hidden" name="orderNumber" value="${adminViewbookingsList.orderNumber}" />
+                                        <button type="submit" class="btn btn-danger" onclick="confirmDeletion(event)">Delete</button>
+
+                                    </form>
+                                </td>
                                 </tr>
                             </c:forEach>
 

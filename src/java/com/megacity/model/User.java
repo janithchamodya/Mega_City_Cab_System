@@ -32,17 +32,17 @@ public class User {
     }
 
     // Full constructor including all fields
-    public User( String username, String password, String email, String address, String nic, String phone, String role) {
-        
+   
+    public User( String customerId,String username, String password, String email, String address, String nic, String phone) {
+        this.customerId=customerId;
         this.username = username;
         this.password = password;
         this.email = email;
         this.address = address;
         this.nic = nic;
         this.phone = phone;
-        this.role = role;
+        
     }
-
     // Getters and Setters for all fields
     public String getCustomerId() {
         return customerId;

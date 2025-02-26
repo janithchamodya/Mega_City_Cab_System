@@ -14,7 +14,8 @@ import java.util.List;
 public interface UserService {
     
     public User login(String username, String password);
-    public boolean signUpUser(User user);//
-     public List<User> getAllUserForAdminView();
+    public boolean signUpUser(User user);
+    public boolean updateUser(User user);
+    public List<User> getAllUserForAdminView();
     
 }

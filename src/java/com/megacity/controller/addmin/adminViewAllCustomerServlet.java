@@ -70,6 +70,36 @@ private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(adminView
     @Override
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
+        String customerId = request.getParameter("customerId");
+        String username = request.getParameter("username");
+        String password = request.getParameter("password");
+        String address = request.getParameter("address");
+        String nic = request.getParameter("nic");
+        String phone = request.getParameter("phone");
+        String email = request.getParameter("email");
+        String role = request.getParameter("role");
+
+        LOGGER.info("customerId: " + customerId);
+        LOGGER.info("username: " + username);
+        LOGGER.info("password: " + password);
+        LOGGER.info("address: " + address);
+        LOGGER.info("nic: " + nic);
+        LOGGER.info("phone: " + phone);
+        LOGGER.info("email: " + email);
+        LOGGER.info("role: " + role);
+
+        
+        User user = new User(customerId,username ,password, email,address ,nic, phone );
+
+       
+        if (userService.updateUser(user)) {
+            LOGGER.info("User details updated: " + user.toString());
+            response.sendRedirect("adminViewAllCustomerServlet");  
+        } else {
+            LOGGER.info("Error updating user details");
+            response.sendRedirect("adminViewAllCustomer.jsp?error=1");  
+        }
+
         
     }
 

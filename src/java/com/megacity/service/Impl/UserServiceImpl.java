@@ -48,6 +48,10 @@ public class UserServiceImpl implements UserService{
         LOGGER.info("getAllUserForAdminView");
         return userDAO.getAllUserForAdminView( );
      }
-
+    @Override
+    public boolean updateUser(User user){
+        LOGGER.info("updateUser from Admin");
+        return userDAO.updateUser(user);
+     }
     
 }

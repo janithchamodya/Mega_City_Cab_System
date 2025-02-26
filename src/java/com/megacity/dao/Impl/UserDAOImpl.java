@@ -122,6 +122,34 @@ public class UserDAOImpl implements  UserDAO{
         
         return userList;
     }
+    @Override
+    public boolean updateUser(User user) {
+    String query = "UPDATE users SET username = ?,password = ?,address = ?,nic = ?, phone = ?, email = ? WHERE customer_id = ?";
+
+    try {
+        PreparedStatement ps = connection.prepareStatement(query);
+
+        // Set parameters
+        ps.setString(1, user.getUsername());
+        ps.setString(2, user.getPassword());
+        ps.setString(3, user.getAddress());
+        ps.setString(4, user.getNic());
+        ps.setString(5, user.getPhone());
+        ps.setString(6, user.getEmail());
+        
+        ps.setString(7, user.getCustomerId());
+
+        int rowsUpdated = ps.executeUpdate();
+
+        return rowsUpdated > 0;  // Return true if the update was successful
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return false;  // Return false if there was an error
+}
+
 }
     
 
