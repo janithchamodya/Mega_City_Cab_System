@@ -53,5 +53,9 @@ public class UserServiceImpl implements UserService{
         LOGGER.info("updateUser from Admin");
         return userDAO.updateUser(user);
      }
-    
+     @Override
+    public boolean deleteCustomer(String CustomerId){
+        LOGGER.info("deleteCustomer from Admin");
+        return userDAO.deleteCustomer(CustomerId);
+     }
 }

@@ -196,7 +196,7 @@
                                     </form>
                                 <td>
                                     <form action="deleteCustomerServlet" method="POST">
-                                        <input type="hidden" name="orderNumber" value="${adminViewbookingsList.orderNumber}" />
+                                        <input type="hidden" name="customerId" value="${adminViewUsersList.customerId}" />
                                         <button type="submit" class="btn btn-danger" onclick="confirmDeletion(event)">Delete</button>
 
                                     </form>

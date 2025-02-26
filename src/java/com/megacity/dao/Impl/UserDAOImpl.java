@@ -14,12 +14,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
+import org.slf4j.LoggerFactory;
 
 /**
  *
  * @author OZT00106
  */
 public class UserDAOImpl implements  UserDAO{
+    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(UserDAOImpl.class);
+
     private Connection connection;
     
 
@@ -129,7 +132,6 @@ public class UserDAOImpl implements  UserDAO{
     try {
         PreparedStatement ps = connection.prepareStatement(query);
 
-        // Set parameters
         ps.setString(1, user.getUsername());
         ps.setString(2, user.getPassword());
         ps.setString(3, user.getAddress());
@@ -141,15 +143,36 @@ public class UserDAOImpl implements  UserDAO{
 
         int rowsUpdated = ps.executeUpdate();
 
-        return rowsUpdated > 0;  // Return true if the update was successful
+        return rowsUpdated > 0;  
 
     } catch (SQLException e) {
         e.printStackTrace();
     }
 
-    return false;  // Return false if there was an error
+    return false;  
+}
+    @Override
+    public boolean deleteCustomer(String customerId) {
+     LOGGER.info("customerId "+customerId);
+    String query = "DELETE FROM users WHERE customer_id = ?";
+
+    try {
+        PreparedStatement ps = connection.prepareStatement(query);
+
+        ps.setString(1, customerId);
+
+        int rowsDeleted = ps.executeUpdate();
+
+        return rowsDeleted > 0;  
+
+    } catch (SQLException e) {
+        e.printStackTrace();
+    }
+
+    return false; 
 }
 
+    
 }
     
 
