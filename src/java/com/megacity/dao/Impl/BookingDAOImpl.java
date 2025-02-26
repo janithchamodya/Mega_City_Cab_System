@@ -312,5 +312,26 @@ public class BookingDAOImpl implements BookingDAO{
         return false;  // Return false if there was an error
     }
 
+    @Override
+    public boolean deleteBooking(String orderNumber) {
+        String query = "DELETE FROM bookings WHERE order_number = ?";
+
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+
+
+            ps.setString(1, orderNumber);
+
+            int rowsDeleted = ps.executeUpdate();
+
+            return rowsDeleted > 0;  
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;  
+    }
+
     
 }
