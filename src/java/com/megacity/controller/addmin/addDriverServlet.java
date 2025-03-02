@@ -5,6 +5,7 @@
  */
 package com.megacity.controller.addmin;
 
+import com.megacity.controller.LoginServlet;
 import com.megacity.model.Driver;
 import com.megacity.service.DriverService;
 import com.megacity.service.Impl.DriverServiceImpl;
@@ -22,14 +23,18 @@ import org.slf4j.LoggerFactory;
  * @author OZT00106
  */
 public class addDriverServlet extends HttpServlet {
-    private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(addDriverServlet.class);
-
-    private DriverService driverService;
+    private  org.slf4j.Logger LOGGER ;
+    public DriverService driverService;
 
     public addDriverServlet() {    
 
             driverService=new DriverServiceImpl();
+            this.LOGGER = LoggerFactory.getLogger(LoginServlet.class);
         }
+    
+    void setLogger(org.slf4j.Logger logger) {
+    this.LOGGER = logger;
+    }
     @Override
     protected void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
@@ -39,7 +44,7 @@ public class addDriverServlet extends HttpServlet {
 
    
    @Override
-protected void doPost(HttpServletRequest request, HttpServletResponse response)
+public void doPost(HttpServletRequest request, HttpServletResponse response)
         throws ServletException, IOException {
 
     String driverName = request.getParameter("driverName");
@@ -55,7 +60,11 @@ protected void doPost(HttpServletRequest request, HttpServletResponse response)
 
     
     Driver driver = new Driver(driverName, driverLicenseNo, phoneNumber, driverGender);
-
+    if (driverName == null || driverLicenseNo == null || phoneNumber == null || driverGender == null) {
+        LOGGER.error("Duplicate found/Invalid values or missing parameters");
+        response.sendRedirect("addDriver.jsp?error=1"); // Redirect to an error page
+        return;
+    }
     
     boolean success = driverService.addDriver(driver);
 
