@@ -26,16 +26,19 @@ import org.slf4j.LoggerFactory;
  * @author OZT00106
  */
 public class LoginServlet extends HttpServlet {
- private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(LoginServlet.class);
+ private  org.slf4j.Logger LOGGER ;
 
-    private UserService userService;
-    private AdminService adminService;
+    public UserService userService;
+    public AdminService adminService;
 
     public LoginServlet() {  
         userService = new UserServiceImpl();
         adminService=new AdminServiceImpl();
+        this.LOGGER = LoggerFactory.getLogger(LoginServlet.class);
     }
-
+    void setLogger(org.slf4j.Logger logger) {
+    this.LOGGER = logger;
+    }
     private static final long serialVersionUID = 1L;
     
     @Override
@@ -45,7 +48,7 @@ public class LoginServlet extends HttpServlet {
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         
@@ -53,8 +56,6 @@ public class LoginServlet extends HttpServlet {
         String password = request.getParameter("password");
         
         
-        
-      
         LOGGER.info("username"+username);
         LOGGER.info("password"+password);
 
@@ -72,7 +73,8 @@ public class LoginServlet extends HttpServlet {
         
         if (user != null  ) {
             HttpSession session = request.getSession();
-            LOGGER.info(user.getUsername()+"  "+user.getCustomerId());
+            LOGGER.info(user.toString());
+            LOGGER.info("username :"+user.getUsername()+" customer id :"+user.getCustomerId());
             session.setAttribute("user", user.getUsername());
             session.setAttribute("user_Id", user.getId());
            

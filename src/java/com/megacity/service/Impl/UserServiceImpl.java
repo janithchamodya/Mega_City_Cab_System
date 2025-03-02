@@ -26,6 +26,7 @@ public class UserServiceImpl implements UserService{
     }
     @Override
     public User login(String username, String password) {
+        LOGGER.info("username :"+username+"password :"+password);
         User user = userDAO.getUserByUsername(username,password);
         if (user != null && user.getPassword().equals(password)) { // Remove hashing for testing
             return user;
