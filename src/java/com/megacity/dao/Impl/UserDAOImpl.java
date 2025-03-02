@@ -62,7 +62,7 @@ public class UserDAOImpl implements  UserDAO{
     public boolean addUser(User user) {
         String query = "INSERT INTO users (customer_id, username, password, address, nic, phone, email, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setString(1, user.getCustomerId()); // Index starts from 1
+            ps.setString(1, user.getCustomerId()); 
             ps.setString(2, user.getUsername());
             ps.setString(3, user.getPassword());
             ps.setString(4, user.getAddress());

@@ -27,8 +27,8 @@ import org.slf4j.LoggerFactory;
 public class SignupServlet extends HttpServlet {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(SignupServlet.class);
 
-    private UserService userService;
-    private AdminService adminService;
+    public UserService userService;
+    public AdminService adminService;
     
     public SignupServlet() {  // ✅ Correct constructor
 	        userService = new UserServiceImpl();
