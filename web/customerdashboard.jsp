@@ -75,7 +75,7 @@
                         <a class="collapse-item" href="addVehicleServlet?vehicleType=car">Car Booking</a>
                         <a class="collapse-item" href="addVehicleServlet?vehicleType=van">Van Booking</a>
                         <a class="collapse-item" href="addVehicleServlet?vehicleType=bus">Bus Booking</a>
-                        <a class="collapse-item" href="addVehicleServlet?vehicleType=truck">Bike Booking</a>
+                        
                         <a class="collapse-item" href="addVehicleServlet?vehicleType=bike">Truck Booking</a>
 
                         
