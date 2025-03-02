@@ -27,8 +27,8 @@ import org.slf4j.LoggerFactory;
 public class addVehicleServlet extends HttpServlet {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(addDriverServlet.class);
 
-    private VehicleService vehicleService;
-    private DriverService driverService;
+    public VehicleService vehicleService;
+    public DriverService driverService;
     
     
     public addVehicleServlet() {    
