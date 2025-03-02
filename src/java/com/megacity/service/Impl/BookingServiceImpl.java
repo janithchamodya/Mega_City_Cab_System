@@ -65,6 +65,11 @@ public class BookingServiceImpl implements BookingService{
         return bookingDAO.updateBooking(bookings);
      }
     @Override
+    public boolean updateCustomerReqBooking(Bookings bookings){
+        LOGGER.info("updateCustomerReqBooking from Admin");
+        return bookingDAO.updateCustomerReqBooking(bookings);
+     }
+    @Override
     public boolean deleteBooking(String orderNumber){
         LOGGER.info("deleteBooking from Admin");
         return bookingDAO.deleteBooking(orderNumber);

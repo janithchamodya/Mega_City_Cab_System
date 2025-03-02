@@ -32,6 +32,24 @@
             background-color: #4CAF50;
             color: white;
         }
+        .policy-section {
+            background: #fff;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        }
+        .policy-section ul {
+            list-style-type: disc;
+            margin-left: 20px;
+        }
+        .policy-section li {
+            margin-bottom: 10px;
+        }
+        .highlight {
+            color: #e74c3c;
+            font-weight: bold;
+        }
     </style>
 </head>
 <body>
@@ -54,14 +72,17 @@
     <h3>2. View Existing Bookings</h3>
     <p>Access your booking history through:</p>
     <ol>
-        <li>'My Bookings' section in your profile</li>
+        <li>'View My Bookings' section in your profile</li>
         
     </ol>
 
     <h3>3. Rental Process</h3>
+    
+    
     <h4>Step-by-Step Guide:</h4>
     <ol>
         <li><strong>Select Vehicle Type</strong>
+            
             <ul>
                 <li>Choose from Car, Bus, Van, or Truck</li>
                 <li>Click your preferred vehicle</li>
@@ -87,8 +108,52 @@
             </ul>
         </li>
     </ol>
+    
+    
 
-    <h3>4. Pricing & Discounts</h3>
+    
+        <h3>4.Base Rental Price</h2>
+        <p>
+            All car rentals include <span class="highlight">100 km per day</span> as part of the base price.
+        </p>
+   
+
+    
+        <h3>Additional Charges</h2>
+        <ul>
+            <li>
+                <span class="highlight">Extra Kilometers:</span> If you exceed the included 100 km, an additional charge of <span class="highlight">Rs. 600.00 per kilometer</span> will apply.
+            </li>
+            <li>
+                <span class="highlight">Extra Rental Days:</span>
+                <ul>
+                    <li>
+                        <span class="highlight">With Driving:</span> If you keep the car for an extra day and drive it, the charge is <span class="highlight">Rs. 6,000.00 per day</span>.
+                    </li>
+                    <li>
+                        <span class="highlight">Without Driving:</span> If you keep the car for an extra day but do not drive it, the charge is <span class="highlight">Rs. 5,000.00 per day</span>.
+                    </li>
+                </ul>
+            </li>
+        </ul>
+    
+
+    
+        <h3>Why Choose Us?</h2>
+        <ul>
+            <li><span class="highlight">Transparent Pricing:</span> No hidden fees or surprises.</li>
+            <li><span class="highlight">Flexible Options:</span> Pay only for what you use.</li>
+            <li><span class="highlight">Convenient Service:</span> Easy booking and hassle-free returns.</li>
+        </ul>
+    
+        <p>
+            For any questions or assistance, feel free to contact our customer support team. We’re here to help!
+        </p>
+    
+    
+    
+
+    <h3>5. Pricing & Discounts</h3>
     <table>
         <tr>
             <th>Rental Days</th>
@@ -135,7 +200,7 @@
         (-12% Discount) + 8% Tax = $700 × 0.88 × 1.08 = $665.28
     </div>
 
-    <h3>5. After Booking</h3>
+    <h3>6. After Booking</h3>
     <ul>
         <li>📥 Download PDF receipt from confirmation page</li>
         <li>🔄 Return to homepage for new bookings</li>

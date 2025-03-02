@@ -21,6 +21,7 @@ public interface BookingDAO {
     public List<Bookings> getAllBookingsForAdminView();
     public boolean updateBookingAsUnavailable(String orderNumber);
     public boolean updateBooking(Bookings bookings);
+    public boolean updateCustomerReqBooking(Bookings bookings);
     public boolean deleteBooking(String orderNumber);
     public String generateOrderNumber();
     

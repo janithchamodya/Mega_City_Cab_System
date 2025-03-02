@@ -75,6 +75,14 @@ public class Bookings {
         this.EndDate = EndDate;
     }
 
+    public Bookings(String orderNumber, String customerName, String amount, String StartDate, String EndDate) {
+        this.orderNumber = orderNumber;
+        this.customerName = customerName;
+        this.amount = amount;
+        this.StartDate = StartDate;
+        this.EndDate = EndDate;
+    }
+
     
 
     public int getBookingId() {

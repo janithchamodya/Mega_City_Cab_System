@@ -21,6 +21,7 @@ public interface BookingService {
     public List<Bookings> getAllBookingsForAdminView();
     public boolean updateASUnavailableBooking(String orderNumber);
     public boolean updateBooking(Bookings bookings);
+    public boolean updateCustomerReqBooking(Bookings bookings);
     public boolean deleteBooking(String orderNumber);
     public String  generateOrderNumber();
     

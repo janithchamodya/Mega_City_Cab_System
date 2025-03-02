@@ -55,6 +55,7 @@ public class orderConfirmServlet extends HttpServlet {
     protected void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
+        
         int driverId=0;
         String driverName=null;              
         String driverGender=null;         

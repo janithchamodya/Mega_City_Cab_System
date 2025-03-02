@@ -75,8 +75,9 @@ public class confirmReturnServlet extends HttpServlet {
         String orderNumber=request.getParameter("orderNumber");
         String vehicleId=request.getParameter("vehicleId");
         String driverId=request.getParameter("driverId");
-        LOGGER.info("orderNumber"+orderNumber+" "+"vehicleId"+vehicleId+" "+driverId);
+        LOGGER.info("orderNumber :"+orderNumber+" "+"vehicleId :"+vehicleId+"driverId :"+driverId);
         
+                
         if(bookingService.updateASUnavailableBooking(orderNumber)){
 
         String driverUpdateStatus =(driverService.updateDriverAsAvaliable(Integer.parseInt(driverId))) ? "updated" : "failed";

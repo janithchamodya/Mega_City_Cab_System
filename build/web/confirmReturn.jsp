@@ -165,48 +165,74 @@
                     </thead>
                     <tbody>
                         <c:forEach var="bookings" items="${bookingsList}">
-                            <tr >
-                                 <form id="form-${bookings.orderNumber}" action="confirmReturnServlet" method="POST">
-                                    <td>
-                                        <input readonly  type="text" name="orderNumber" value="${bookings.orderNumber}" class="form-control" />
-                                    </td>
-                                    <td>
-                                        <input readonly type="text" name="customerName" value="${bookings.customerName}" class="form-control" />
-                                    </td>
-                                    
-                                    <td>
-                                        <input readonly type="text" name="vehicleName" value="${bookings.vehicleName}" class="form-control" />
-                                    </td>
-                                    <td>
-                                        <input readonly type="text" name="vehicleNumber" value="${bookings.vehicleNumber}" class="form-control" />
-                                    </td>
-                                    <td>
-                                        <input readonly type="text" name="driverName" value="${bookings.driverName}" class="form-control" />
-                                    </td>
-                                    <td>
-                                        <input readonly type="text" name="amount" value="${bookings.amount}" class="form-control" />
-                                    </td>
-                                     <td>
-                                        <input readonly type="text" name="StartDate" value="${bookings.startDate}" class="form-control" />
-                                    </td>
-                                    <td>
-                                        <input readonly type="text" name="EndDate" value="${bookings.endDate}" class="form-control" />
-                                    </td>
-                                    <input type="hidden" name="vehicleId" value="${bookings.carId}" >
-                                    <input type="hidden" name="driverId" value="${bookings.driverId}" >
-                                    
-                                    <td>
-                                    <button type="button" class="btn btn-primary" onclick="confirmReturn('${bookings.orderNumber}')">
-                                        Return
-                                    </button>
+                            <tr>
+                                <!-- Display booking details -->
+                                <td>${bookings.orderNumber}</td>
+                                <td>${bookings.customerName}</td>
+                                <td>${bookings.vehicleName}</td>
+                                <td>${bookings.vehicleNumber}</td>
+                                <td>${bookings.driverName}</td>
 
-                                    </td>
-                                </form>
+                                <!-- Editable fields -->
+                                <td>
+                                    <input type="text" id="amount-${bookings.orderNumber}" 
+                                           value="${bookings.amount}" class="form-control"/>
+                                </td>
+                                <td>
+                                    <input type="text" id="startDate-${bookings.orderNumber}" 
+                                           value="${bookings.startDate}" class="form-control"/>
+                                </td>
+                                <td>
+                                    <input type="text" id="endDate-${bookings.orderNumber}" 
+                                           value="${bookings.endDate}" class="form-control"/>
+                                </td>
+
+                                <td>
+                                    <!-- Update Form -->
+                                    <form action="updateCustomerBookingsServlet" method="POST" 
+                                          onsubmit="updateHiddenFields('${bookings.orderNumber}')" 
+                                          style="margin-bottom: 5px;">
+                                        <input type="hidden" name="orderNumber" value="${bookings.orderNumber}"/>
+                                        <input type="hidden" name="vehicleId" value="${bookings.carId}"/>
+                                        <input type="hidden" name="driverId" value="${bookings.driverId}"/>
+                                        <input type="hidden" id="hiddenAmount-${bookings.orderNumber}" name="amount"/>
+                                        <input type="hidden" id="hiddenStartDate-${bookings.orderNumber}" name="startDate"/>
+                                        <input type="hidden" id="hiddenEndDate-${bookings.orderNumber}" name="endDate"/>
+                                        <button type="submit" class="btn btn-primary btn-block">Update</button>
+                                    </form>
+
+                                    <!-- Delete Form -->
+                                    <form action="deleteCustomerBookingsServlet" method="POST" 
+                                          style="margin-bottom: 5px;">
+                                        <input type="hidden" name="orderNumber" value="${bookings.orderNumber}"/>
+                                        <input type="hidden" name="vehicleId" value="${bookings.carId}"/>
+                                        <input type="hidden" name="driverId" value="${bookings.driverId}"/>
+                                        <button type="submit" class="btn btn-danger btn-block" 
+                                                onclick="return confirm('Delete this booking?')">Delete</button>
+                                    </form>
+
+                                    <!-- Return Form -->
+                                    <form action="confirmReturnServlet" method="POST">
+                                        <input type="hidden" name="orderNumber" value="${bookings.orderNumber}"/>
+                                        <input type="hidden" name="vehicleId" value="${bookings.carId}"/>
+                                        <input type="hidden" name="driverId" value="${bookings.driverId}"/>
+                                        <button type="submit" class="btn btn-warning btn-block">Return</button>
+                                    </form>
+                                </td>
                             </tr>
                         </c:forEach>
-                       
-
                     </tbody>
+
+                    <script>
+                    function updateHiddenFields(orderNumber) {
+                        document.getElementById('hiddenAmount-' + orderNumber).value = 
+                            document.getElementById('amount-' + orderNumber).value;
+                        document.getElementById('hiddenStartDate-' + orderNumber).value = 
+                            document.getElementById('startDate-' + orderNumber).value;
+                        document.getElementById('hiddenEndDate-' + orderNumber).value = 
+                            document.getElementById('endDate-' + orderNumber).value;
+                    }
+                    </script>
                 </table>
                 <% 
                     String error = request.getParameter("error");

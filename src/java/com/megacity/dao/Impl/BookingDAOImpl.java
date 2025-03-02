@@ -311,7 +311,35 @@ public class BookingDAOImpl implements BookingDAO{
 
         return false;  // Return false if there was an error
     }
+@Override
+    public boolean updateCustomerReqBooking(Bookings bookings) {
+        String query = "UPDATE bookings SET "
+                     
+                     + "amount = ?, "
+                     + "start_date = ?, "
+                     + "end_date = ? "
+                     + "WHERE order_number = ?";
 
+        try {
+            PreparedStatement ps = connection.prepareStatement(query);
+
+            // Set parameters
+           
+            ps.setString(1, bookings.getAmount());
+            ps.setString(2, bookings.getStartDate());
+            ps.setString(3, bookings.getEndDate());
+            ps.setString(4, bookings.getOrderNumber());
+
+            int rowsUpdated = ps.executeUpdate();
+
+            return rowsUpdated > 0;  // Return true if the update was successful
+
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+
+        return false;  // Return false if there was an error
+    }
     @Override
     public boolean deleteBooking(String orderNumber) {
         String query = "DELETE FROM bookings WHERE order_number = ?";
