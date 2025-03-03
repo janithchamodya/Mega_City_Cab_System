@@ -27,7 +27,7 @@ public class changeDriverDetailsServlet extends HttpServlet {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(changeDriverDetailsServlet.class);
 
     private VehicleService vehicleService;
-    private DriverService driverService;
+    public DriverService driverService;
     
     
     public changeDriverDetailsServlet() {    
