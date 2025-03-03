@@ -30,7 +30,7 @@ import org.slf4j.LoggerFactory;
 public class adminViewAllBookingsServlet extends HttpServlet {
 private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(adminViewAllBookingsServlet.class);
 
-    private BookingService bookingService;
+    public BookingService bookingService;
     private DriverService driverService;
     private VehicleService vehicleService;
     
@@ -42,7 +42,7 @@ private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(adminView
       
         }
     @Override
-    protected void doGet(HttpServletRequest request, HttpServletResponse response)
+    public void doGet(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
     
@@ -73,7 +73,7 @@ private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(adminView
     }
 
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         String orderNumber = request.getParameter("orderNumber");
         String vehicleName = request.getParameter("vehicleName");
