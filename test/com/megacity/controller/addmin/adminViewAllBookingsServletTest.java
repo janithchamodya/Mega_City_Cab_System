@@ -59,14 +59,11 @@ public class adminViewAllBookingsServletTest {
         booking.setEndDate("2025-02-10");
         bookingsList.add(booking);
 
-        // Mock the behavior of bookingService and requestDispatcher
         when(bookingService.getAllBookingsForAdminView()).thenReturn(bookingsList);
         when(request.getRequestDispatcher("adminViewAllBookings.jsp")).thenReturn(requestDispatcher);
 
-        // Call the servlet method
         servlet.doGet(request, response);
 
-        // Verify interactions and assertions
         verify(request).setAttribute("adminViewbookingsList", bookingsList);
         verify(requestDispatcher).forward(request, response);
     }

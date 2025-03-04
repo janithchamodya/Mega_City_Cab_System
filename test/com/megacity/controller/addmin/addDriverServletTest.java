@@ -33,16 +33,15 @@ public class addDriverServletTest {
 
     @Test
     public void testDoPost_Success() throws Exception {
-        // Arrange
+        
         when(mockRequest.getParameter("driverName")).thenReturn("John Doe");
         when(mockRequest.getParameter("driverLicenseNo")).thenReturn("DL12345");
         when(mockRequest.getParameter("phoneNumber")).thenReturn("1234567890");
         when(mockRequest.getParameter("driverGender")).thenReturn("Male");
 
-        // Simulate successful driver addition
+        
         when(mockDriverService.addDriver(any(Driver.class))).thenReturn(true);
 
-        // Act
         addDriverServlet.doPost(mockRequest, mockResponse);
 
         // Assert
@@ -52,13 +51,12 @@ public class addDriverServletTest {
 
     @Test
     public void testDoPost_MissingParameters() throws Exception {
-        // Arrange - Simulate missing parameter "driverName"
+       
         when(mockRequest.getParameter("driverName")).thenReturn(null);
         when(mockRequest.getParameter("driverLicenseNo")).thenReturn("DL12345");
         when(mockRequest.getParameter("phoneNumber")).thenReturn("1234567890");
         when(mockRequest.getParameter("driverGender")).thenReturn("Male");
 
-        // Act
         addDriverServlet.doPost(mockRequest, mockResponse);
 
         // Assert

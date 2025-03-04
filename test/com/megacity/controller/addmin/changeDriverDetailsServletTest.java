@@ -70,8 +70,8 @@ public class changeDriverDetailsServletTest {
 
         servlet.doGet(request, response);
 
-        verify(request).setAttribute("driversList", driversList); // Verify driver list is set in request attribute
-        verify(requestDispatcher).forward(request, response); // Verify forward to JSP page
+        verify(request).setAttribute("driversList", driversList); 
+        verify(requestDispatcher).forward(request, response); 
     }
 
     
@@ -92,7 +92,7 @@ public class changeDriverDetailsServletTest {
 
         servlet.doPost(request, response);
 
-        verify(response).sendRedirect("changeDriverDetails.jsp?error=1"); // Verify redirect to error page on failure
+        verify(response).sendRedirect("changeDriverDetails.jsp?error=1"); 
     }
 
     /**
@@ -103,6 +103,6 @@ public class changeDriverDetailsServletTest {
         System.out.println("getServletInfo");
         changeDriverDetailsServlet instance = new changeDriverDetailsServlet();
         String result = instance.getServletInfo();
-        assertEquals("Short description", result); // Expected result
+        assertEquals("Short description", result); 
     }
 }

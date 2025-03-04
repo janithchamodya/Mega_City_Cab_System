@@ -94,7 +94,7 @@ public class deleteAdminServletTest {
         deleteAdminServletInstance.doPost(request, response);
 
         verify(response).sendRedirect("deleteAddmin.jsp?error=1");
-        verify(adminService, never()).DeleteAdminRecord(any()); // Ensure no deletion is called
+        verify(adminService, never()).DeleteAdminRecord(any()); 
     }
 
     @Test
