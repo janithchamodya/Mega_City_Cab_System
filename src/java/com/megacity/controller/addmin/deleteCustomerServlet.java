@@ -25,7 +25,7 @@ public class deleteCustomerServlet extends HttpServlet {
 private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(deleteCustomerServlet.class);
 
     
-    private UserService userService;
+    public UserService userService;
     private AdminService adminService;
     
     public deleteCustomerServlet() {  
