@@ -57,7 +57,34 @@ public class UserDAOImpl implements  UserDAO{
         return user;
     }
     
-    
+    @Override
+    public User getUserByCustomerId(String customerID) {
+        LOGGER.info("customerID"+customerID);
+        User user = null;
+        String query = "SELECT * FROM users WHERE id= ?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setString(1, customerID);
+           
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    System.out.println(rs.toString());
+                    user = new User();
+                    user.setId(rs.getInt("id"));
+                    user.setCustomerId(rs.getString("customer_id"));
+                    user.setAddress(rs.getString("address"));
+                    user.setUsername(rs.getString("username"));
+                    user.setPassword(rs.getString("password"));
+                    user.setEmail(rs.getString("email"));
+                    user.setRole(rs.getString("role"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+       
+        return user;
+    }
     @Override
     public boolean addUser(User user) {
         String query = "INSERT INTO users (customer_id, username, password, address, nic, phone, email, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";

@@ -30,7 +30,7 @@ public class SignupServlet extends HttpServlet {
     public UserService userService;
     public AdminService adminService;
     
-    public SignupServlet() {  // ✅ Correct constructor
+    public SignupServlet() {  
 	        userService = new UserServiceImpl();
                 adminService=new AdminServiceImpl();
 	    }

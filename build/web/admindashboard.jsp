@@ -19,9 +19,32 @@
     <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
     <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+    #content-wrapper {
+        background: url('images/bg.jpg') no-repeat center center fixed;
+        background-size: 100% 600px; 
+        height: 3000px;
+        width: 90%;
+        position: relative;
+        
+    }
+    
+    
+    #content-wrapper::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: o;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.92);
+        z-index: -1;
+    }
+</style>
+
 </head>
 
-<body id="page-top">
+<body id="page-top"  >
     <div id="wrapper">
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
@@ -132,6 +155,9 @@
 
                 </nav>
             <!-- End of Topbar -->
+              
+
+            
            
             
             
@@ -139,20 +165,8 @@
             
             
             
-            
-            
             <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Mega City Cab Website 2025</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
-
+        
         </div>
         <!-- End of Content Wrapper -->
 

@@ -19,6 +19,29 @@
     <link rel="stylesheet" type="text/css" href="css/loginSignup/login.css">
     <script type="text/javascript" src="js/loginSignup/loginSignup.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
+    <style>
+    #content-wrapper {
+        background: url('images/SAdminbg.jpg') no-repeat center center fixed;
+        background-size: 100% 600px; 
+        height: 3000px;
+        width: 90%;
+        margin-left: 10px
+        
+        
+    }
+    
+    
+    #content-wrapper::before {
+        content: '';
+        
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.92);
+        z-index: -1;
+    }
+</style>
 </head>
 
 <body id="page-top">
@@ -135,23 +158,7 @@
                     </ul>
 
                 </nav>
-            <!-- End of Topbar -->
             
-            
-            
-            
-            
-            <!-- End of Main Content -->
-
-            <!-- Footer -->
-            <footer class="sticky-footer bg-white">
-                <div class="container my-auto">
-                    <div class="copyright text-center my-auto">
-                        <span>Copyright &copy; Mega City Cab Website 2025</span>
-                    </div>
-                </div>
-            </footer>
-            <!-- End of Footer -->
 
         </div>
         <!-- End of Content Wrapper -->
