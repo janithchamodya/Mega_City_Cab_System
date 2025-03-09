@@ -216,6 +216,7 @@
                                         <input type="hidden" name="orderNumber" value="${bookings.orderNumber}"/>
                                         <input type="hidden" name="vehicleId" value="${bookings.carId}"/>
                                         <input type="hidden" name="driverId" value="${bookings.driverId}"/>
+                                        <input type="hidden" name="customerId" value="${bookings.customerId}"/>
                                         <button type="submit" class="btn btn-warning btn-block">Return</button>
                                     </form>
                                 </td>

@@ -115,7 +115,30 @@ public class LoginServletTest {
         
         verify(response).sendRedirect("login.jsp?error=2");
     }
+    @Test
+    public void testNullUsernameCorrectPassword() throws Exception {
+        when(request.getParameter("username")).thenReturn(null);
+        when(request.getParameter("password")).thenReturn("1234");
+        when(request.getSession()).thenReturn(session);
 
+        loginServlet.doPost(request, response);
+
+        verify(response).sendRedirect("login.jsp?error=1");
+        verify(userService, never()).login(anyString(), anyString());
+        verify(adminService, never()).Login(anyString(), anyString());
+    }
+    @Test
+    public void testCorrectUsernameNullPassword() throws Exception {
+        when(request.getParameter("username")).thenReturn("janith");
+        when(request.getParameter("password")).thenReturn(null);
+        when(request.getSession()).thenReturn(session);
+
+        loginServlet.doPost(request, response);
+
+        verify(response).sendRedirect("login.jsp?error=1");
+        verify(userService, never()).login(anyString(), anyString());
+        verify(adminService, never()).Login(anyString(), anyString());
+    }
     @Test
     public void testGetServletInfo() {
         assertEquals("Short description", loginServlet.getServletInfo());

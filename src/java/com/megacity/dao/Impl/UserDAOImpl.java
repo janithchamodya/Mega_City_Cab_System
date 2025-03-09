@@ -52,17 +52,44 @@ public class UserDAOImpl implements  UserDAO{
         } catch (SQLException e) {
             e.printStackTrace();
         }
-        LOGGER.info(user.toString());
+        
                 
         return user;
     }
     
-    
+    @Override
+    public User getUserByCustomerId(String customerID) {
+        LOGGER.info("customerID"+customerID);
+        User user = null;
+        String query = "SELECT * FROM users WHERE id= ?";
+        try (PreparedStatement ps = connection.prepareStatement(query)) {
+            ps.setString(1, customerID);
+           
+            try (ResultSet rs = ps.executeQuery()) {
+                if (rs.next()) {
+                    System.out.println(rs.toString());
+                    user = new User();
+                    user.setId(rs.getInt("id"));
+                    user.setCustomerId(rs.getString("customer_id"));
+                    user.setAddress(rs.getString("address"));
+                    user.setUsername(rs.getString("username"));
+                    user.setPassword(rs.getString("password"));
+                    user.setEmail(rs.getString("email"));
+                    user.setRole(rs.getString("role"));
+                }
+            }
+        } catch (SQLException e) {
+            e.printStackTrace();
+        }
+        
+       
+        return user;
+    }
     @Override
     public boolean addUser(User user) {
         String query = "INSERT INTO users (customer_id, username, password, address, nic, phone, email, role) VALUES (?, ?, ?, ?, ?, ?, ?, ?)";
         try (PreparedStatement ps = connection.prepareStatement(query)) {
-            ps.setString(1, user.getCustomerId()); // Index starts from 1
+            ps.setString(1, user.getCustomerId()); 
             ps.setString(2, user.getUsername());
             ps.setString(3, user.getPassword());
             ps.setString(4, user.getAddress());

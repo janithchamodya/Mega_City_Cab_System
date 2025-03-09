@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 public class deleteVehicleServlet extends HttpServlet {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(deleteVehicleServlet.class);
 
-    private VehicleService vehicleService;
+    public VehicleService vehicleService;
     private DriverService driverService;
     
     

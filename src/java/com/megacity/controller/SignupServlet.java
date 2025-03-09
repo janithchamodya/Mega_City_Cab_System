@@ -27,10 +27,10 @@ import org.slf4j.LoggerFactory;
 public class SignupServlet extends HttpServlet {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(SignupServlet.class);
 
-    private UserService userService;
-    private AdminService adminService;
+    public UserService userService;
+    public AdminService adminService;
     
-    public SignupServlet() {  // ✅ Correct constructor
+    public SignupServlet() {  
 	        userService = new UserServiceImpl();
                 adminService=new AdminServiceImpl();
 	    }
@@ -58,7 +58,7 @@ public class SignupServlet extends HttpServlet {
                    ", Role: " + role + ", NIC: " + nic + ", Address: " + address + ", Phone: " + phone);
 
 
-                // Check if any of the required fields are null or empty
+                
                 if (username == null || password == null || email == null || nic == null || address == null || phone == null ||
                     username.isEmpty() || password.isEmpty() || email.isEmpty() || nic.isEmpty() || address.isEmpty() || phone.isEmpty()) {
                     response.sendRedirect("signup.jsp?error=1");
@@ -68,7 +68,7 @@ public class SignupServlet extends HttpServlet {
 
              
               
-                // Call the signUp method from userService to handle the new user registration
+                
                
                 if("user".equals(role)){
                     LOGGER.info("user sign up");

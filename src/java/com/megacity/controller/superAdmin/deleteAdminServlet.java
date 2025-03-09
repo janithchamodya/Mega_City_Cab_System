@@ -24,7 +24,7 @@ import org.slf4j.LoggerFactory;
 public class deleteAdminServlet extends HttpServlet {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(deleteAdminServlet.class);
 
-     private AdminService adminService;
+    public AdminService adminService;
     
     public deleteAdminServlet() {  
 	        

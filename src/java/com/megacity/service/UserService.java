@@ -14,9 +14,10 @@ import java.util.List;
 public interface UserService {
     
     public User login(String username, String password);
+    public User getUserByCustomerId(String customerId);
     public boolean signUpUser(User user);
     public boolean updateUser(User user);
-     public boolean deleteCustomer(String  CustomerId);
+    public boolean deleteCustomer(String  CustomerId);
     public List<User> getAllUserForAdminView();
     
 }

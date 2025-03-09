@@ -6,11 +6,14 @@
 package com.megacity.controller.addmin;
 
 import com.megacity.model.Bookings;
+import com.megacity.model.User;
 import com.megacity.service.BookingService;
 import com.megacity.service.DriverService;
 import com.megacity.service.Impl.BookingServiceImpl;
 import com.megacity.service.Impl.DriverServiceImpl;
+import com.megacity.service.Impl.UserServiceImpl;
 import com.megacity.service.Impl.VehicleServiceImpl;
+import com.megacity.service.UserService;
 import com.megacity.service.VehicleService;
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -31,12 +34,14 @@ public class confirmReturnServlet extends HttpServlet {
     private BookingService bookingService;
     private DriverService driverService;
     private VehicleService vehicleService;
+    public UserService userService;
     
 
     public confirmReturnServlet() {    
             bookingService=new BookingServiceImpl();
             driverService=new DriverServiceImpl();
             vehicleService=new VehicleServiceImpl();
+            userService = new UserServiceImpl();
       
         }
    
@@ -74,17 +79,31 @@ public class confirmReturnServlet extends HttpServlet {
             throws ServletException, IOException {
         String orderNumber=request.getParameter("orderNumber");
         String vehicleId=request.getParameter("vehicleId");
-        String driverId=request.getParameter("driverId");
-        LOGGER.info("orderNumber :"+orderNumber+" "+"vehicleId :"+vehicleId+"driverId :"+driverId);
+        String driverId=request.getParameter("driverId");//
+        String customerId=request.getParameter("customerId");
+        LOGGER.info("orderNumber :"+orderNumber+" "+"vehicleId :"+vehicleId+"driverId :"+driverId+ "customerId :"+customerId);
         
-                
+        User user=userService.getUserByCustomerId(customerId);
+        
         if(bookingService.updateASUnavailableBooking(orderNumber)){
 
         String driverUpdateStatus =(driverService.updateDriverAsAvaliable(Integer.parseInt(driverId))) ? "updated" : "failed";
         String vehicleUpdateStatus =(vehicleService.updateVehicleAsAvaliable(vehicleId)) ? "updated" : "failed";
         LOGGER.info("Driver Update Status: " + driverUpdateStatus);
         LOGGER.info("Vehicle Update Status: " + vehicleUpdateStatus);
-        response.sendRedirect("confirmReturnServlet");
+        LOGGER.info(user.toString());
+        
+        
+        request.setAttribute("orderNumber", orderNumber);
+        request.setAttribute("vehicleId", vehicleId);
+        request.setAttribute("driverId", driverId);
+        request.setAttribute("email",user.getEmail());
+        
+        response.setHeader("Cache-Control", "no-cache, no-store, must-revalidate");
+            response.setHeader("Pragma", "no-cache");
+            
+           
+        request.getRequestDispatcher("showReturnPDF.jsp").forward(request, response);
         }else{
         response.sendRedirect("confirmReturn.jsp?error=2");
         }

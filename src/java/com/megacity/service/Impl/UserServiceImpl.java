@@ -33,6 +33,14 @@ public class UserServiceImpl implements UserService{
         }
         return null;
     }
+    
+    @Override
+    public User getUserByCustomerId(String customerId) {
+        LOGGER.info("customerId :"+customerId);
+        
+        
+        return userDAO.getUserByCustomerId(customerId);
+    }
     @Override
     public boolean signUpUser(User user) {
         

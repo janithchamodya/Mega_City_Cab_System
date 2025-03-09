@@ -157,8 +157,8 @@
                         <c:forEach var="vehicle" items="${vehicleList}">
                             <tr>
                                 <form action="changeVehicalDetailsServlet" method="POST">
-                                    <td><input type="text" name="vehicleName" value="${vehicle.vehicleName}" class="form-control" /></td>
-                                    <td><input type="text" name="vehicleNumber" value="${vehicle.vehicleNumber}" class="form-control" /></td>
+                                    <td><input type="text" readonly name="vehicleName" value="${vehicle.vehicleName}" class="form-control" /></td>
+                                    <td><input type="text" readonly name="vehicleNumber" value="${vehicle.vehicleNumber}" class="form-control" /></td>
                                     <td><input type="text" name="vehicleOwner" value="${vehicle.vehicleOwner}" class="form-control" /></td>
                                     <td><input type="text" name="vehicleOwnerContact" value="${vehicle.vehicleOwnerContact}" class="form-control" /></td>
                                     

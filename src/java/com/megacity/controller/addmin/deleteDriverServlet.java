@@ -25,7 +25,7 @@ public class deleteDriverServlet extends HttpServlet {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(deleteDriverServlet.class);
 
     private VehicleService vehicleService;
-    private DriverService driverService;
+    public DriverService driverService;
     
     
     public deleteDriverServlet() {    

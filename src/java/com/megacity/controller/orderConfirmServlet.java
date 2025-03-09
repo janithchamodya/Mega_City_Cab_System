@@ -30,9 +30,9 @@ import org.slf4j.LoggerFactory;
 public class orderConfirmServlet extends HttpServlet {
     private static final org.slf4j.Logger LOGGER = LoggerFactory.getLogger(orderConfirmServlet.class);
 
-    private BookingService bookingService;
-    private DriverService driverService;
-    private VehicleService vehicleService;
+    public BookingService bookingService;
+    public DriverService driverService;
+    public VehicleService vehicleService;
 
     public orderConfirmServlet() {    
 
@@ -52,7 +52,7 @@ public class orderConfirmServlet extends HttpServlet {
 
     
     @Override
-    protected void doPost(HttpServletRequest request, HttpServletResponse response)
+    public void doPost(HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         
         

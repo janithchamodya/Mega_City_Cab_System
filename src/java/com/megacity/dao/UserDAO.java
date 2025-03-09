@@ -16,6 +16,7 @@ public interface UserDAO {
     
     
     public User getUserByUsername(String username,String password);
+    public User getUserByCustomerId(String customerId);
     public boolean addUser(User user);
     public boolean updateUser(User user);
     public boolean deleteCustomer(String  CustomerId);
